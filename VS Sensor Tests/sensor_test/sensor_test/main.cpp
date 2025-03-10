@@ -6,6 +6,7 @@
 #define COM_PORT "\\\\.\\COM13"
 #define BAUD_RATE CBR_4800
 
+// data addresses
 #define moist			0x00
 #define temp			0x01
 #define cond			0x02
@@ -13,7 +14,7 @@
 #define P				0x05
 #define K				0x06
 
-
+// can iterate over this later
 constexpr unsigned char data_codes[6] = { moist,temp,cond,N,P,K };
 
 //////// CHOOSE TEST DATA ////////
