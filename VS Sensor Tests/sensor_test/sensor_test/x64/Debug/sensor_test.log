@@ -1,0 +1,3 @@
+﻿  main.cpp
+C:\Gitstuff\Proj500\VS Sensor Tests\sensor_test\sensor_test\main.cpp(116,50): warning C4267: 'argument': conversion from 'size_t' to 'DWORD', possible loss of data
+  sensor_test.vcxproj -> C:\Gitstuff\Proj500\VS Sensor Tests\sensor_test\x64\Debug\sensor_test.exe

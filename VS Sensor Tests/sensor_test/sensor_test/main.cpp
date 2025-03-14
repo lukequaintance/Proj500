@@ -3,7 +3,7 @@
 #include <vector>
 #include <chrono>
 
-#define COM_PORT "\\\\.\\COM13"
+#define COM_PORT "\\\\.\\COM3"
 #define BAUD_RATE CBR_4800
 
 // data addresses
@@ -18,7 +18,7 @@
 constexpr unsigned char data_codes[6] = { moist,temp,cond,N,P,K };
 
 //////// CHOOSE TEST DATA ////////
-unsigned char test_data = data_codes[5];
+unsigned char test_data = data_codes[1];
 
 // Create Modbus request (without CRC)
 std::vector<unsigned char> modbusRequest = { 0x01, 0x03, 0x00, test_data, 0x00, 0x01 };
@@ -88,7 +88,7 @@ int main() {
 		}
 	}
 	else {
-		std::cerr << "Error reading from COM13" << std::endl;
+		std::cerr << "Error reading from COM3" << std::endl;
 	}
 
 	// serial port deinit
