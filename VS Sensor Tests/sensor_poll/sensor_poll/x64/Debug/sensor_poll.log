@@ -1,3 +1,3 @@
 ﻿  sensorpoll.cpp
-C:\Gitstuff\Proj500\VS Sensor Tests\sensor_poll\sensorpoll.cpp(100,53): warning C4267: 'argument': conversion from 'size_t' to 'DWORD', possible loss of data
+C:\Gitstuff\Proj500\VS Sensor Tests\sensor_poll\sensorpoll.cpp(120,53): warning C4267: 'argument': conversion from 'size_t' to 'DWORD', possible loss of data
   sensor_poll.vcxproj -> C:\Gitstuff\Proj500\VS Sensor Tests\sensor_poll\x64\Debug\sensor_poll.exe

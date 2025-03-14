@@ -3,6 +3,9 @@
 #include <vector>
 #include <chrono>
 #include <thread>
+#include <fstream>
+#include <limits>
+#include <string>
 
 #define COM_PORT L"\\\\.\\COM3"
 #define BAUD_RATE CBR_4800
@@ -25,7 +28,13 @@ uint16_t calculateCRC(const std::vector<unsigned char>& data);
 float parseResponse(unsigned char registerAddress, const std::vector<unsigned char>& response);
 
 int main() {
-    std::cout << "Sensor Test Program - Updating every 5 seconds" << std::endl << std::endl;
+    std::ofstream outFile("sensor_data.txt", std::ios::app);
+    if (!outFile) {
+        std::cerr << "Error opening file for writing!" << std::endl;
+        return 1;
+    }
+
+    std::cout << "Sensor Test Program - Press any key to poll sensor data" << std::endl;
 
     HANDLE hSerial = CreateFile(COM_PORT, GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, 0, NULL);
     if (hSerial == INVALID_HANDLE_VALUE) {
@@ -34,8 +43,18 @@ int main() {
     }
     ConfigureSerialPort(hSerial);
 
+    std::string userInput;
     while (true) {
+        std::cout << "\nPress ENTER to poll sensors or type 'exit' to quit: ";
+        std::getline(std::cin, userInput);
+
+        if (userInput == "exit") {
+            std::cout << "Exiting program...\n";
+            break; // Exit the loop
+        }
+
         std::cout << "\nReading sensor data...\n";
+        outFile << "\nNew Data Poll:\n";
         for (unsigned char test_data : data_codes) {
             std::vector<unsigned char> modbusRequest = { 0x01, 0x03, 0x00, test_data, 0x00, 0x01 };
             uint16_t crc = calculateCRC(modbusRequest);
@@ -52,15 +71,17 @@ int main() {
             if (ReadFromSerial(hSerial, response, 7)) {
                 if (response[1] == 0x03) {
                     float value = parseResponse(test_data, response);
+                    std::string label;
                     switch (test_data) {
-                    case temp:  std::cout << "Temperature: " << value << " C" << std::endl; break;
-                    case moist: std::cout << "Moisture: " << value << " %" << std::endl; break;
-                    case cond:  std::cout << "Conductivity: " << value << " uS/cm" << std::endl; break;
-                    case ph:    std::cout << "pH: " << value << " level" << std::endl; break;
-                    case N:     std::cout << "Nitrogen: " << value << " ppm" << std::endl; break;
-                    case P:     std::cout << "Phosphorus: " << value << " ppm" << std::endl; break;
-                    case K:     std::cout << "Potassium: " << value << " ppm" << std::endl; break;
+                    case temp:  label = "Temperature: "; outFile << label << value << " C\n"; break;
+                    case moist: label = "Moisture: "; outFile << label << value << " %\n"; break;
+                    case cond:  label = "Conductivity: "; outFile << label << value << " uS/cm\n"; break;
+                    case ph:    label = "pH: "; outFile << label << value << " level\n"; break;
+                    case N:     label = "Nitrogen: "; outFile << label << value << " ppm\n"; break;
+                    case P:     label = "Phosphorus: "; outFile << label << value << " ppm\n"; break;
+                    case K:     label = "Potassium: "; outFile << label << value << " ppm\n"; break;
                     }
+                    std::cout << label << value << std::endl;
                 }
                 else {
                     std::cerr << "Invalid response from sensor." << std::endl;
@@ -70,10 +91,9 @@ int main() {
                 std::cerr << "Error reading from COM port" << std::endl;
             }
         }
-        std::cout << "\nWaiting 5 seconds...\n";
-        std::this_thread::sleep_for(std::chrono::seconds(5));
     }
     CloseHandle(hSerial);
+    outFile.close();
 }
 
 float parseResponse(unsigned char registerAddress, const std::vector<unsigned char>& response) {
