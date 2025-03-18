@@ -30,8 +30,8 @@ preprocess_val = None
 tokenizer = None
 
 # Classifier parameters.
-CONFIDENCE_THRESHOLD = 0.6  
-HIGH_CONFIDENCE_THRESHOLD = 0.9  # For high-confidence detections.
+CONFIDENCE_THRESHOLD = 0.1  
+HIGH_CONFIDENCE_THRESHOLD = 0.8  # For high-confidence detections.
 
 # --------------------------
 # Helper Functions
@@ -81,49 +81,65 @@ def get_geolocation(image_path):
 def process_image(image_path):
     """
     Process an individual image: run classifiers, extract geolocation,
-    and return a dictionary with the results.
+    and return a dictionary with all high-confidence results.
     """
     try:
-        # Use the global classifier objects.
         global custom_classifier, species_classifier
 
-        # Run custom classifier.
+        # Run the custom classifier.
         custom_predictions = custom_classifier.predict(image_path)
-        best_custom_prediction = max(custom_predictions, key=lambda p: p["score"], default=None)
+        # Filter predictions based on a minimum confidence threshold.
+        valid_custom = [p for p in custom_predictions if p["score"] >= CONFIDENCE_THRESHOLD]
+        # If none pass the threshold, add a default uncertain prediction.
+        if not valid_custom:
+            valid_custom = [{"classification": "Uncertain", "score": None}]
+        # Determine plant status for each prediction.
+        for pred in valid_custom:
+            pred["plant_status"] = (
+                "harmful" if pred["score"] is not None and pred["score"] >= HIGH_CONFIDENCE_THRESHOLD
+                else "non-harmful"
+            )
 
-        # Run species classifier.
+        # Run the species classifier.
         species_predictions = species_classifier.predict(image_path, Rank.SPECIES)
-        best_species_prediction = max(species_predictions, key=lambda p: p["score"], default=None)
-        actual_species = best_species_prediction["species"] if best_species_prediction else "Unknown"
+        # Filter species predictions for high-confidence results.
+        valid_species = [p for p in species_predictions if p["score"] >= HIGH_CONFIDENCE_THRESHOLD]
+        # If no species meet the high threshold, fall back to the best species prediction.
+        if not valid_species:
+            best_species = max(species_predictions, key=lambda p: p["score"], default={"species": "Unknown", "score": None})
+            valid_species = [best_species]
 
         # Get geolocation.
         latitude, longitude = get_geolocation(image_path)
         lat_val = round(latitude, 6) if latitude is not None else None
         lon_val = round(longitude, 6) if longitude is not None else None
 
-        # Determine custom classification.
-        if best_custom_prediction and best_custom_prediction["score"] >= CONFIDENCE_THRESHOLD:
-            classification = best_custom_prediction["classification"]
-            confidence = best_custom_prediction["score"]
-        else:
-            classification = "Uncertain"
-            confidence = None
-
-        # Determine plant status.
-        plant_status = "harmful" if confidence is not None and confidence >= HIGH_CONFIDENCE_THRESHOLD else "non-harmful"
-        return {
+        # Prepare and return the result with separate lists for custom and species predictions.
+        result = {
             "filename": os.path.basename(image_path),
-            "custom_classification": classification,
-            "confidence": round(confidence, 2) if confidence is not None else None,
-            "species": actual_species,
+            "image_path": image_path,
             "latitude": lat_val,
             "longitude": lon_val,
-            "plant_status": plant_status
+            "custom_predictions": [
+                {
+                    "classification": p["classification"],
+                    "confidence": round(p["score"], 2) if p["score"] is not None else None,
+                    "plant_status": p["plant_status"]
+                } for p in valid_custom
+            ],
+            "species_predictions": [
+                {
+                    "species": sp["species"],
+                    "confidence": round(sp["score"], 2) if sp["score"] is not None else None
+                } for sp in valid_species
+            ]
         }
+        return result
     except Exception as e:
         logging.error(f"Error processing image {image_path}: {e}")
         logging.debug(traceback.format_exc())
         return None
+
 
 def process_folder(folder_path, progress_callback=None):
     """

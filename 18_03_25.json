@@ -1,0 +1,166 @@
+{
+    "plant_data": [
+        {
+            "filename": "20250201_124557602_iOS.jpg",
+            "custom_classification": "Uncertain",
+            "confidence": null,
+            "species": "Euonymus fortunei",
+            "latitude": 50.375961,
+            "longitude": -4.093139,
+            "plant_status": "non-harmful"
+        },
+        {
+            "filename": "20250201_124607627_iOS.jpg",
+            "custom_classification": "Wild pansy",
+            "confidence": 0.99,
+            "species": "Euonymus japonica",
+            "latitude": 50.373989,
+            "longitude": -4.092674,
+            "plant_status": "harmful"
+        },
+        {
+            "filename": "20250201_124636752_iOS.jpg",
+            "custom_classification": "Uncertain",
+            "confidence": null,
+            "species": "Rubus lindleianus",
+            "latitude": 0.375149,
+            "longitude": -4.093221,
+            "plant_status": "non-harmful"
+        },
+        {
+            "filename": "20250201_125007000_iOS 2.jpg",
+            "custom_classification": "Hemlock",
+            "confidence": 0.85,
+            "species": "Fagus orientalis",
+            "latitude": 50.37595,
+            "longitude": -4.094042,
+            "plant_status": "non-harmful"
+        },
+        {
+            "filename": "20250201_133513359_iOS.jpg",
+            "custom_classification": "Creeping thistle",
+            "confidence": 0.64,
+            "species": "Quercus cerris",
+            "latitude": 50.373184,
+            "longitude": -4.096445,
+            "plant_status": "non-harmful"
+        },
+        {
+            "filename": "20250201_133517399_iOS.jpg",
+            "custom_classification": "Hemlock",
+            "confidence": 0.95,
+            "species": "Berberis bealei",
+            "latitude": 50.373604,
+            "longitude": -4.092847,
+            "plant_status": "harmful"
+        },
+        {
+            "filename": "20250201_133527384_iOS.jpg",
+            "custom_classification": "Pale persicaria",
+            "confidence": 0.99,
+            "species": "Prunus obtusata",
+            "latitude": 50.373001,
+            "longitude": -4.094929,
+            "plant_status": "harmful"
+        },
+        {
+            "filename": "20250201_133551450_iOS.jpg",
+            "custom_classification": "Common orache",
+            "confidence": 0.75,
+            "species": "Euonymus alatus",
+            "latitude": 50.374226,
+            "longitude": -4.092611,
+            "plant_status": "non-harmful"
+        },
+        {
+            "filename": "20250201_133643000_iOS.jpg",
+            "custom_classification": "Hemlock",
+            "confidence": 0.97,
+            "species": "Berberis bealei",
+            "latitude": 50.373428,
+            "longitude": -4.093209,
+            "plant_status": "harmful"
+        },
+        {
+            "filename": "20250202_093142570_iOS.jpg",
+            "custom_classification": "Cow parsley",
+            "confidence": 0.89,
+            "species": "Torilis japonica",
+            "latitude": 50.374561,
+            "longitude": -4.0929,
+            "plant_status": "non-harmful"
+        },
+        {
+            "filename": "20250202_093358021_iOS.jpg",
+            "custom_classification": "Uncertain",
+            "confidence": null,
+            "species": "Ilex colchica",
+            "latitude": 50.376392,
+            "longitude": -4.095004,
+            "plant_status": "non-harmful"
+        },
+        {
+            "filename": "20250202_100623225_iOS.jpg",
+            "custom_classification": "Hemlock",
+            "confidence": 1.0,
+            "species": "Taxus contorta",
+            "latitude": 50.376312,
+            "longitude": -4.095407,
+            "plant_status": "harmful"
+        },
+        {
+            "filename": "20250202_100636902_iOS.jpg",
+            "custom_classification": "Wild radish",
+            "confidence": 0.63,
+            "species": "Horminum pyrenaicum",
+            "latitude": 50.373096,
+            "longitude": -4.09268,
+            "plant_status": "non-harmful"
+        },
+        {
+            "filename": "20250202_101310804_iOS.jpg",
+            "custom_classification": "Uncertain",
+            "confidence": null,
+            "species": "Erythronium caucasicum",
+            "latitude": 50.376198,
+            "longitude": -4.093868,
+            "plant_status": "non-harmful"
+        },
+        {
+            "filename": "20250202_103149355_iOS.jpg",
+            "custom_classification": "Nipplewort",
+            "confidence": 0.86,
+            "species": "Hydrocotyle callicarpa",
+            "latitude": 50.373409,
+            "longitude": -4.095741,
+            "plant_status": "non-harmful"
+        },
+        {
+            "filename": "20250202_103228304_iOS.jpg",
+            "custom_classification": "Common fumitory",
+            "confidence": 0.97,
+            "species": "Epimedium rubrum",
+            "latitude": 50.375065,
+            "longitude": -4.096387,
+            "plant_status": "harmful"
+        },
+        {
+            "filename": "20250202_103352125_iOS.jpg",
+            "custom_classification": "Pea",
+            "confidence": 0.99,
+            "species": "Ulex europaeus",
+            "latitude": 50.376041,
+            "longitude": -4.094026,
+            "plant_status": "harmful"
+        },
+        {
+            "filename": "prairie-ragwort-wildflower-close-up.jpg",
+            "custom_classification": "Groundsel",
+            "confidence": 0.99,
+            "species": "Packera purpurea",
+            "latitude": 50.374241,
+            "longitude": -4.094275,
+            "plant_status": "harmful"
+        }
+    ]
+}
