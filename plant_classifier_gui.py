@@ -9,6 +9,10 @@ from tkinter.ttk import Progressbar, Style
 from bioclip import CustomLabelsClassifier, TreeOfLifeClassifier, Rank
 from PIL import Image
 import open_clip  # Used for model loading
+import sys
+import subprocess
+
+
 
 # Toggle debug mode.
 DEBUG_MODE = False  # Set to True for debugging.
@@ -33,9 +37,11 @@ tokenizer = None
 CONFIDENCE_THRESHOLD = 0.1  
 HIGH_CONFIDENCE_THRESHOLD = 0.8  # For high-confidence detections.
 
-# --------------------------
-# Helper Functions
-# --------------------------
+
+
+def launch_visualization_app():
+    # Launch app.py using the same Python interpreter.
+    subprocess.Popen([sys.executable, "app.py"])
 
 def convert_to_degrees(value):
     """Convert EXIF GPS coordinates into decimal degrees."""
@@ -222,6 +228,9 @@ class ImageClassifierApp:
         # Button to start processing images.
         self.process_button = Button(master, text="Process Images", command=self.start_processing, state="disabled")
         self.process_button.pack(padx=10, pady=10)
+
+        self.visualize_button = Button(master, text="Launch Visualization App", command=launch_visualization_app)
+        self.visualize_button.pack(padx=10, pady=5)
 
         self.folder_path = None
 
