@@ -1,21 +1,40 @@
+#!/usr/bin/env python3
+"""
+Plant Image Classifier Application
+
+This script processes plant images by running custom and species classifiers,
+extracts geolocation from image EXIF data, and provides a GUI for folder selection,
+progress tracking, and saving results as JSON. It also includes an option to launch
+a separate visualization application.
+
+Usage:
+    python this_script.py
+"""
+
+# ---------------------
+# Imports
+# ---------------------
 import os
 import json
 import logging
 import traceback
 import threading
+import subprocess
+import sys
+
 import piexif
 from tkinter import Tk, Button, Label, filedialog, messagebox
 from tkinter.ttk import Progressbar, Style
-from bioclip import CustomLabelsClassifier, TreeOfLifeClassifier, Rank
 from PIL import Image
+
 import open_clip  # Used for model loading
-import sys
-import subprocess
+from bioclip import CustomLabelsClassifier, TreeOfLifeClassifier, Rank
 
+# ---------------------
+# Global Configuration & Variables
+# ---------------------
 
-
-# Toggle debug mode.
-DEBUG_MODE = False  # Set to True for debugging.
+DEBUG_MODE = False  # Toggle debug mode; set to True for debugging.
 
 # Configure logging.
 logging.basicConfig(
@@ -24,10 +43,9 @@ logging.basicConfig(
     datefmt='%Y-%m-%d %H:%M:%S'
 )
 
-# Global variables for the classifier.
+# Global variables for classifiers and model.
 custom_classifier = None
 species_classifier = None
-# We'll load these using open_clip in the background.
 model = None
 preprocess_train = None
 preprocess_val = None
@@ -37,21 +55,31 @@ tokenizer = None
 CONFIDENCE_THRESHOLD = 0.1  
 HIGH_CONFIDENCE_THRESHOLD = 0.8  # For high-confidence detections.
 
-
+# ---------------------
+# Utility Functions
+# ---------------------
 
 def launch_visualization_app():
-    # Launch app.py using the same Python interpreter.
+
+    # Launch the visualization application (app.py) using the same Python interpreter.
+
     subprocess.Popen([sys.executable, "app.py"])
 
+
 def convert_to_degrees(value):
-    """Convert EXIF GPS coordinates into decimal degrees."""
+
+    # Convert EXIF GPS coordinates into decimal degrees.
+    
     d = value[0][0] / value[0][1]
     m = value[1][0] / value[1][1]
     s = value[2][0] / value[2][1]
     return d + (m / 60.0) + (s / 3600.0)
 
+
 def get_geolocation(image_path):
-    """Extract GPS latitude and longitude from an image's EXIF data."""
+
+   # Extract GPS latitude and longitude from an image's EXIF data.
+    
     try:
         exif_dict = piexif.load(image_path)
         gps_ifd = exif_dict.get("GPS", {})
@@ -84,10 +112,14 @@ def get_geolocation(image_path):
         logging.debug(traceback.format_exc())
         return None, None
 
+# ---------------------
+# Image Processing Functions
+# ---------------------
 def process_image(image_path):
     """
     Process an individual image: run classifiers, extract geolocation,
     and return a dictionary with all high-confidence results.
+    
     """
     try:
         global custom_classifier, species_classifier
@@ -151,6 +183,7 @@ def process_folder(folder_path, progress_callback=None):
     """
     Process all image files in the given folder and return a list of results.
     Calls progress_callback(current, total) after each image is processed.
+
     """
     results = []
     image_files = [f for f in os.listdir(folder_path) if f.lower().endswith((".jpg", ".jpeg", ".png"))]
@@ -166,8 +199,11 @@ def process_folder(folder_path, progress_callback=None):
             progress_callback(idx, total)
     return results
 
+
 def write_json(results):
-    """Prompt user to select a location and write the results to a JSON file."""
+
+    # Prompt user to select a location and write the results to a JSON file.
+
     output_file = filedialog.asksaveasfilename(
         defaultextension=".json",
         filetypes=[("JSON files", "*.json"), ("All Files", "*.*")],
@@ -189,12 +225,16 @@ def write_json(results):
         messagebox.showerror("Error", "An error occurred while saving the results.")
         return None
 
-
-# --------------------------
+# ---------------------
 # GUI Application with Threading
-# --------------------------
-
+# ---------------------
 class ImageClassifierApp:
+    """
+    GUI Application for the Plant Image Classifier.
+    
+    Provides functionality to select a folder, process images, and display progress.
+
+    """
     def __init__(self, master):
         self.master = master
         master.title("Plant Image Classifier")
@@ -229,6 +269,7 @@ class ImageClassifierApp:
         self.process_button = Button(master, text="Process Images", command=self.start_processing, state="disabled")
         self.process_button.pack(padx=10, pady=10)
 
+        # Button to launch visualization app.
         self.visualize_button = Button(master, text="Launch Visualization App", command=launch_visualization_app)
         self.visualize_button.pack(padx=10, pady=5)
 
@@ -241,6 +282,7 @@ class ImageClassifierApp:
         """
         Load the classifier model, tokenizer, and classifier objects in a background thread.
         Once loaded, update the UI.
+
         """
         global custom_classifier, species_classifier, model, preprocess_train, preprocess_val, tokenizer
         try:
@@ -277,14 +319,20 @@ class ImageClassifierApp:
         self.master.after(0, self.classifier_loaded)
 
     def classifier_loaded(self):
-        """Called in the main thread once the classifier has been loaded."""
+        """
+        Called in the main thread once the classifier has been loaded.
+        Updates the UI elements to reflect the loaded state.
+        """
         self.model_status_label.config(text="Model loaded.")
         self.select_button.config(state="normal")
-        # Enable processing only if a folder is already selected.
+        # Enable processing if a folder is already selected.
         if self.folder_path:
             self.process_button.config(state="normal")
 
     def select_folder(self):
+
+        # Open a folder dialog for the user to select a folder.
+
         folder = filedialog.askdirectory(title="Select Folder with Images")
         if folder:
             self.folder_path = folder
@@ -296,13 +344,19 @@ class ImageClassifierApp:
             self.progress_label.config(text="No folder selected.")
 
     def update_progress(self, current, total):
-        """Update progress bar and label in the main thread."""
+
+        # Update progress bar and label in the main thread.
+
         percent = int((current / total) * 100)
         self.progress["value"] = percent
         self.progress_label.config(text=f"Progress: {percent}% ({current} of {total})")
 
     def start_processing(self):
-        """Start image processing in a background thread."""
+        """
+        Start image processing in a background thread.
+        Disables buttons during processing to prevent multiple runs.
+
+        """
         if not self.folder_path:
             messagebox.showerror("Error", "Please select a folder first.")
             return
@@ -317,8 +371,13 @@ class ImageClassifierApp:
         threading.Thread(target=self.process_images_thread, daemon=True).start()
 
     def process_images_thread(self):
-        """Background thread: process images and update progress via the main thread."""
-        results = process_folder(self.folder_path, progress_callback=lambda cur, tot: self.master.after(0, self.update_progress, cur, tot))
+
+        # Background thread to process images and update progress via the main thread.
+
+        results = process_folder(
+            self.folder_path,
+            progress_callback=lambda cur, tot: self.master.after(0, self.update_progress, cur, tot)
+        )
         if not results:
             self.master.after(0, lambda: messagebox.showinfo("Result", "No valid image files found in the selected folder."))
             self.master.after(0, lambda: self.progress_label.config(text="Processing complete. No images processed."))
@@ -334,10 +393,17 @@ class ImageClassifierApp:
         self.master.after(0, lambda: self.select_button.config(state="normal"))
         self.master.after(0, lambda: self.process_button.config(state="normal"))
 
+# ---------------------
+# Main Entry Point
+# ---------------------
 def main():
+
+    #Initializes the Tkinter root and starts the main loop.
+
     root = Tk()
     app = ImageClassifierApp(root)
     root.mainloop()
+
 
 if __name__ == "__main__":
     main()

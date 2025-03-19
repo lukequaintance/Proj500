@@ -1,0 +1,449 @@
+{
+    "plant_data": [
+        {
+            "filename": "20250201_124557602_iOS.jpg",
+            "image_path": "C:/Proj 500 trials/trial images\\20250201_124557602_iOS.jpg",
+            "latitude": 50.375961,
+            "longitude": -4.093139,
+            "custom_predictions": [
+                {
+                    "classification": "Black-bindweed",
+                    "confidence": 0.42,
+                    "plant_status": "non-harmful"
+                },
+                {
+                    "classification": "Common nettle",
+                    "confidence": 0.26,
+                    "plant_status": "non-harmful"
+                },
+                {
+                    "classification": "Field bean",
+                    "confidence": 0.12,
+                    "plant_status": "non-harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Euonymus fortunei",
+                    "confidence": 0.36
+                }
+            ]
+        },
+        {
+            "filename": "20250201_124607627_iOS.jpg",
+            "image_path": "C:/Proj 500 trials/trial images\\20250201_124607627_iOS.jpg",
+            "latitude": 50.373989,
+            "longitude": -4.092674,
+            "custom_predictions": [
+                {
+                    "classification": "Wild pansy",
+                    "confidence": 0.99,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Euonymus japonica",
+                    "confidence": 0.31
+                }
+            ]
+        },
+        {
+            "filename": "20250201_124636752_iOS.jpg",
+            "image_path": "C:/Proj 500 trials/trial images\\20250201_124636752_iOS.jpg",
+            "latitude": 0.375149,
+            "longitude": -4.093221,
+            "custom_predictions": [
+                {
+                    "classification": "Field bean",
+                    "confidence": 0.45,
+                    "plant_status": "non-harmful"
+                },
+                {
+                    "classification": "Charlock",
+                    "confidence": 0.33,
+                    "plant_status": "non-harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Rubus lindleianus",
+                    "confidence": 0.23
+                }
+            ]
+        },
+        {
+            "filename": "20250201_125007000_iOS 2.jpg",
+            "image_path": "C:/Proj 500 trials/trial images\\20250201_125007000_iOS 2.jpg",
+            "latitude": 50.37595,
+            "longitude": -4.094042,
+            "custom_predictions": [
+                {
+                    "classification": "Hemlock",
+                    "confidence": 0.85,
+                    "plant_status": "harmful"
+                },
+                {
+                    "classification": "Red fescue",
+                    "confidence": 0.12,
+                    "plant_status": "non-harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Fagus orientalis",
+                    "confidence": 0.75
+                }
+            ]
+        },
+        {
+            "filename": "20250201_133513359_iOS.jpg",
+            "image_path": "C:/Proj 500 trials/trial images\\20250201_133513359_iOS.jpg",
+            "latitude": 50.373184,
+            "longitude": -4.096445,
+            "custom_predictions": [
+                {
+                    "classification": "Creeping thistle",
+                    "confidence": 0.64,
+                    "plant_status": "non-harmful"
+                },
+                {
+                    "classification": "Knapweed",
+                    "confidence": 0.21,
+                    "plant_status": "non-harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Quercus cerris",
+                    "confidence": 0.87
+                }
+            ]
+        },
+        {
+            "filename": "20250201_133517399_iOS.jpg",
+            "image_path": "C:/Proj 500 trials/trial images\\20250201_133517399_iOS.jpg",
+            "latitude": 50.373604,
+            "longitude": -4.092847,
+            "custom_predictions": [
+                {
+                    "classification": "Hemlock",
+                    "confidence": 0.95,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Berberis bealei",
+                    "confidence": 0.74
+                }
+            ]
+        },
+        {
+            "filename": "20250201_133527384_iOS.jpg",
+            "image_path": "C:/Proj 500 trials/trial images\\20250201_133527384_iOS.jpg",
+            "latitude": 50.373001,
+            "longitude": -4.094929,
+            "custom_predictions": [
+                {
+                    "classification": "Pale persicaria",
+                    "confidence": 0.99,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Prunus obtusata",
+                    "confidence": 0.25
+                }
+            ]
+        },
+        {
+            "filename": "20250201_133551450_iOS.jpg",
+            "image_path": "C:/Proj 500 trials/trial images\\20250201_133551450_iOS.jpg",
+            "latitude": 50.374226,
+            "longitude": -4.092611,
+            "custom_predictions": [
+                {
+                    "classification": "Common orache",
+                    "confidence": 0.75,
+                    "plant_status": "non-harmful"
+                },
+                {
+                    "classification": "Cleavers",
+                    "confidence": 0.11,
+                    "plant_status": "non-harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Euonymus alatus",
+                    "confidence": 0.4
+                }
+            ]
+        },
+        {
+            "filename": "20250201_133643000_iOS.jpg",
+            "image_path": "C:/Proj 500 trials/trial images\\20250201_133643000_iOS.jpg",
+            "latitude": 50.373428,
+            "longitude": -4.093209,
+            "custom_predictions": [
+                {
+                    "classification": "Hemlock",
+                    "confidence": 0.97,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Berberis bealei",
+                    "confidence": 0.82
+                }
+            ]
+        },
+        {
+            "filename": "20250202_093142570_iOS.jpg",
+            "image_path": "C:/Proj 500 trials/trial images\\20250202_093142570_iOS.jpg",
+            "latitude": 50.374561,
+            "longitude": -4.0929,
+            "custom_predictions": [
+                {
+                    "classification": "Cow parsley",
+                    "confidence": 0.89,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Torilis japonica",
+                    "confidence": 0.28
+                }
+            ]
+        },
+        {
+            "filename": "20250202_093358021_iOS.jpg",
+            "image_path": "C:/Proj 500 trials/trial images\\20250202_093358021_iOS.jpg",
+            "latitude": 50.376392,
+            "longitude": -4.095004,
+            "custom_predictions": [
+                {
+                    "classification": "Potato",
+                    "confidence": 0.31,
+                    "plant_status": "non-harmful"
+                },
+                {
+                    "classification": "Common orache",
+                    "confidence": 0.15,
+                    "plant_status": "non-harmful"
+                },
+                {
+                    "classification": "Creeping thistle",
+                    "confidence": 0.12,
+                    "plant_status": "non-harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Ilex colchica",
+                    "confidence": 0.44
+                }
+            ]
+        },
+        {
+            "filename": "20250202_100623225_iOS.jpg",
+            "image_path": "C:/Proj 500 trials/trial images\\20250202_100623225_iOS.jpg",
+            "latitude": 50.376312,
+            "longitude": -4.095407,
+            "custom_predictions": [
+                {
+                    "classification": "Hemlock",
+                    "confidence": 1.0,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Taxus contorta",
+                    "confidence": 0.3
+                }
+            ]
+        },
+        {
+            "filename": "20250202_100636902_iOS.jpg",
+            "image_path": "C:/Proj 500 trials/trial images\\20250202_100636902_iOS.jpg",
+            "latitude": 50.373096,
+            "longitude": -4.09268,
+            "custom_predictions": [
+                {
+                    "classification": "Wild radish",
+                    "confidence": 0.63,
+                    "plant_status": "non-harmful"
+                },
+                {
+                    "classification": "Daisy",
+                    "confidence": 0.19,
+                    "plant_status": "non-harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Horminum pyrenaicum",
+                    "confidence": 0.19
+                }
+            ]
+        },
+        {
+            "filename": "20250202_101310804_iOS.jpg",
+            "image_path": "C:/Proj 500 trials/trial images\\20250202_101310804_iOS.jpg",
+            "latitude": 50.376198,
+            "longitude": -4.093868,
+            "custom_predictions": [
+                {
+                    "classification": "Field pansy",
+                    "confidence": 0.4,
+                    "plant_status": "non-harmful"
+                },
+                {
+                    "classification": "Wheat",
+                    "confidence": 0.27,
+                    "plant_status": "non-harmful"
+                },
+                {
+                    "classification": "Oat",
+                    "confidence": 0.13,
+                    "plant_status": "non-harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Erythronium caucasicum",
+                    "confidence": 0.32
+                }
+            ]
+        },
+        {
+            "filename": "20250202_103149355_iOS.jpg",
+            "image_path": "C:/Proj 500 trials/trial images\\20250202_103149355_iOS.jpg",
+            "latitude": 50.373409,
+            "longitude": -4.095741,
+            "custom_predictions": [
+                {
+                    "classification": "Nipplewort",
+                    "confidence": 0.86,
+                    "plant_status": "harmful"
+                },
+                {
+                    "classification": "Garlic mustard",
+                    "confidence": 0.13,
+                    "plant_status": "non-harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Hydrocotyle callicarpa",
+                    "confidence": 0.16
+                }
+            ]
+        },
+        {
+            "filename": "20250202_103228304_iOS.jpg",
+            "image_path": "C:/Proj 500 trials/trial images\\20250202_103228304_iOS.jpg",
+            "latitude": 50.375065,
+            "longitude": -4.096387,
+            "custom_predictions": [
+                {
+                    "classification": "Common fumitory",
+                    "confidence": 0.97,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Epimedium rubrum",
+                    "confidence": 0.14
+                }
+            ]
+        },
+        {
+            "filename": "20250202_103352125_iOS.jpg",
+            "image_path": "C:/Proj 500 trials/trial images\\20250202_103352125_iOS.jpg",
+            "latitude": 50.376041,
+            "longitude": -4.094026,
+            "custom_predictions": [
+                {
+                    "classification": "Pea",
+                    "confidence": 0.99,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Ulex europaeus",
+                    "confidence": 0.68
+                }
+            ]
+        },
+        {
+            "filename": "prairie-ragwort-wildflower-close-up.jpg",
+            "image_path": "C:/Proj 500 trials/trial images\\prairie-ragwort-wildflower-close-up.jpg",
+            "latitude": 50.374241,
+            "longitude": -4.094275,
+            "custom_predictions": [
+                {
+                    "classification": "Groundsel",
+                    "confidence": 0.99,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Packera purpurea",
+                    "confidence": 0.48
+                }
+            ]
+        },
+        {
+            "filename": "Screenshot 2025-03-18 134121.png",
+            "image_path": "C:/Proj 500 trials/trial images\\Screenshot 2025-03-18 134121.png",
+            "latitude": 50.374242,
+            "longitude": -4.094275,
+            "custom_predictions": [
+                {
+                    "classification": "Field pansy",
+                    "confidence": 1.0,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Viola tricolor",
+                    "confidence": 0.48
+                }
+            ]
+        },
+        {
+            "filename": "Screenshot 2025-03-18 140934.png",
+            "image_path": "C:/Proj 500 trials/trial images\\Screenshot 2025-03-18 140934.png",
+            "latitude": null,
+            "longitude": null,
+            "custom_predictions": [
+                {
+                    "classification": "Groundsel",
+                    "confidence": 0.76,
+                    "plant_status": "non-harmful"
+                },
+                {
+                    "classification": "Ragwort",
+                    "confidence": 0.2,
+                    "plant_status": "non-harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Packera glabella",
+                    "confidence": 0.18
+                }
+            ]
+        }
+    ]
+}
