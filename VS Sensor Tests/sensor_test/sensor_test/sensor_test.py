@@ -2,7 +2,7 @@ import serial
 import time
 
 # COM Port Configuration
-COM_PORT = "COM3"
+COM_PORT = "COM10"
 BAUD_RATE = 4800
 
 # Sensor Data Addresses
@@ -35,7 +35,9 @@ def parse_response(register_address, response):
         return None  # Invalid response
 
     raw_value = (response[3] << 8) | response[4]  # Combine bytes
-    if register_address in [TEMP, MOIST, PH]:  # Divide by 10 for some values
+    if register_address in [TEMP, MOIST]:  # Divide by 10 for some values
+        return raw_value / 10.0
+    elif register_address == PH:  # Convert hex to decimal and divide by 10
         return raw_value / 10.0
     return raw_value
 

@@ -1,5 +1,6 @@
 import serial
 import time
+import json
 
 # COM Port Configuration
 COM_PORT = "COM10"
@@ -39,8 +40,10 @@ def parse_response(register_address, response):
         return None  # Invalid response
 
     raw_value = (response[3] << 8) | response[4]  # Combine bytes
-    if register_address in [TEMP, MOIST, PH]:  # Divide by 10 for some values
+    if register_address in [TEMP, MOIST]:  # Divide by 10 for some values
         return raw_value / 10.0
+    elif register_address == PH:  # Proper hex to decimal conversion for pH
+        return int(response[3] << 8 | response[4]) / 10.0
     return raw_value
 
 def poll_sensor(ser, sensor_id, address):
@@ -58,7 +61,9 @@ def poll_sensor(ser, sensor_id, address):
 
 def poll_all_sensors(ser, sensor_id):
     """Poll all data registers for a given sensor"""
-    sensor_data = {}
+    sensor_data = {
+        "GPS": {"latitude": None, "longitude": None}  # Blank GPS fields
+    }
     for sensor in DATA_CODES:
         value = poll_sensor(ser, sensor_id, sensor)
         if value is not None:
@@ -77,38 +82,55 @@ def poll_all_sensors(ser, sensor_id):
             print(f"Error reading {sensor} from Sensor {sensor_id}")
     return sensor_data
 
+def append_results_to_json(sensor1_data, sensor2_data):
+    """Append new soil sensor data to a JSON file"""
+    try:
+        with open("soil_data.json", "r") as json_file:
+            data = json.load(json_file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        data = {"soil_results": []}  # Create new structure if file doesn't exist or is corrupted
+
+    # Append new data entry with timestamp
+    new_entry = {
+        "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "sensor_1": sensor1_data,
+        "sensor_2": sensor2_data
+    }
+    data["soil_results"].append(new_entry)
+
+    with open("soil_data.json", "w") as json_file:
+        json.dump(data, json_file, indent=4)
+
 def main():
     try:
         ser = serial.Serial(COM_PORT, BAUD_RATE, timeout=1)
         print(f"Connected to {COM_PORT} at {BAUD_RATE} baud.")
 
-        with open("sensor_data.txt", "a") as outFile:
-            while True:
-                user_input = input("\nPress ENTER to poll sensors or type 'exit' to quit: ").strip()
-                
-                if user_input.lower() == "exit":
-                    print("Exiting program...")
-                    break
-                
-                elif user_input == "":  # ENTER key pressed
-                    print("\nReading sensor data...")
-                    outFile.write("\nNew Data Poll:\n")
+        while True:
+            user_input = input("\nPress ENTER to poll sensors or type 'exit' to quit: ").strip()
+            
+            if user_input.lower() == "exit":
+                print("Exiting program...")
+                break
+            
+            elif user_input == "":  # ENTER key pressed
+                print("\nReading sensor data...")
 
-                    # Poll Sensor 1
-                    print("\nSensor 1 Data:")
-                    outFile.write("\nSensor 1 Data:\n")
-                    sensor1_data = poll_all_sensors(ser, SENSOR_1_ID)
-                    for label, value in sensor1_data.items():
-                        print(f"{label}: {value}")
-                        outFile.write(f"{label}: {value}\n")
+                # Poll Sensor 1
+                print("\nSensor 1 Data:")
+                sensor1_data = poll_all_sensors(ser, SENSOR_1_ID)
+                for label, value in sensor1_data.items():
+                    print(f"{label}: {value}")
 
-                    # Poll Sensor 2
-                    print("\nSensor 2 Data:")
-                    outFile.write("\nSensor 2 Data:\n")
-                    sensor2_data = poll_all_sensors(ser, SENSOR_2_ID)
-                    for label, value in sensor2_data.items():
-                        print(f"{label}: {value}")
-                        outFile.write(f"{label}: {value}\n")
+                # Poll Sensor 2
+                print("\nSensor 2 Data:")
+                sensor2_data = poll_all_sensors(ser, SENSOR_2_ID)
+                for label, value in sensor2_data.items():
+                    print(f"{label}: {value}")
+
+                # Append results to JSON file
+                append_results_to_json(sensor1_data, sensor2_data)
+                print("\nData appended to soil_data.json\n")
 
     except serial.SerialException as e:
         print(f"Serial port error: {e}")

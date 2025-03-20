@@ -1,0 +1,144 @@
+
+New Data Poll:
+Moisture (%): 64.4
+Temperature (C): 25.0
+Conductivity (uS/cm): 471
+pH Level: 5.9
+Nitrogen (ppm): 184
+Phosphorus (ppm): 177
+Potassium (ppm): 259
+
+New Data Poll:
+Moisture (%): 64.1
+Temperature (C): 25.0
+Conductivity (uS/cm): 471
+pH Level: 5.9
+Nitrogen (ppm): 183
+Phosphorus (ppm): 177
+Potassium (ppm): 259
+
+New Data Poll:
+Moisture (%): 64.4
+Temperature (C): 25.0
+Conductivity (uS/cm): 471
+pH Level: 5.9
+Nitrogen (ppm): 184
+Phosphorus (ppm): 176
+Potassium (ppm): 260
+
+New Data Poll:
+Moisture (%): 64.1
+Temperature (C): 25.0
+Conductivity (uS/cm): 527
+pH Level: 5.7
+Nitrogen (ppm): 181
+Phosphorus (ppm): 207
+Potassium (ppm): 254
+
+New Data Poll:
+
+Sensor 1 Data:
+Moisture (%): 64.8
+Temperature (C): 27.6
+Conductivity (uS/cm): 1641
+pH Level: 30.2
+Nitrogen (ppm): 748
+Phosphorus (ppm): 679
+Potassium (ppm): 902
+
+Sensor 2 Data:
+Moisture (%): 93.3
+Temperature (C): 25.9
+Conductivity (uS/cm): 2394
+pH Level: 44.7
+Nitrogen (ppm): 1054
+Phosphorus (ppm): 1119
+Potassium (ppm): 1288
+
+New Data Poll:
+
+Sensor 1 Data:
+Moisture (%): 86.2
+Temperature (C): 27.2
+Conductivity (uS/cm): 2321
+pH Level: 39.1
+Nitrogen (ppm): 1065
+Phosphorus (ppm): 1048
+Potassium (ppm): 1533
+
+Sensor 2 Data:
+Moisture (%): 76.3
+Temperature (C): 25.5
+Conductivity (uS/cm): 1006
+pH Level: 48.6
+Nitrogen (ppm): 1156
+Phosphorus (ppm): 394
+Potassium (ppm): 1375
+
+New Data Poll:
+
+Sensor 1 Data:
+Moisture (%): 93.5
+Temperature (C): 27.5
+Conductivity (uS/cm): 5455
+pH Level: 110.0
+Nitrogen (ppm): 1999
+Phosphorus (ppm): 1999
+Potassium (ppm): 3000
+
+Sensor 2 Data:
+Moisture (%): 85.1
+Temperature (C): 26.8
+Conductivity (uS/cm): 5350
+pH Level: 107.2
+Nitrogen (ppm): 1999
+Phosphorus (ppm): 1999
+Potassium (ppm): 2942
+
+New Data Poll:
+
+Sensor 1 Data:
+Moisture (%): 94.9
+Temperature (C): 27.4
+Conductivity (uS/cm): 5533
+pH Level: 77.2
+Nitrogen (ppm): 1999
+Phosphorus (ppm): 1354
+Potassium (ppm): 3014
+
+Sensor 2 Data:
+Moisture (%): 84.9
+Temperature (C): 26.7
+Conductivity (uS/cm): 5487
+pH Level: 57.1
+Nitrogen (ppm): 1999
+Phosphorus (ppm): 1999
+Potassium (ppm): 1642
+
+New Data Poll:
+Moisture (%): 84.9
+Temperature (C): 26.7
+Conductivity (uS/cm): 5350
+
+New Data Poll:
+Moisture (%): 85.1
+Temperature (C): 26.7
+Conductivity (uS/cm): 5296
+
+New Data Poll:
+Moisture (%): 84.9
+Temperature (C): 26.5
+Conductivity (uS/cm): 5405
+pH Level: 31.8
+Nitrogen (ppm): 1999
+Phosphorus (ppm): 1999
+Potassium (ppm): 823
+
+New Data Poll:
+Moisture (%): 84.6
+Temperature (C): 26.1
+Conductivity (uS/cm): 5241
+pH Level: 106.1
+Nitrogen (ppm): 1999
+Phosphorus (ppm): 1999
+Potassium (ppm): 2882
