@@ -5,6 +5,10 @@ import time
 COM_PORT = "COM3"
 BAUD_RATE = 4800
 
+# Sensor Device Addresses
+SENSOR_1_ID = 0x01  # First sensor address
+SENSOR_2_ID = 0x02  # Second sensor address
+
 # Sensor Data Addresses
 MOIST = 0x00
 TEMP = 0x01
@@ -39,9 +43,9 @@ def parse_response(register_address, response):
         return raw_value / 10.0
     return raw_value
 
-def poll_sensor(ser, address):
-    """Send a Modbus request and receive a response"""
-    request = [0x02, 0x03, 0x00, address, 0x00, 0x01]  # Modbus request
+def poll_sensor(ser, sensor_id, address):
+    """Send a Modbus request to a sensor and receive a response"""
+    request = [sensor_id, 0x03, 0x00, address, 0x00, 0x01]  # Modbus request
     request += list(calculate_crc(request))  # Append CRC
 
     ser.write(bytearray(request))  # Send request
@@ -51,6 +55,27 @@ def poll_sensor(ser, address):
     if len(response) == 7 and response[1] == 0x03:  # Valid response check
         return parse_response(address, response)
     return None
+
+def poll_all_sensors(ser, sensor_id):
+    """Poll all data registers for a given sensor"""
+    sensor_data = {}
+    for sensor in DATA_CODES:
+        value = poll_sensor(ser, sensor_id, sensor)
+        if value is not None:
+            labels = {
+                TEMP: "Temperature (C)",
+                MOIST: "Moisture (%)",
+                COND: "Conductivity (uS/cm)",
+                PH: "pH Level",
+                N: "Nitrogen (ppm)",
+                P: "Phosphorus (ppm)",
+                K: "Potassium (ppm)"
+            }
+            label = labels.get(sensor, f"Sensor {sensor}")
+            sensor_data[label] = value
+        else:
+            print(f"Error reading {sensor} from Sensor {sensor_id}")
+    return sensor_data
 
 def main():
     try:
@@ -69,23 +94,21 @@ def main():
                     print("\nReading sensor data...")
                     outFile.write("\nNew Data Poll:\n")
 
-                    for sensor in DATA_CODES:
-                        value = poll_sensor(ser, sensor)
-                        if value is not None:
-                            labels = {
-                                TEMP: "Temperature (C)",
-                                MOIST: "Moisture (%)",
-                                COND: "Conductivity (uS/cm)",
-                                PH: "pH Level",
-                                N: "Nitrogen (ppm)",
-                                P: "Phosphorus (ppm)",
-                                K: "Potassium (ppm)"
-                            }
-                            label = labels.get(sensor, f"Sensor {sensor}")
-                            print(f"{label}: {value}")
-                            outFile.write(f"{label}: {value}\n")
-                        else:
-                            print(f"Error reading {sensor}")
+                    # Poll Sensor 1
+                    print("\nSensor 1 Data:")
+                    outFile.write("\nSensor 1 Data:\n")
+                    sensor1_data = poll_all_sensors(ser, SENSOR_1_ID)
+                    for label, value in sensor1_data.items():
+                        print(f"{label}: {value}")
+                        outFile.write(f"{label}: {value}\n")
+
+                    # Poll Sensor 2
+                    print("\nSensor 2 Data:")
+                    outFile.write("\nSensor 2 Data:\n")
+                    sensor2_data = poll_all_sensors(ser, SENSOR_2_ID)
+                    for label, value in sensor2_data.items():
+                        print(f"{label}: {value}")
+                        outFile.write(f"{label}: {value}\n")
 
     except serial.SerialException as e:
         print(f"Serial port error: {e}")
