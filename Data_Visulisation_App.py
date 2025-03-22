@@ -6,14 +6,13 @@ import streamlit as st
 import folium
 from folium.plugins import HeatMap
 from streamlit_folium import st_folium
+import branca.colormap as cm  # Import for linear colormap
 
 # -----------------------------------------------------------
 # Launch Streamlit App (if not already launched)
 # -----------------------------------------------------------
 if not os.environ.get("STREAMLIT_STARTED"):
-    # Set an environment variable to indicate the app has started
     os.environ["STREAMLIT_STARTED"] = "1"
-    # Launch the app using Streamlit and exit this instance
     os.system("python -m streamlit run Data_Visulisation_App.py")
     sys.exit()
 
@@ -24,10 +23,16 @@ st.set_page_config(page_title="Field Data Visualization", layout="wide")
 st.title("Field Data Visualization Application")
 
 # -----------------------------------------------------------
-# Sidebar: File Upload
+# Sidebar: File Uploads and Hazard Threshold Input
 # -----------------------------------------------------------
 st.sidebar.header("Data Upload")
-uploaded_file = st.sidebar.file_uploader("Upload your JSON file", type=["json"])
+# File for plant data (and its associated sensor data if any)
+uploaded_file_plant = st.sidebar.file_uploader("Upload your Plant Data JSON file", type=["json"], key="plant_file")
+# File for soil sensor data
+uploaded_file_soil = st.sidebar.file_uploader("Upload your Soil Data JSON file", type=["json"], key="soil_file")
+
+# Global list to store all valid coordinates (from plant and soil data)
+global_coords = []
 
 # -----------------------------------------------------------
 # Function to encode an image file in base64 for embedding in HTML
@@ -39,28 +44,60 @@ def get_encoded_image(image_path):
     except FileNotFoundError:
         return None
 
-# -----------------------------------------------------------
-# Process the uploaded JSON file (if any)
-# -----------------------------------------------------------
-if uploaded_file is not None:
-    try:
-        # Load the JSON data
-        data = json.load(uploaded_file)
-        sensor_data = data.get("sensor_data", [])
-        plant_data = data.get("plant_data", [])
-        st.success("File successfully loaded!")
+# Function to compute bounding box from a list of (lat,lon) tuples
+def compute_bounds(coords):
+    if not coords:
+        return [[0, 0], [0, 0]]
+    lats = [float(lat) for lat, lon in coords]
+    lons = [float(lon) for lat, lon in coords]
+    return [[min(lats), min(lons)], [max(lats), max(lons)]]
 
-        # -----------------------------------------------------------
+# Function to compute center (average) from coordinates
+def compute_center(coords):
+    if coords:
+        avg_lat = sum(float(lat) for lat, lon in coords) / len(coords)
+        avg_lon = sum(float(lon) for lat, lon in coords) / len(coords)
+        return [avg_lat, avg_lon]
+    return [0, 0]
+
+# Define acceptable thresholds for each soil parameter (adjust as needed)
+thresholds = {
+    "Moisture (%)": (40, 90),          # 40% low, 90% high
+    "Temperature (C)": (10, 35),       # 10°C low, 35°C high
+    "Conductivity (uS/cm)": (3000, 8000), # Adjusted range
+    "pH Level": (40, 100),             # Adjusted range
+    "Nitrogen (ppm)": (1000, 3000),    # Adjusted range
+    "Phosphorus (ppm)": (1000, 3000),   # Adjusted range
+    "Potassium (ppm)": (1000, 4000)     # Adjusted range
+}
+
+# Define a common gradient (kept here in case it is needed elsewhere)
+gradient = {'0.0': 'blue', '0.5': 'lime', '1.0': 'red'}
+
+# Placeholder for plant_data to be used later if needed
+plant_data = []
+
+# -----------------------------------------------------------
+# Process the Plant Data file (if any)
+# -----------------------------------------------------------
+if uploaded_file_plant is not None:
+    try:
+        data = json.load(uploaded_file_plant)
+        plant_data = data.get("plant_data", [])
+        st.success("Plant Data file successfully loaded!")
+
         # Process Plant Data
-        # -----------------------------------------------------------
         harmful_valid = []         # Harmful plants with valid GPS data
         harmful_missing_gps = []   # Harmful plants missing GPS data
         nonharmful_valid = []      # Non-harmful plants with valid GPS data
 
         for plant in plant_data:
-            lat = plant.get("latitude")
-            lon = plant.get("longitude")
-            # Check if the plant is marked as harmful based on custom_predictions
+            try:
+                lat = float(plant.get("latitude"))
+                lon = float(plant.get("longitude"))
+            except (TypeError, ValueError):
+                lat = lon = None
+
             harmful = any(
                 pred.get("plant_status", "").lower() == "harmful" 
                 for pred in plant.get("custom_predictions", [])
@@ -68,53 +105,33 @@ if uploaded_file is not None:
             if harmful:
                 if lat is not None and lon is not None:
                     harmful_valid.append(plant)
+                    global_coords.append((lat, lon))
                 else:
                     harmful_missing_gps.append(plant)
             else:
-                # Only add non-harmful plants if valid GPS data exists
                 if lat is not None and lon is not None:
                     nonharmful_valid.append(plant)
+                    global_coords.append((lat, lon))
 
-        # -----------------------------------------------------------
         # Create Map for Plants with Valid GPS Data
-        # -----------------------------------------------------------
         st.subheader("Map: Plants with GPS Data")
-        # Combine coordinates of both harmful and non-harmful plants
-        valid_coords = [
-            (plant["latitude"], plant["longitude"])
-            for plant in harmful_valid + nonharmful_valid
-        ]
-        # Calculate average latitude and longitude to center the map
-        if valid_coords:
-            avg_lat = sum(lat for lat, _ in valid_coords) / len(valid_coords)
-            avg_lon = sum(lon for _, lon in valid_coords) / len(valid_coords)
-        else:
-            avg_lat, avg_lon = 0, 0
-
-        # Create a Folium map centered at the calculated average coordinates
-        plant_map = folium.Map(location=[avg_lat, avg_lon], zoom_start=13)
-
-        # -----------------------------------------------------------
-        # Add Markers for Harmful Plants (Red Markers)
-        # -----------------------------------------------------------
+        plant_map = folium.Map()
+        # Add markers for harmful plants (red)
         for plant in harmful_valid:
-            lat = plant["latitude"]
-            lon = plant["longitude"]
+            lat = float(plant.get("latitude"))
+            lon = float(plant.get("longitude"))
             image_path = plant.get("image_path", "")
-            # Get species predictions and custom predictions as comma-separated strings
             species_predictions = ", ".join(
                 sp.get("species", "Unknown") for sp in plant.get("species_predictions", [])
             )
             custom_predictions = ", ".join(
                 pred.get("classification", "Unknown") for pred in plant.get("custom_predictions", [])
             )
-            # Get the base64 encoded image if available
             img_base64 = get_encoded_image(image_path)
             image_html = (
                 f'<img src="data:image/png;base64,{img_base64}" width="150" height="150"><br>'
                 if img_base64 else ""
             )
-            # Create popup HTML with image and predictions
             popup_text = (
                 f"{image_html}"
                 f"<b>Species:</b> {species_predictions}<br>"
@@ -122,34 +139,27 @@ if uploaded_file is not None:
                 f"(Harmful)"
             )
             popup = folium.Popup(popup_text, max_width=300)
-            # Add a red marker to the map
             folium.Marker(
                 location=[lat, lon],
                 popup=popup,
                 icon=folium.Icon(color="red", icon="exclamation-triangle", prefix="fa")
             ).add_to(plant_map)
-
-        # -----------------------------------------------------------
-        # Add Markers for Non-Harmful Plants (Green Markers)
-        # -----------------------------------------------------------
+        # Add markers for non-harmful plants (green)
         for plant in nonharmful_valid:
-            lat = plant["latitude"]
-            lon = plant["longitude"]
+            lat = float(plant.get("latitude"))
+            lon = float(plant.get("longitude"))
             image_path = plant.get("image_path", "")
-            # Get species and custom predictions as comma-separated strings
             species_predictions = ", ".join(
                 sp.get("species", "Unknown") for sp in plant.get("species_predictions", [])
             )
             custom_predictions = ", ".join(
                 pred.get("classification", "Unknown") for pred in plant.get("custom_predictions", [])
             )
-            # Get the base64 encoded image if available
             img_base64 = get_encoded_image(image_path)
             image_html = (
                 f'<img src="data:image/png;base64,{img_base64}" width="150" height="150"><br>'
                 if img_base64 else ""
             )
-            # Create popup HTML with image and predictions
             popup_text = (
                 f"{image_html}"
                 f"<b>Species:</b> {species_predictions}<br>"
@@ -157,22 +167,20 @@ if uploaded_file is not None:
                 f"(Non-Harmful)"
             )
             popup = folium.Popup(popup_text, max_width=300)
-            # Add a green marker to the map
             folium.Marker(
                 location=[lat, lon],
                 popup=popup,
                 icon=folium.Icon(color="green", icon="leaf", prefix="fa")
             ).add_to(plant_map)
+        # Center plant map over provided plant data
+        plant_bounds = compute_bounds(global_coords)
+        plant_map.fit_bounds(plant_bounds)
+        st_folium(plant_map, width=1000, height=750, key="plant_map")
 
-        # Render the plant map using Streamlit-Folium
-        st_folium(plant_map, width=1000, height=750)
-
-        # -----------------------------------------------------------
-        # Display Harmful Plants that are Missing GPS Data
-        # -----------------------------------------------------------
+        # Display info for plants missing GPS
         if harmful_missing_gps:
             st.subheader("Harmful Plants Missing GPS Data")
-            st.info("The following harmful plants were not plotted on the map because they are missing GPS data:")
+            st.info("The following harmful plants were not plotted because they are missing GPS data:")
             for idx, plant in enumerate(harmful_missing_gps, start=1):
                 species_predictions = ", ".join(
                     sp.get("species", "Unknown") for sp in plant.get("species_predictions", [])
@@ -184,83 +192,129 @@ if uploaded_file is not None:
                     f"**Plant {idx}:** Species: {species_predictions} | Classifications: {custom_predictions}"
                 )
 
-        # -----------------------------------------------------------
-        # Create Heatmap for Sensor Data (NPK values)
-        # -----------------------------------------------------------
-        st.subheader("Map: Sensor Data Heatmap (NPK values)")
-        if sensor_data:
-            # Filter out sensor data with valid GPS coordinates
-            valid_sensor_coords = [
-                (item["latitude"], item["longitude"])
-                for item in sensor_data
-                if item.get("latitude") is not None and item.get("longitude") is not None
-            ]
-            # Calculate the average coordinates for centering the map
-            if valid_sensor_coords:
-                avg_lat = sum(lat for lat, _ in valid_sensor_coords) / len(valid_sensor_coords)
-                avg_lon = sum(lon for _, lon in valid_sensor_coords) / len(valid_sensor_coords)
-            else:
-                avg_lat, avg_lon = 0, 0
-
-            # Create a Folium map for sensor data heatmap
-            sensor_map = folium.Map(location=[avg_lat, avg_lon], zoom_start=13)
-            heat_data = [
-                [sensor["latitude"], sensor["longitude"], sensor.get("npk", 0)]
-                for sensor in sensor_data
-                if sensor.get("latitude") is not None and sensor.get("longitude") is not None
-            ]
-            # Add a heatmap layer using sensor data
-            HeatMap(heat_data, radius=15, blur=10, min_opacity=0.2, max_zoom=18).add_to(sensor_map)
-            st_folium(sensor_map, width=700, height=500)
-        else:
-            st.warning("No sensor data found in the uploaded file.")
-
-        # -----------------------------------------------------------
-        # Create Heatmaps for Soil Sensor Data (Individual Parameters)
-        # -----------------------------------------------------------
-        soil_results = data.get("soil_results", [])
-        if soil_results:
-            st.subheader("Soil Sensor Data Heatmaps")
-            # Let the user select which sensor(s) to display
-            sensors_to_show = st.multiselect("Select sensor data to display",
-                                             options=["Sensor 1", "Sensor 2"],
-                                             default=["Sensor 1", "Sensor 2"])
-            # List of parameters to create individual heatmaps for
-            parameters = [
-                "Moisture (%)", "Temperature (C)", "Conductivity (uS/cm)",
-                "pH Level", "Nitrogen (ppm)", "Phosphorus (ppm)", "Potassium (ppm)"
-            ]
-            # Create a separate tab for each parameter
-            tabs = st.tabs(parameters)
-            for param, tab in zip(parameters, tabs):
-                with tab:
-                    heat_data = []
-                    # Loop over each soil result and each selected sensor
-                    for result in soil_results:
-                        for sensor in sensors_to_show:
-                            sensor_key = "sensor_1" if sensor == "Sensor 1" else "sensor_2"
-                            sensor_item = result.get(sensor_key, {})
-                            gps = sensor_item.get("GPS", {})
-                            lat = gps.get("latitude")
-                            lon = gps.get("longitude")
-                            value = sensor_item.get(param)
-                            # Only add data points with valid GPS and a non-null parameter value
-                            if lat is not None and lon is not None and value is not None:
-                                heat_data.append([lat, lon, value])
-                    # Determine the center of the map if there are valid data points
-                    if heat_data:
-                        avg_lat = sum(point[0] for point in heat_data) / len(heat_data)
-                        avg_lon = sum(point[1] for point in heat_data) / len(heat_data)
-                    else:
-                        avg_lat, avg_lon = 0, 0
-                    # Create a Folium map and add the heatmap layer
-                    soil_map = folium.Map(location=[avg_lat, avg_lon], zoom_start=13)
-                    HeatMap(heat_data, radius=15, blur=10, min_opacity=0.2, max_zoom=18).add_to(soil_map)
-                    st_folium(soil_map, width=700, height=500)
-        else:
-            st.info("No soil sensor data found in the uploaded file.")
-
     except Exception as e:
-        st.error(f"An error occurred while processing the file: {e}")
+        st.error(f"An error occurred while processing the Plant Data file: {e}")
 else:
-    st.info("Awaiting JSON file upload. (See sidebar)")
+    st.info("Awaiting Plant Data JSON file upload. (See sidebar)")
+
+# -----------------------------------------------------------
+# Process the Soil Data file (if any)
+# -----------------------------------------------------------
+if uploaded_file_soil is not None:
+    try:
+        soil_data = json.load(uploaded_file_soil)
+        soil_results = soil_data.get("soil_results", [])
+        st.success("Soil Data file successfully loaded!")
+
+        # Create a list for soil sensor coordinates only
+        soil_coords = []
+        for result in soil_results:
+            for sensor_key in ["sensor_1", "sensor_2"]:
+                sensor_item = result.get(sensor_key, {})
+                gps = sensor_item.get("GPS", {})
+                try:
+                    lat = float(gps.get("latitude"))
+                    lon = float(gps.get("longitude"))
+                    soil_coords.append((lat, lon))
+                except (TypeError, ValueError):
+                    continue
+        overall_soil_center = compute_center(soil_coords)
+
+        # Define soil parameters
+        parameters = [
+            "Moisture (%)", "Temperature (C)", "Conductivity (uS/cm)",
+            "pH Level", "Nitrogen (ppm)", "Phosphorus (ppm)", "Potassium (ppm)"
+        ]
+
+        # Create hazard threshold inputs for every parameter in the sidebar
+        hazard_thresholds = {}
+        st.sidebar.subheader("Hazard Thresholds for All Parameters")
+        for param in parameters:
+            hazard_thresholds[param] = st.sidebar.number_input(
+                f"Set hazard threshold for {param} difference",
+                value=5.0, step=0.1, min_value=0.0, key=f"hazard_{param}"
+            )
+
+        # Multiselect for soil parameters to display (default empty)
+        selected_parameters = st.multiselect("Select soil parameter(s) to display",
+                                             options=parameters,
+                                             default=[],
+                                             key="soil_parameter_select")
+        if selected_parameters:
+            num_params = len(selected_parameters)
+            num_cols = 2
+            rows = (num_params + num_cols - 1) // num_cols  # Calculate number of rows
+            columns = st.columns(num_cols)  # Create two columns for each row
+            
+            for i, param in enumerate(selected_parameters):
+                col = columns[i % num_cols]  # Assign alternating maps to columns
+                with col:
+                    col.markdown(f"#### {param}")
+                    
+                    # Create colormap for this parameter
+                    t_min, t_max = thresholds[param]
+                    param_colormap = cm.LinearColormap(colors=['blue', 'red'], vmin=t_min, vmax=t_max)
+
+                    # Create a folium map
+                    param_map = folium.Map(location=overall_soil_center, zoom_start=13)
+                    
+                    for result in soil_results:
+                        timestamp = result.get("timestamp", "N/A")
+                        sensor1 = result.get("sensor_1", {})
+                        sensor2 = result.get("sensor_2", {})
+                        gps1 = sensor1.get("GPS", {})
+                        gps2 = sensor2.get("GPS", {})
+
+                        try:
+                            lat = float(gps1.get("latitude")) if gps1.get("latitude") is not None else float(gps2.get("latitude"))
+                            lon = float(gps1.get("longitude")) if gps1.get("longitude") is not None else float(gps2.get("longitude"))
+                        except (TypeError, ValueError):
+                            continue
+
+                        try:
+                            val1 = float(sensor1.get(param))
+                        except (TypeError, ValueError):
+                            val1 = None
+                        try:
+                            val2 = float(sensor2.get(param))
+                        except (TypeError, ValueError):
+                            val2 = None
+
+                        if val1 is not None or val2 is not None:
+                            if val1 is not None and val2 is not None:
+                                avg_val = (val1 + val2) / 2
+                                diff = abs(val1 - val2)
+                            else:
+                                avg_val = val1 if val1 is not None else val2
+                                diff = 0
+                            color = param_colormap(avg_val)
+                            popup_text = f"<b>{param} Readings</b><br>Timestamp: {timestamp}<br>"
+                            if val1 is not None:
+                                popup_text += f"Sensor 1: {val1:.1f}<br>"
+                            if val2 is not None:
+                                popup_text += f"Sensor 2: {val2:.1f}<br>"
+                            if val1 is not None and val2 is not None and diff > hazard_thresholds[param]:
+                                popup_text += f"<span style='color:red;'><b>Discrepancy:</b> Difference between sensors {diff:.1f} </span>"
+                            folium.CircleMarker(
+                                location=[lat, lon],
+                                radius=8,
+                                fill=True,
+                                fill_color=color,
+                                color=color,
+                                fill_opacity=0.8,
+                                tooltip=popup_text
+                            ).add_to(param_map)
+
+                    # Display map in the current column
+                    st_folium(param_map, width=500, height=500, key=f"{param}_map")
+
+                # Reset columns every two maps to start a new row
+                if (i + 1) % num_cols == 0 and i + 1 < num_params:
+                    columns = st.columns(num_cols)  # Create new columns for the next row
+
+        else:
+            st.info("No soil parameters selected.")
+    except Exception as e:
+        st.error(f"An error occurred while processing the Soil Data file: {e}")
+else:
+    st.info("Awaiting Soil Data JSON file upload. (See sidebar)")
