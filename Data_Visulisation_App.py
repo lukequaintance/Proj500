@@ -48,7 +48,6 @@ if uploaded_file is not None:
         data = json.load(uploaded_file)
         sensor_data = data.get("sensor_data", [])
         plant_data = data.get("plant_data", [])
-
         st.success("File successfully loaded!")
 
         # -----------------------------------------------------------
@@ -215,6 +214,51 @@ if uploaded_file is not None:
             st_folium(sensor_map, width=700, height=500)
         else:
             st.warning("No sensor data found in the uploaded file.")
+
+        # -----------------------------------------------------------
+        # Create Heatmaps for Soil Sensor Data (Individual Parameters)
+        # -----------------------------------------------------------
+        soil_results = data.get("soil_results", [])
+        if soil_results:
+            st.subheader("Soil Sensor Data Heatmaps")
+            # Let the user select which sensor(s) to display
+            sensors_to_show = st.multiselect("Select sensor data to display",
+                                             options=["Sensor 1", "Sensor 2"],
+                                             default=["Sensor 1", "Sensor 2"])
+            # List of parameters to create individual heatmaps for
+            parameters = [
+                "Moisture (%)", "Temperature (C)", "Conductivity (uS/cm)",
+                "pH Level", "Nitrogen (ppm)", "Phosphorus (ppm)", "Potassium (ppm)"
+            ]
+            # Create a separate tab for each parameter
+            tabs = st.tabs(parameters)
+            for param, tab in zip(parameters, tabs):
+                with tab:
+                    heat_data = []
+                    # Loop over each soil result and each selected sensor
+                    for result in soil_results:
+                        for sensor in sensors_to_show:
+                            sensor_key = "sensor_1" if sensor == "Sensor 1" else "sensor_2"
+                            sensor_item = result.get(sensor_key, {})
+                            gps = sensor_item.get("GPS", {})
+                            lat = gps.get("latitude")
+                            lon = gps.get("longitude")
+                            value = sensor_item.get(param)
+                            # Only add data points with valid GPS and a non-null parameter value
+                            if lat is not None and lon is not None and value is not None:
+                                heat_data.append([lat, lon, value])
+                    # Determine the center of the map if there are valid data points
+                    if heat_data:
+                        avg_lat = sum(point[0] for point in heat_data) / len(heat_data)
+                        avg_lon = sum(point[1] for point in heat_data) / len(heat_data)
+                    else:
+                        avg_lat, avg_lon = 0, 0
+                    # Create a Folium map and add the heatmap layer
+                    soil_map = folium.Map(location=[avg_lat, avg_lon], zoom_start=13)
+                    HeatMap(heat_data, radius=15, blur=10, min_opacity=0.2, max_zoom=18).add_to(soil_map)
+                    st_folium(soil_map, width=700, height=500)
+        else:
+            st.info("No soil sensor data found in the uploaded file.")
 
     except Exception as e:
         st.error(f"An error occurred while processing the file: {e}")
