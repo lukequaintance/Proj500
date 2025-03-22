@@ -14,7 +14,7 @@ if not os.environ.get("STREAMLIT_STARTED"):
     # Set an environment variable to indicate the app has started
     os.environ["STREAMLIT_STARTED"] = "1"
     # Launch the app using Streamlit and exit this instance
-    os.system("python -m streamlit run app.py")
+    os.system("python -m streamlit run Data_Visulisation_App.py")
     sys.exit()
 
 # -----------------------------------------------------------

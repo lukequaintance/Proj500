@@ -63,7 +63,7 @@ def launch_visualization_app():
 
     # Launch the visualization application (app.py) using the same Python interpreter.
 
-    subprocess.Popen([sys.executable, "app.py"])
+    subprocess.Popen([sys.executable, "Data_Visulisation_App.py"])
 
 
 def convert_to_degrees(value):
