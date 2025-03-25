@@ -4,7 +4,7 @@
             "timestamp": "2025-03-20 12:47:04",
             "sensor_1": {
                 "GPS": {
-                    "latitude": 50.365794,
+                    "latitude": 50.375794,
                     "longitude": -4.094346
                 },
                 "Moisture (%)": 94.1,
@@ -17,7 +17,7 @@
             },
             "sensor_2": {
                 "GPS": {
-                    "latitude": 50.362748,
+                    "latitude": 50.372748,
                     "longitude": -4.094026
                 },
                 "Moisture (%)": 84.9,
@@ -33,7 +33,7 @@
             "timestamp": "2025-03-20 12:47:11",
             "sensor_1": {
                 "GPS": {
-                    "latitude": 50.36,
+                    "latitude": 50.375856,
                     "longitude": -4.094376
                 },
                 "Moisture (%)": 94.1,
@@ -46,7 +46,7 @@
             },
             "sensor_2": {
                 "GPS": {
-                    "latitude": 50.36217,
+                    "latitude": 50.37217,
                     "longitude": -4.094026
                 },
                 "Moisture (%)": 84.7,
@@ -62,7 +62,7 @@
             "timestamp": "2025-03-20 12:47:18",
             "sensor_1": {
                 "GPS": {
-                    "latitude": 50.367474,
+                    "latitude": 50.377474,
                     "longitude": -4.094236
                 },
                 "Moisture (%)": 94.1,
@@ -75,7 +75,7 @@
             },
             "sensor_2": {
                 "GPS": {
-                    "latitude": 50.364785,
+                    "latitude": 50.374785,
                     "longitude": -4.094845
                 },
                 "Moisture (%)": 84.7,
@@ -91,7 +91,7 @@
             "timestamp": "2025-03-20 12:47:25",
             "sensor_1": {
                 "GPS": {
-                    "latitude": 50.364728,
+                    "latitude": 50.374728,
                     "longitude": -4.094346
                 },
                 "Moisture (%)": 94.1,
@@ -104,7 +104,7 @@
             },
             "sensor_2": {
                 "GPS": {
-                    "latitude": 50.364477,
+                    "latitude": 50.374477,
                     "longitude": -4.094346
                 },
                 "Moisture (%)": 84.7,
@@ -120,7 +120,7 @@
             "timestamp": "2025-03-20 12:47:33",
             "sensor_1": {
                 "GPS": {
-                    "latitude": 50.367485,
+                    "latitude": 50.377485,
                     "longitude": -4.094794
                 },
                 "Moisture (%)": 94.3,
@@ -133,7 +133,7 @@
             },
             "sensor_2": {
                 "GPS": {
-                    "latitude": 50.364758,
+                    "latitude": 50.374758,
                     "longitude": -4.094613
                 },
                 "Moisture (%)": 84.7,
@@ -149,7 +149,7 @@
             "timestamp": "2025-03-20 12:47:40",
             "sensor_1": {
                 "GPS": {
-                    "latitude": 50.367417,
+                    "latitude": 50.377417,
                     "longitude": -4.094467
                 },
                 "Moisture (%)": 94.3,
@@ -162,7 +162,7 @@
             },
             "sensor_2": {
                 "GPS": {
-                    "latitude": 50.368239,
+                    "latitude": 50.378239,
                     "longitude": -4.094951
                 },
                 "Moisture (%)": 84.7,
@@ -178,7 +178,7 @@
             "timestamp": "2025-03-20 12:47:47",
             "sensor_1": {
                 "GPS": {
-                    "latitude": 50.363764,
+                    "latitude": 50.373764,
                     "longitude": -4.094674
                 },
                 "Moisture (%)": 94.1,
@@ -191,7 +191,7 @@
             },
             "sensor_2": {
                 "GPS": {
-                    "latitude": 50.363467,
+                    "latitude": 50.373467,
                     "longitude": -4.094347
                 },
                 "Moisture (%)": 84.7,
@@ -207,7 +207,7 @@
             "timestamp": "2025-03-20 12:47:54",
             "sensor_1": {
                 "GPS": {
-                    "latitude": 50.368946,
+                    "latitude": 50.378946,
                     "longitude": -4.094612
                 },
                 "Moisture (%)": 94.3,
@@ -220,7 +220,7 @@
             },
             "sensor_2": {
                 "GPS": {
-                    "latitude": 50.363467,
+                    "latitude": 50.373467,
                     "longitude": -4.094734
                 },
                 "Moisture (%)": 84.7,
@@ -236,7 +236,7 @@
             "timestamp": "2025-03-20 12:48:01",
             "sensor_1": {
                 "GPS": {
-                    "latitude": 50.369413,
+                    "latitude": 50.379413,
                     "longitude": -4.094631
                 },
                 "Moisture (%)": 94.1,
@@ -249,7 +249,7 @@
             },
             "sensor_2": {
                 "GPS": {
-                    "latitude": 50.363764,
+                    "latitude": 50.373764,
                     "longitude": -4.094754
                 },
                 "Moisture (%)": 84.7,
@@ -265,7 +265,7 @@
             "timestamp": "2025-03-20 12:48:08",
             "sensor_1": {
                 "GPS": {
-                    "latitude": 50.363764,
+                    "latitude": 50.373764,
                     "longitude": -4.094815
                 },
                 "Moisture (%)": 94.1,
@@ -278,7 +278,7 @@
             },
             "sensor_2": {
                 "GPS": {
-                    "latitude": 50.363764,
+                    "latitude": 50.373764,
                     "longitude": -4.094346
                 },
                 "Moisture (%)": 84.7,
@@ -294,7 +294,7 @@
             "timestamp": "2025-03-20 12:48:15",
             "sensor_1": {
                 "GPS": {
-                    "latitude": 50.363467,
+                    "latitude": 50.373467,
                     "longitude": -4.094645
                 },
                 "Moisture (%)": 94.1,
@@ -307,7 +307,7 @@
             },
             "sensor_2": {
                 "GPS": {
-                    "latitude": 50.363769,
+                    "latitude": 50.373769,
                     "longitude": -4.094376
                 },
                 "Moisture (%)": 84.7,
@@ -323,7 +323,7 @@
             "timestamp": "2025-03-20 12:48:22",
             "sensor_1": {
                 "GPS": {
-                    "latitude": 50.366497,
+                    "latitude": 50.376497,
                     "longitude": -4.094612
                 },
                 "Moisture (%)": 94.1,
@@ -336,7 +336,7 @@
             },
             "sensor_2": {
                 "GPS": {
-                    "latitude": 50.363124,
+                    "latitude": 50.373124,
                     "longitude": -4.094346
                 },
                 "Moisture (%)": 84.7,
@@ -352,7 +352,7 @@
             "timestamp": "2025-03-20 12:48:29",
             "sensor_1": {
                 "GPS": {
-                    "latitude": 50.366794,
+                    "latitude": 50.376794,
                     "longitude": -4.094679
                 },
                 "Moisture (%)": 94.1,
@@ -365,7 +365,7 @@
             },
             "sensor_2": {
                 "GPS": {
-                    "latitude": 50.369142,
+                    "latitude": 50.379142,
                     "longitude": -4.094520
                 },
                 "Moisture (%)": 84.7,

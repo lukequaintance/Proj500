@@ -231,38 +231,49 @@ if uploaded_file_soil is not None:
         # Define hazard threshold inputs individually
         hazard_moisture = st.sidebar.number_input(
             "Set hazard threshold for Moisture (%) difference",
-            value=5.0, step=1, min_value=0.0, key="hazard_Moisture"
+            value=5.0, step=1.0, min_value=0.0, key="hazard_Moisture"
         )
 
         hazard_temperature = st.sidebar.number_input(
             "Set hazard threshold for Temperature (C) difference",
-            value=3, step=1, min_value=0.0, key="hazard_Temperature"
+            value=3.0, step=1.0, min_value=0.0, key="hazard_Temperature"
         )
 
         hazard_conductivity = st.sidebar.number_input(
             "Set hazard threshold for Conductivity (uS/cm) difference",
-            value=50, step=10, min_value=0.0, key="hazard_Conductivity"
+            value=50.0, step=10.0, min_value=0.0, key="hazard_Conductivity"
         )
 
-        # hazard_ph = st.sidebar.number_input(
-        #     "Set hazard threshold for pH Level difference",
-        #     value=5.0, step=0.1, min_value=0.0, key="hazard_pH"
-        # )
+        hazard_ph = st.sidebar.number_input(
+            "Set hazard threshold for pH Level difference",
+            value=10.0, step=1.0, min_value=0.0, key="hazard_pH"
+        )
 
         hazard_nitrogen = st.sidebar.number_input(
             "Set hazard threshold for Nitrogen (ppm) difference",
-            value=50, step=10, min_value=0.0, key="hazard_Nitrogen"
+            value=50.0, step=10.0, min_value=0.0, key="hazard_Nitrogen"
         )
 
         hazard_phosphorus = st.sidebar.number_input(
             "Set hazard threshold for Phosphorus (ppm) difference",
-            value=50, step=10, min_value=0.0, key="hazard_Phosphorus"
+            value=50.0, step=10.0, min_value=0.0, key="hazard_Phosphorus"
         )
 
         hazard_potassium = st.sidebar.number_input(
             "Set hazard threshold for Potassium (ppm) difference",
-            value=50, step=10, min_value=0.0, key="hazard_Potassium"
+            value=50.0, step=10.0, min_value=0.0, key="hazard_Potassium"
         )
+
+                # Build a dictionary to map each parameter to its hazard threshold value.
+        hazard_thresholds = {
+            "Moisture (%)": hazard_moisture,
+            "Temperature (C)": hazard_temperature,
+            "Conductivity (uS/cm)": hazard_conductivity,
+            "pH Level": hazard_ph,
+            "Nitrogen (ppm)": hazard_nitrogen,
+            "Phosphorus (ppm)": hazard_phosphorus,
+            "Potassium (ppm)": hazard_potassium
+        }
 
         # Multiselect for soil parameters to display (default empty)
         selected_parameters = st.multiselect("Select soil parameter(s) to display",
