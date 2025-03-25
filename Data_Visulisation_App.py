@@ -62,8 +62,8 @@ def compute_center(coords):
 
 # Define acceptable thresholds for each soil parameter (adjust as needed)
 thresholds = {
-    "Moisture (%)": (40, 90),          # 40% low, 90% high
-    "Temperature (C)": (10, 35),       # 10°C low, 35°C high
+    "Moisture (%)": (40, 90),          # Adjusted range
+    "Temperature (C)": (10, 40),       # Adjusted range
     "Conductivity (uS/cm)": (3000, 8000), # Adjusted range
     "pH Level": (40, 100),             # Adjusted range
     "Nitrogen (ppm)": (1000, 3000),    # Adjusted range
@@ -226,14 +226,43 @@ if uploaded_file_soil is not None:
             "pH Level", "Nitrogen (ppm)", "Phosphorus (ppm)", "Potassium (ppm)"
         ]
 
-        # Create hazard threshold inputs for every parameter in the sidebar
-        hazard_thresholds = {}
-        st.sidebar.subheader("Hazard Thresholds for All Parameters")
-        for param in parameters:
-            hazard_thresholds[param] = st.sidebar.number_input(
-                f"Set hazard threshold for {param} difference",
-                value=5.0, step=0.1, min_value=0.0, key=f"hazard_{param}"
-            )
+        st.sidebar.subheader("Sensor Discrepancy Thresholds")
+
+        # Define hazard threshold inputs individually
+        hazard_moisture = st.sidebar.number_input(
+            "Set hazard threshold for Moisture (%) difference",
+            value=5.0, step=1, min_value=0.0, key="hazard_Moisture"
+        )
+
+        hazard_temperature = st.sidebar.number_input(
+            "Set hazard threshold for Temperature (C) difference",
+            value=3, step=1, min_value=0.0, key="hazard_Temperature"
+        )
+
+        hazard_conductivity = st.sidebar.number_input(
+            "Set hazard threshold for Conductivity (uS/cm) difference",
+            value=50, step=10, min_value=0.0, key="hazard_Conductivity"
+        )
+
+        # hazard_ph = st.sidebar.number_input(
+        #     "Set hazard threshold for pH Level difference",
+        #     value=5.0, step=0.1, min_value=0.0, key="hazard_pH"
+        # )
+
+        hazard_nitrogen = st.sidebar.number_input(
+            "Set hazard threshold for Nitrogen (ppm) difference",
+            value=50, step=10, min_value=0.0, key="hazard_Nitrogen"
+        )
+
+        hazard_phosphorus = st.sidebar.number_input(
+            "Set hazard threshold for Phosphorus (ppm) difference",
+            value=50, step=10, min_value=0.0, key="hazard_Phosphorus"
+        )
+
+        hazard_potassium = st.sidebar.number_input(
+            "Set hazard threshold for Potassium (ppm) difference",
+            value=50, step=10, min_value=0.0, key="hazard_Potassium"
+        )
 
         # Multiselect for soil parameters to display (default empty)
         selected_parameters = st.multiselect("Select soil parameter(s) to display",
