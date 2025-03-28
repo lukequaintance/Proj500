@@ -8,6 +8,18 @@ from adafruit_ina219 import INA219
 
 def setUpMotor():
     # Initialize I2C
+
+    global h
+    global testRPWM 
+    global testLPWM 
+    global testREN 
+    global testLEN 
+    global probeRPWM 
+    global probeLPWM 
+    global probeREN 
+    global probeLEN 
+    global ina 
+
     i2c_bus = busio.I2C(board.SCL, board.SDA)
 
     # Create INA219 instance

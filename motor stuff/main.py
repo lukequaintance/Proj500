@@ -16,29 +16,29 @@ while True:
     print("Motor Forward")
     motorDriver.probeMove("forward")
     motorDriver.testMove("forward")
-    time.sleep(5)
+    time.sleep(0)
     # Read values
-    bus_voltage = ina.bus_voltage      # Voltage in V
-    shunt_voltage = ina.shunt_voltage  # Voltage drop across shunt resistor in V
-    current = ina.current              # Current in mA
-    power = ina.power                  # Power in mW
+    bus_voltage = motorDriver.ina.bus_voltage      # Voltage in V
+    shunt_voltage = motorDriver.ina.shunt_voltage  # Voltage drop across shunt resistor in V
+    current = motorDriver.ina.current              # Current in mA
+    power = motorDriver.ina.power                  # Power in mW
     # Print results
     #print(f"Bus Voltage: {bus_voltage:.2f} V")
     #print(f"Shunt Voltage: {shunt_voltage:.5f} V")
     #print(f"Current: {current:.2f} mA")
     #print(f"Power: {power:.2f} mW")
-    load_output = loadOnMotor(current)
+    load_output = motorDriver.loadOnMotor(current)
     print(f"Load: {load_output:.2f}")
 
     print("Motor Backward")
-    probeMove("backward")
-    testMove("backward")
-    time.sleep(5)
+    motorDriver.probeMove("backward")
+    motorDriver.testMove("backward")
+    time.sleep(0)
     # Read values
-    bus_voltage = ina.bus_voltage      # Voltage in V
-    shunt_voltage = ina.shunt_voltage  # Voltage drop across shunt resistor in V
-    current = ina.current              # Current in mA
-    power = ina.power                  # Power in mW
+    bus_voltage = motorDriver.ina.bus_voltage      # Voltage in V
+    shunt_voltage = motorDriver.ina.shunt_voltage  # Voltage drop across shunt resistor in V
+    current = motorDriver.ina.current              # Current in mA
+    power = motorDriver.ina.power                  # Power in mW
     # Print results
     #print(f"Bus Voltage: {bus_voltage:.2f} V")
     #print(f"Shunt Voltage: {shunt_voltage:.5f} V")
