@@ -45,6 +45,8 @@ while True:
     power = motorDriver.ina.power                  # Power in mW
     
     load_output = motorDriver.loadOnMotor(current)
+    currentMass = load_output * 0.1019716213
+    print(f"Mass: {currentMass:.2f}")
     print(f"Load: {load_output:.2f}")
     
     time.sleep(0.1)
