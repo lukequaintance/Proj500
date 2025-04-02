@@ -90,7 +90,8 @@ def loadOnMotor(currentIn: float) -> float:
 
     currentIn = currentIn / 1000  # Convert mA to A
     print(f"Current: {currentIn:.2f} A")
-    load = (currentIn - 0.36078) / 0.00039
+    load = (currentIn - 0.6104688051681327) / 0.000732893285815865
+
     return load
 
 
