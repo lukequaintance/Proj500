@@ -52,37 +52,37 @@ def setUpMotor():
     
 def probeMove(direction):
     if direction == "forward":
-        print("Probe actuator moving forward")
+        # print("Probe actuator moving forward")
         lgpio.tx_pwm(h, probeRPWM, 1000, 100.0)  # Full power
         lgpio.tx_pwm(h, probeLPWM, 1000, 0.0)  # Off
     elif direction == "backward":
-        print("Probe actuator moving backward")
+        #print("Probe actuator moving backward")
         lgpio.tx_pwm(h, probeRPWM, 1000, 0.0)  # Off
         lgpio.tx_pwm(h, probeLPWM, 1000, 100.0)  # Full power
     elif direction == "stop":
-        print("Stopping probe actuator")
+        #print("Stopping probe actuator")
         lgpio.tx_pwm(h, probeRPWM, 1000, 0.0)
         lgpio.tx_pwm(h, probeLPWM, 1000, 0.0)
     else:
-        print("Invalid argument. Use 'forward' or 'backward'.")
+        #print("Invalid argument. Use 'forward' or 'backward'.")
         lgpio.tx_pwm(h, probeRPWM, 1000, 0.0)
         lgpio.tx_pwm(h, probeLPWM, 1000, 0.0)
 
 def testMove(direction):
     if direction == "forward":
-        print("Test actuator moving forward")
+        #print("Test actuator moving forward")
         lgpio.tx_pwm(h, testRPWM, 1000, 100.0)  # Full power
         lgpio.tx_pwm(h, testLPWM, 1000, 0.0)  # Off
     elif direction == "backward":
-        print("Test actuator moving backward")
+        #print("Test actuator moving backward")
         lgpio.tx_pwm(h, testRPWM, 1000, 0.0)  # Off
         lgpio.tx_pwm(h, testLPWM, 1000, 100.0)  # Full power
     elif direction == "stop":
-        print("Stopping test actuator")
+        #print("Stopping test actuator")
         lgpio.tx_pwm(h, testRPWM, 1000, 0.0)
         lgpio.tx_pwm(h, testLPWM, 1000, 0.0)
     else:
-        print("Invalid argument. Use 'forward' or 'backward'.")
+        #print("Invalid argument. Use 'forward' or 'backward'.")
         lgpio.tx_pwm(h, testRPWM, 1000, 0.0)
         lgpio.tx_pwm(h, testLPWM, 1000, 0.0)
 
