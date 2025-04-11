@@ -307,7 +307,7 @@ class ImageClassifierApp:
                 "Scented mayweed", "Scentless mayweed", "Sharp-leaved fluellen", "Shepherd’s-needle", "Shepherd’s-purse",
                 "Small nettle", "Smooth sow-thistle", "Soft brome", "Spear thistle", "Spreading hedge-parsley", "Sugar beet",
                 "Sunflower", "Timothy", "Venus’s-looking-glass", "Wall speedwell", "Wheat", "White campion", "Wild carrot",
-                "Wild-oat", "Wild pansy", "Wild radish", "Winter wild-oat", "Yorkshire-fog"
+                "Wild-oat", "Wild pansy", "Wild radish", "Winter wild-oat", "Yorkshire-fog", "Gorse"
             ])
             species_classifier = TreeOfLifeClassifier()
         except Exception as e:
