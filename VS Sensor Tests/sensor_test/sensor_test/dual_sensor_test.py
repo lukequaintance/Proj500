@@ -2,7 +2,7 @@ import serial
 import time
 
 # COM Port Configuration
-COM_PORT = "COM3"
+COM_PORT = "COM9"
 BAUD_RATE = 4800
 
 # Sensor Device Addresses

@@ -1,7 +1,7 @@
 import serial
 import time
 
-COM_PORT = "COM3"  # Adjust if needed
+COM_PORT = "COM9"  # Adjust if needed
 BAUD_RATE = 4800
 
 def calculate_crc(data):

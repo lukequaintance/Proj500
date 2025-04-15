@@ -2,7 +2,7 @@ import serial
 import time
 
 # COM Port Configuration
-COM_PORT = "COM3"
+COM_PORT = "COM9"
 BAUD_RATE = 4800
 
 # Sensor Data Addresses
@@ -43,7 +43,7 @@ def parse_response(register_address, response):
 
 def poll_sensor(ser, address):
     """Send a Modbus request and receive a response"""
-    request = [0x02, 0x03, 0x00, address, 0x00, 0x01]  # Modbus request
+    request = [0x01, 0x03, 0x00, address, 0x00, 0x01]  # Modbus request
     request += list(calculate_crc(request))  # Append CRC
 
     ser.write(bytearray(request))  # Send request
