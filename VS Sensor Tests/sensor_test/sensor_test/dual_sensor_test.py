@@ -2,7 +2,7 @@ import serial
 import time
 
 # COM Port Configuration
-COM_PORT = "COM10"
+COM_PORT = "COM3"
 BAUD_RATE = 4800
 
 # Sensor Device Addresses
@@ -49,7 +49,7 @@ def poll_sensor(ser, sensor_id, address):
     request += list(calculate_crc(request))  # Append CRC
 
     ser.write(bytearray(request))  # Send request
-    time.sleep(0.5)  # Wait for response
+    time.sleep(0.2)  # Wait for response
     response = ser.read(7)  # Expecting 7-byte response
 
     if len(response) == 7 and response[1] == 0x03:  # Valid response check
