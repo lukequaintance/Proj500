@@ -142,3 +142,45 @@ pH Level: 106.1
 Nitrogen (ppm): 1999
 Phosphorus (ppm): 1999
 Potassium (ppm): 2882
+
+New Data Poll:
+
+Sensor 1 Data:
+
+Sensor 2 Data:
+
+New Data Poll:
+
+Sensor 1 Data:
+
+Sensor 2 Data:
+
+New Data Poll:
+
+New Data Poll:
+
+New Data Poll:
+
+New Data Poll:
+pH Level: 3.0
+
+New Data Poll:
+Nitrogen (ppm): 0
+
+New Data Poll:
+Phosphorus (ppm): 0
+
+New Data Poll:
+
+New Data Poll:
+
+New Data Poll:
+
+New Data Poll:
+Moisture (%): 0.0
+Temperature (C): 25.5
+Conductivity (uS/cm): 0
+pH Level: 3.0
+Nitrogen (ppm): 0
+Phosphorus (ppm): 0
+Potassium (ppm): 0

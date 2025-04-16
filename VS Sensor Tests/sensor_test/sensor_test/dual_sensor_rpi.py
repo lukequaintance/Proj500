@@ -2,7 +2,7 @@ import serial
 import time
 
 # COM Port Configuration
-COM_PORT = "/dev/ttyUSB0"
+COM_PORT = "/dev/ttyUSB1"
 BAUD_RATE = 4800
 
 # Sensor Device Addresses
