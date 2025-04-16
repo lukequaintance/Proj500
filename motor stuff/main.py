@@ -22,6 +22,9 @@ running = True
 # Lock for clean print statements
 print_lock = threading.Lock()
 
+# create a stop thread even 
+stop_event = threading.Event()
+
 def get_key():
     """Reads a single key press from the user without needing Enter."""
     fd = sys.stdin.fileno()
@@ -51,11 +54,18 @@ def sample_current():
             print(f"Load:         {load_output:.2f}")
             print(f"Mass:         {currentMass:.2f} kg\n")
 
-        time.sleep(1.0)
+            if avg_current < 0.15:  # the current when the actuator has reached full stroke
+                stop_event.set() 
+            
+            elif avg_current > 0.35:    #if there is a rock the device has to move
+                print("there is a rock, retracting and moving") 
+
+            else: # carry on getting the current till an even happens 
+                time.sleep(1.0)
+
 
 # Start the current sampling thread
-thread = threading.Thread(target=sample_current, daemon=True)
-thread.start()
+
 
 print("Use 'w' to move forward, 's' to move backward, and 'q' to quit.")
 
@@ -68,10 +78,18 @@ while True:
             motorDriver.probeMove("forward")
             motorDriver.testMove("forward")
             print("Moving forward...")
+            time.sleep(2) # this will sleep the timer so the current can stabalise
+            thread = threading.Thread(target=sample_current, daemon=True)
+            thread.start() # this starts the thread to samples the current 
+
         elif key == 's':
             motorDriver.probeMove("backward")
             motorDriver.testMove("backward")
             print("Moving backward...")
+            time.sleep(2) # this will sleep the timer so the current can stabalise
+            thread = threading.Thread(target=sample_current, daemon=True)
+            thread.start()
+
         elif key == 'q':
             print("Exiting...")
             running = False
