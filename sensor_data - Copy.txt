@@ -1,0 +1,1109 @@
+
+New Data Poll:
+
+Sensor 1 Data:
+
+Sensor 2 Data:
+Moisture (%): 0.0
+Temperature (C): 20.1
+Conductivity (uS/cm): 0
+pH Level: 0.0
+Nitrogen (ppm): 0
+Phosphorus (ppm): 0
+Potassium (ppm): 0
+
+New Data Poll:
+
+Sensor 1 Data:
+
+Sensor 2 Data:
+Moisture (%): 0.0
+Temperature (C): 19.7
+Conductivity (uS/cm): 0
+pH Level: 0.0
+Nitrogen (ppm): 0
+Phosphorus (ppm): 0
+Potassium (ppm): 0
+
+New Data Poll:
+
+Sensor 1 Data:
+
+Sensor 2 Data:
+Moisture (%): 18.0
+Temperature (C): 17.4
+Conductivity (uS/cm): 55
+pH Level: 0.0
+Nitrogen (ppm): 0
+Phosphorus (ppm): 0
+Potassium (ppm): 30
+
+New Data Poll:
+
+Sensor 1 Data:
+
+Sensor 2 Data:
+Moisture (%): 18.0
+Temperature (C): 17.1
+Conductivity (uS/cm): 56
+pH Level: 0.0
+Nitrogen (ppm): 0
+Phosphorus (ppm): 0
+Potassium (ppm): 30
+
+New Data Poll:
+
+Sensor 1 Data:
+
+Sensor 2 Data:
+Moisture (%): 18.0
+Temperature (C): 17.1
+Conductivity (uS/cm): 56
+pH Level: 0.0
+Nitrogen (ppm): 0
+Phosphorus (ppm): 0
+Potassium (ppm): 30
+
+New Data Poll:
+
+Sensor 1 Data:
+
+Sensor 2 Data:
+Moisture (%): 43.2
+Temperature (C): 17.6
+Conductivity (uS/cm): 453
+pH Level: 5.6
+Nitrogen (ppm): 176
+Phosphorus (ppm): 169
+Potassium (ppm): 249
+
+New Data Poll:
+
+Sensor 1 Data:
+
+Sensor 2 Data:
+Moisture (%): 43.9
+Temperature (C): 17.5
+Conductivity (uS/cm): 469
+pH Level: 5.9
+Nitrogen (ppm): 183
+Phosphorus (ppm): 176
+Potassium (ppm): 257
+
+New Data Poll:
+
+Sensor 1 Data:
+
+Sensor 2 Data:
+Moisture (%): 43.4
+Temperature (C): 17.5
+Conductivity (uS/cm): 469
+pH Level: 5.9
+Nitrogen (ppm): 182
+Phosphorus (ppm): 176
+Potassium (ppm): 257
+
+New Data Poll:
+
+Sensor 1 Data:
+
+Sensor 2 Data:
+Moisture (%): 26.8
+Temperature (C): 17.7
+Conductivity (uS/cm): 819
+pH Level: 13.2
+Nitrogen (ppm): 352
+Phosphorus (ppm): 346
+Potassium (ppm): 450
+
+New Data Poll:
+
+Sensor 1 Data:
+
+Sensor 2 Data:
+Moisture (%): 27.6
+Temperature (C): 17.9
+Conductivity (uS/cm): 798
+pH Level: 12.8
+Nitrogen (ppm): 342
+Phosphorus (ppm): 336
+Potassium (ppm): 438
+
+New Data Poll:
+
+Sensor 1 Data:
+
+Sensor 2 Data:
+Moisture (%): 27.7
+Temperature (C): 17.9
+Conductivity (uS/cm): 791
+pH Level: 12.6
+Nitrogen (ppm): 338
+Phosphorus (ppm): 333
+Potassium (ppm): 435
+
+New Data Poll:
+
+Sensor 1 Data:
+
+Sensor 2 Data:
+Moisture (%): 38.2
+Temperature (C): 17.9
+Conductivity (uS/cm): 990
+pH Level: 16.7
+Nitrogen (ppm): 434
+Phosphorus (ppm): 429
+Potassium (ppm): 544
+
+New Data Poll:
+
+Sensor 1 Data:
+
+Sensor 2 Data:
+Moisture (%): 38.8
+Temperature (C): 17.9
+Conductivity (uS/cm): 981
+pH Level: 16.6
+Nitrogen (ppm): 430
+Phosphorus (ppm): 424
+Potassium (ppm): 538
+
+New Data Poll:
+
+Sensor 1 Data:
+
+Sensor 2 Data:
+Moisture (%): 41.7
+Temperature (C): 17.4
+Conductivity (uS/cm): 592
+pH Level: 8.5
+Nitrogen (ppm): 242
+Phosphorus (ppm): 236
+Potassium (ppm): 325
+
+New Data Poll:
+
+Sensor 1 Data:
+
+Sensor 2 Data:
+Moisture (%): 41.7
+Temperature (C): 17.5
+Conductivity (uS/cm): 603
+pH Level: 8.7
+Nitrogen (ppm): 248
+Phosphorus (ppm): 242
+Potassium (ppm): 331
+
+New Data Poll:
+
+Sensor 1 Data:
+
+Sensor 2 Data:
+Moisture (%): 49.0
+Temperature (C): 17.6
+Conductivity (uS/cm): 920
+pH Level: 15.3
+Nitrogen (ppm): 400
+Phosphorus (ppm): 396
+Potassium (ppm): 506
+
+New Data Poll:
+Moisture (%): 49.2
+Temperature (C): 17.9
+Conductivity (uS/cm): 918
+pH Level: 15.2
+Nitrogen (ppm): 399
+Phosphorus (ppm): 395
+Potassium (ppm): 503
+
+New Data Poll:
+Moisture (%): 49.2
+Temperature (C): 17.9
+Conductivity (uS/cm): 914
+pH Level: 15.2
+Nitrogen (ppm): 398
+Phosphorus (ppm): 393
+Potassium (ppm): 502
+
+New Data Poll:
+Moisture (%): 67.8
+Temperature (C): 17.6
+Conductivity (uS/cm): 1811
+pH Level: 33.9
+Nitrogen (ppm): 830
+Phosphorus (ppm): 829
+Potassium (ppm): 996
+
+New Data Poll:
+Moisture (%): 67.4
+Temperature (C): 17.9
+Conductivity (uS/cm): 1805
+pH Level: 33.6
+Nitrogen (ppm): 827
+Phosphorus (ppm): 826
+Potassium (ppm): 988
+
+New Data Poll:
+Moisture (%): 67.6
+Temperature (C): 17.8
+Conductivity (uS/cm): 1805
+pH Level: 33.6
+Nitrogen (ppm): 827
+Phosphorus (ppm): 826
+Potassium (ppm): 988
+
+New Data Poll:
+Moisture (%): 66.1
+Temperature (C): 17.5
+Conductivity (uS/cm): 1697
+pH Level: 31.5
+Nitrogen (ppm): 775
+Phosphorus (ppm): 770
+Potassium (ppm): 926
+
+New Data Poll:
+Moisture (%): 73.0
+Temperature (C): 18.3
+Conductivity (uS/cm): 1932
+pH Level: 36.4
+Nitrogen (ppm): 889
+Phosphorus (ppm): 888
+Potassium (ppm): 1062
+
+New Data Poll:
+Moisture (%): 73.0
+Temperature (C): 18.4
+Conductivity (uS/cm): 1912
+pH Level: 36.0
+Nitrogen (ppm): 879
+Phosphorus (ppm): 874
+Potassium (ppm): 1051
+
+New Data Poll:
+Moisture (%): 73.0
+Temperature (C): 18.4
+Conductivity (uS/cm): 1912
+pH Level: 35.9
+Nitrogen (ppm): 879
+Phosphorus (ppm): 874
+Potassium (ppm): 1051
+
+New Data Poll:
+Moisture (%): 72.3
+Temperature (C): 18.4
+Conductivity (uS/cm): 1905
+pH Level: 35.7
+Nitrogen (ppm): 876
+Phosphorus (ppm): 874
+Potassium (ppm): 1047
+
+New Data Poll:
+Moisture (%): 72.0
+Temperature (C): 18.4
+Conductivity (uS/cm): 1872
+pH Level: 35.2
+Nitrogen (ppm): 860
+Phosphorus (ppm): 858
+Potassium (ppm): 1025
+
+New Data Poll:
+Moisture (%): 69.5
+Temperature (C): 18.2
+Conductivity (uS/cm): 1758
+pH Level: 32.9
+Nitrogen (ppm): 805
+Phosphorus (ppm): 803
+Potassium (ppm): 966
+
+New Data Poll:
+Moisture (%): 69.5
+Temperature (C): 18.5
+Conductivity (uS/cm): 1758
+pH Level: 32.7
+Nitrogen (ppm): 805
+Phosphorus (ppm): 800
+Potassium (ppm): 952
+
+New Data Poll:
+Moisture (%): 72.7
+Temperature (C): 18.6
+Conductivity (uS/cm): 1467
+pH Level: 26.6
+Nitrogen (ppm): 660
+Phosphorus (ppm): 660
+Potassium (ppm): 802
+
+New Data Poll:
+Moisture (%): 72.7
+Temperature (C): 18.7
+Conductivity (uS/cm): 1459
+pH Level: 26.6
+Nitrogen (ppm): 658
+Phosphorus (ppm): 656
+Potassium (ppm): 800
+
+New Data Poll:
+Moisture (%): 72.7
+Temperature (C): 18.7
+Conductivity (uS/cm): 1451
+pH Level: 26.4
+Nitrogen (ppm): 657
+Phosphorus (ppm): 654
+Potassium (ppm): 796
+
+New Data Poll:
+Moisture (%): 72.0
+Temperature (C): 18.8
+Conductivity (uS/cm): 1432
+pH Level: 26.0
+Nitrogen (ppm): 647
+Phosphorus (ppm): 645
+Potassium (ppm): 787
+
+New Data Poll:
+Moisture (%): 66.9
+Temperature (C): 18.0
+Conductivity (uS/cm): 1717
+pH Level: 31.9
+Nitrogen (ppm): 782
+Phosphorus (ppm): 780
+Potassium (ppm): 937
+
+New Data Poll:
+Moisture (%): 66.9
+Temperature (C): 18.3
+Conductivity (uS/cm): 1704
+pH Level: 31.7
+Nitrogen (ppm): 779
+Phosphorus (ppm): 773
+Potassium (ppm): 937
+
+New Data Poll:
+Moisture (%): 66.9
+Temperature (C): 18.5
+Conductivity (uS/cm): 1684
+pH Level: 31.3
+Nitrogen (ppm): 772
+Phosphorus (ppm): 764
+Potassium (ppm): 926
+
+New Data Poll:
+Moisture (%): 74.5
+Temperature (C): 19.3
+Conductivity (uS/cm): 1143
+pH Level: 19.9
+Nitrogen (ppm): 506
+Phosphorus (ppm): 500
+Potassium (ppm): 624
+
+New Data Poll:
+Moisture (%): 73.4
+Temperature (C): 19.2
+Conductivity (uS/cm): 1124
+pH Level: 19.6
+Nitrogen (ppm): 497
+Phosphorus (ppm): 493
+Potassium (ppm): 616
+
+New Data Poll:
+Moisture (%): 73.0
+Temperature (C): 19.2
+Conductivity (uS/cm): 1116
+pH Level: 19.4
+Nitrogen (ppm): 495
+Phosphorus (ppm): 489
+Potassium (ppm): 609
+
+New Data Poll:
+Moisture (%): 22.3
+Temperature (C): 19.6
+Conductivity (uS/cm): 153
+pH Level: 0.0
+Nitrogen (ppm): 31
+Phosphorus (ppm): 24
+Potassium (ppm): 85
+
+New Data Poll:
+Moisture (%): 22.4
+Temperature (C): 19.2
+Conductivity (uS/cm): 157
+pH Level: 0.0
+Nitrogen (ppm): 33
+Phosphorus (ppm): 25
+Potassium (ppm): 87
+
+New Data Poll:
+Moisture (%): 22.5
+Temperature (C): 18.9
+Conductivity (uS/cm): 160
+pH Level: 0.0
+Nitrogen (ppm): 34
+Phosphorus (ppm): 27
+Potassium (ppm): 88
+
+New Data Poll:
+Moisture (%): 23.3
+Temperature (C): 17.6
+Conductivity (uS/cm): 187
+pH Level: 0.0
+Nitrogen (ppm): 47
+Phosphorus (ppm): 39
+Potassium (ppm): 102
+
+New Data Poll:
+Moisture (%): 23.3
+Temperature (C): 17.6
+Conductivity (uS/cm): 187
+pH Level: 0.0
+Nitrogen (ppm): 47
+Phosphorus (ppm): 39
+Potassium (ppm): 102
+
+New Data Poll:
+Moisture (%): 23.3
+Temperature (C): 17.6
+Conductivity (uS/cm): 187
+pH Level: 0.0
+Nitrogen (ppm): 47
+Phosphorus (ppm): 39
+Potassium (ppm): 102
+
+New Data Poll:
+Moisture (%): 27.2
+Temperature (C): 17.6
+Conductivity (uS/cm): 376
+pH Level: 4.0
+Nitrogen (ppm): 139
+Phosphorus (ppm): 133
+Potassium (ppm): 209
+
+New Data Poll:
+Moisture (%): 23.8
+Temperature (C): 17.6
+Conductivity (uS/cm): 198
+pH Level: 0.2
+Nitrogen (ppm): 52
+Phosphorus (ppm): 45
+Potassium (ppm): 108
+
+New Data Poll:
+Moisture (%): 24.1
+Temperature (C): 17.6
+Conductivity (uS/cm): 210
+pH Level: 0.5
+Nitrogen (ppm): 58
+Phosphorus (ppm): 50
+Potassium (ppm): 115
+
+New Data Poll:
+Moisture (%): 26.3
+Temperature (C): 18.2
+Conductivity (uS/cm): 594
+pH Level: 8.5
+Nitrogen (ppm): 243
+Phosphorus (ppm): 237
+Potassium (ppm): 326
+
+New Data Poll:
+Moisture (%): 26.3
+Temperature (C): 18.3
+Conductivity (uS/cm): 594
+pH Level: 8.5
+Nitrogen (ppm): 243
+Phosphorus (ppm): 236
+Potassium (ppm): 325
+
+New Data Poll:
+Moisture (%): 26.3
+Temperature (C): 18.3
+Conductivity (uS/cm): 590
+pH Level: 8.5
+Nitrogen (ppm): 243
+Phosphorus (ppm): 236
+Potassium (ppm): 324
+
+New Data Poll:
+Moisture (%): 43.3
+Temperature (C): 17.5
+Conductivity (uS/cm): 816
+pH Level: 13.1
+Nitrogen (ppm): 350
+Phosphorus (ppm): 345
+Potassium (ppm): 448
+
+New Data Poll:
+Moisture (%): 43.3
+Temperature (C): 17.8
+Conductivity (uS/cm): 816
+pH Level: 13.1
+Nitrogen (ppm): 350
+Phosphorus (ppm): 345
+Potassium (ppm): 449
+
+New Data Poll:
+Moisture (%): 43.4
+Temperature (C): 18.0
+Conductivity (uS/cm): 816
+pH Level: 13.1
+Nitrogen (ppm): 350
+Phosphorus (ppm): 345
+Potassium (ppm): 448
+
+New Data Poll:
+Moisture (%): 36.3
+Temperature (C): 18.3
+Conductivity (uS/cm): 659
+pH Level: 9.9
+Nitrogen (ppm): 275
+Phosphorus (ppm): 268
+Potassium (ppm): 361
+
+New Data Poll:
+Moisture (%): 36.3
+Temperature (C): 18.3
+Conductivity (uS/cm): 655
+pH Level: 9.8
+Nitrogen (ppm): 272
+Phosphorus (ppm): 267
+Potassium (ppm): 359
+
+New Data Poll:
+Moisture (%): 36.3
+Temperature (C): 18.3
+Conductivity (uS/cm): 652
+pH Level: 9.7
+Nitrogen (ppm): 271
+Phosphorus (ppm): 265
+Potassium (ppm): 357
+
+New Data Poll:
+Moisture (%): 42.9
+Temperature (C): 16.7
+Conductivity (uS/cm): 842
+pH Level: 13.8
+Nitrogen (ppm): 366
+Phosphorus (ppm): 362
+Potassium (ppm): 469
+
+New Data Poll:
+Moisture (%): 43.2
+Temperature (C): 17.2
+Conductivity (uS/cm): 860
+pH Level: 14.1
+Nitrogen (ppm): 372
+Phosphorus (ppm): 367
+Potassium (ppm): 475
+
+New Data Poll:
+Moisture (%): 43.4
+Temperature (C): 17.5
+Conductivity (uS/cm): 869
+pH Level: 14.2
+Nitrogen (ppm): 376
+Phosphorus (ppm): 371
+Potassium (ppm): 478
+
+New Data Poll:
+Moisture (%): 48.3
+Temperature (C): 17.1
+Conductivity (uS/cm): 1025
+pH Level: 17.5
+Nitrogen (ppm): 451
+Phosphorus (ppm): 448
+Potassium (ppm): 565
+
+New Data Poll:
+Moisture (%): 49.0
+Temperature (C): 17.5
+Conductivity (uS/cm): 1036
+pH Level: 17.6
+Nitrogen (ppm): 458
+Phosphorus (ppm): 450
+Potassium (ppm): 574
+
+New Data Poll:
+Moisture (%): 49.0
+Temperature (C): 17.7
+Conductivity (uS/cm): 1044
+pH Level: 18.0
+Nitrogen (ppm): 462
+Phosphorus (ppm): 458
+Potassium (ppm): 578
+
+New Data Poll:
+Moisture (%): 58.7
+Temperature (C): 16.7
+Conductivity (uS/cm): 1425
+pH Level: 25.9
+Nitrogen (ppm): 647
+Phosphorus (ppm): 645
+Potassium (ppm): 789
+
+New Data Poll:
+Moisture (%): 59.2
+Temperature (C): 18.0
+Conductivity (uS/cm): 1455
+pH Level: 26.4
+Nitrogen (ppm): 658
+Phosphorus (ppm): 654
+Potassium (ppm): 800
+
+New Data Poll:
+Moisture (%): 59.4
+Temperature (C): 18.2
+Conductivity (uS/cm): 1455
+pH Level: 26.4
+Nitrogen (ppm): 658
+Phosphorus (ppm): 654
+Potassium (ppm): 798
+
+New Data Poll:
+Moisture (%): 59.4
+Temperature (C): 17.8
+Conductivity (uS/cm): 1352
+pH Level: 24.3
+Nitrogen (ppm): 609
+Phosphorus (ppm): 606
+Potassium (ppm): 741
+
+New Data Poll:
+Moisture (%): 59.4
+Temperature (C): 18.0
+Conductivity (uS/cm): 1352
+pH Level: 24.3
+Nitrogen (ppm): 609
+Phosphorus (ppm): 606
+Potassium (ppm): 745
+
+New Data Poll:
+Moisture (%): 59.4
+Temperature (C): 18.1
+Conductivity (uS/cm): 1352
+pH Level: 24.3
+Nitrogen (ppm): 611
+Phosphorus (ppm): 606
+Potassium (ppm): 743
+
+New Data Poll:
+Moisture (%): 65.4
+Temperature (C): 18.4
+Conductivity (uS/cm): 1979
+pH Level: 37.4
+Nitrogen (ppm): 908
+Phosphorus (ppm): 908
+Potassium (ppm): 1085
+
+New Data Poll:
+Moisture (%): 65.4
+Temperature (C): 18.4
+Conductivity (uS/cm): 1973
+pH Level: 37.3
+Nitrogen (ppm): 908
+Phosphorus (ppm): 908
+Potassium (ppm): 1077
+
+New Data Poll:
+Moisture (%): 65.2
+Temperature (C): 18.5
+Conductivity (uS/cm): 1966
+pH Level: 37.1
+Nitrogen (ppm): 905
+Phosphorus (ppm): 904
+Potassium (ppm): 1081
+
+New Data Poll:
+Moisture (%): 58.3
+Temperature (C): 17.1
+Conductivity (uS/cm): 1398
+pH Level: 25.3
+Nitrogen (ppm): 631
+Phosphorus (ppm): 628
+Potassium (ppm): 768
+
+New Data Poll:
+Moisture (%): 58.5
+Temperature (C): 17.7
+Conductivity (uS/cm): 1398
+pH Level: 25.4
+Nitrogen (ppm): 631
+Phosphorus (ppm): 630
+Potassium (ppm): 771
+
+New Data Poll:
+Moisture (%): 58.5
+Temperature (C): 18.0
+Conductivity (uS/cm): 1402
+pH Level: 25.4
+Nitrogen (ppm): 622
+Phosphorus (ppm): 619
+Potassium (ppm): 754
+
+New Data Poll:
+Moisture (%): 61.8
+Temperature (C): 18.5
+Conductivity (uS/cm): 1744
+pH Level: 32.4
+Nitrogen (ppm): 794
+Phosphorus (ppm): 793
+Potassium (ppm): 955
+
+New Data Poll:
+Moisture (%): 61.8
+Temperature (C): 18.5
+Conductivity (uS/cm): 1724
+pH Level: 32.2
+Nitrogen (ppm): 788
+Phosphorus (ppm): 793
+Potassium (ppm): 952
+
+New Data Poll:
+Moisture (%): 61.8
+Temperature (C): 18.5
+Conductivity (uS/cm): 1731
+pH Level: 32.1
+Nitrogen (ppm): 788
+Phosphorus (ppm): 786
+Potassium (ppm): 952
+
+New Data Poll:
+Moisture (%): 64.3
+Temperature (C): 18.2
+Conductivity (uS/cm): 2236
+pH Level: 43.1
+Nitrogen (ppm): 1042
+Phosphorus (ppm): 1035
+Potassium (ppm): 1229
+
+New Data Poll:
+Moisture (%): 64.8
+Temperature (C): 18.3
+Conductivity (uS/cm): 2236
+pH Level: 43.1
+Nitrogen (ppm): 1042
+Phosphorus (ppm): 1042
+Potassium (ppm): 1237
+
+New Data Poll:
+Moisture (%): 64.8
+Temperature (C): 18.4
+Conductivity (uS/cm): 2236
+pH Level: 43.1
+Nitrogen (ppm): 1035
+Phosphorus (ppm): 1035
+Potassium (ppm): 1237
+
+New Data Poll:
+Moisture (%): 64.8
+Temperature (C): 18.5
+Conductivity (uS/cm): 2236
+pH Level: 43.1
+Nitrogen (ppm): 1042
+Phosphorus (ppm): 1042
+Potassium (ppm): 1237
+
+New Data Poll:
+Moisture (%): 63.3
+Temperature (C): 18.5
+Conductivity (uS/cm): 1623
+pH Level: 30.0
+Nitrogen (ppm): 736
+Phosphorus (ppm): 737
+Potassium (ppm): 888
+
+New Data Poll:
+Moisture (%): 63.3
+Temperature (C): 18.6
+Conductivity (uS/cm): 1616
+pH Level: 29.7
+Nitrogen (ppm): 736
+Phosphorus (ppm): 731
+Potassium (ppm): 888
+
+New Data Poll:
+Moisture (%): 63.3
+Temperature (C): 18.6
+Conductivity (uS/cm): 1610
+pH Level: 29.7
+Nitrogen (ppm): 730
+Phosphorus (ppm): 728
+Potassium (ppm): 881
+
+New Data Poll:
+Moisture (%): 65.7
+Temperature (C): 18.8
+Conductivity (uS/cm): 1751
+pH Level: 32.7
+Nitrogen (ppm): 794
+Phosphorus (ppm): 800
+Potassium (ppm): 959
+
+New Data Poll:
+Moisture (%): 65.7
+Temperature (C): 18.8
+Conductivity (uS/cm): 1751
+pH Level: 32.7
+Nitrogen (ppm): 805
+Phosphorus (ppm): 796
+Potassium (ppm): 963
+
+New Data Poll:
+Moisture (%): 65.7
+Temperature (C): 18.8
+Conductivity (uS/cm): 1751
+pH Level: 32.7
+Nitrogen (ppm): 792
+Phosphorus (ppm): 793
+Potassium (ppm): 948
+
+New Data Poll:
+Moisture (%): 64.1
+Temperature (C): 18.8
+Conductivity (uS/cm): 1764
+pH Level: 32.9
+Nitrogen (ppm): 811
+Phosphorus (ppm): 806
+Potassium (ppm): 970
+
+New Data Poll:
+Moisture (%): 64.1
+Temperature (C): 18.8
+Conductivity (uS/cm): 1764
+pH Level: 33.1
+Nitrogen (ppm): 811
+Phosphorus (ppm): 809
+Potassium (ppm): 970
+
+New Data Poll:
+Moisture (%): 64.1
+Temperature (C): 18.8
+Conductivity (uS/cm): 1771
+pH Level: 33.1
+Nitrogen (ppm): 811
+Phosphorus (ppm): 806
+Potassium (ppm): 974
+
+New Data Poll:
+Moisture (%): 64.4
+Temperature (C): 18.7
+Conductivity (uS/cm): 1637
+pH Level: 30.3
+Nitrogen (ppm): 746
+Phosphorus (ppm): 744
+Potassium (ppm): 900
+
+New Data Poll:
+Moisture (%): 64.6
+Temperature (C): 18.8
+Conductivity (uS/cm): 1637
+pH Level: 30.3
+Nitrogen (ppm): 746
+Phosphorus (ppm): 744
+Potassium (ppm): 900
+
+New Data Poll:
+Moisture (%): 64.4
+Temperature (C): 18.8
+Conductivity (uS/cm): 1637
+pH Level: 30.3
+Nitrogen (ppm): 746
+Phosphorus (ppm): 741
+Potassium (ppm): 900
+
+New Data Poll:
+Moisture (%): 64.6
+Temperature (C): 18.8
+Conductivity (uS/cm): 1637
+pH Level: 30.1
+Nitrogen (ppm): 743
+Phosphorus (ppm): 741
+Potassium (ppm): 896
+
+New Data Poll:
+Moisture (%): 13.5
+Temperature (C): 18.2
+Conductivity (uS/cm): 7
+pH Level: 0.0
+Nitrogen (ppm): 0
+Phosphorus (ppm): 0
+Potassium (ppm): 3
+
+New Data Poll:
+Moisture (%): 13.4
+Temperature (C): 18.1
+Conductivity (uS/cm): 7
+pH Level: 0.0
+Nitrogen (ppm): 0
+Phosphorus (ppm): 0
+Potassium (ppm): 3
+
+New Data Poll:
+Moisture (%): 13.5
+Temperature (C): 18.0
+Conductivity (uS/cm): 7
+pH Level: 0.0
+Nitrogen (ppm): 0
+Phosphorus (ppm): 0
+Potassium (ppm): 3
+
+New Data Poll:
+Moisture (%): 21.2
+Temperature (C): 17.6
+Conductivity (uS/cm): 29
+pH Level: 0.0
+Nitrogen (ppm): 0
+Phosphorus (ppm): 0
+Potassium (ppm): 16
+
+New Data Poll:
+Moisture (%): 21.1
+Temperature (C): 17.6
+Conductivity (uS/cm): 30
+pH Level: 0.0
+Nitrogen (ppm): 0
+Phosphorus (ppm): 0
+Potassium (ppm): 16
+
+New Data Poll:
+Moisture (%): 21.1
+Temperature (C): 17.6
+Conductivity (uS/cm): 30
+pH Level: 0.0
+Nitrogen (ppm): 0
+Phosphorus (ppm): 0
+Potassium (ppm): 17
+
+New Data Poll:
+Moisture (%): 23.5
+Temperature (C): 17.9
+Conductivity (uS/cm): 167
+pH Level: 0.0
+Nitrogen (ppm): 37
+Phosphorus (ppm): 29
+Potassium (ppm): 91
+
+New Data Poll:
+Moisture (%): 23.5
+Temperature (C): 18.5
+Conductivity (uS/cm): 167
+pH Level: 0.0
+Nitrogen (ppm): 37
+Phosphorus (ppm): 29
+Potassium (ppm): 91
+
+New Data Poll:
+Moisture (%): 23.5
+Temperature (C): 18.8
+Conductivity (uS/cm): 167
+pH Level: 0.0
+Nitrogen (ppm): 37
+Phosphorus (ppm): 29
+Potassium (ppm): 91
+
+New Data Poll:
+Moisture (%): 23.5
+Temperature (C): 19.0
+Conductivity (uS/cm): 167
+pH Level: 0.0
+
+New Data Poll:
+Moisture (%): 23.6
+Temperature (C): 19.4
+Conductivity (uS/cm): 167
+pH Level: 0.0
+Nitrogen (ppm): 37
+Phosphorus (ppm): 29
+Potassium (ppm): 91
+
+New Data Poll:
+Moisture (%): 23.5
+Temperature (C): 19.4
+Conductivity (uS/cm): 167
+pH Level: 0.0
+Nitrogen (ppm): 37
+Phosphorus (ppm): 29
+Potassium (ppm): 91
+
+New Data Poll:
+Moisture (%): 23.5
+Temperature (C): 19.4
+Conductivity (uS/cm): 167
+pH Level: 0.0
+Nitrogen (ppm): 37
+Phosphorus (ppm): 29
+Potassium (ppm): 91
+
+New Data Poll:
+Moisture (%): 23.5
+Temperature (C): 19.4
+Conductivity (uS/cm): 167
+pH Level: 0.0
+Nitrogen (ppm): 37
+Phosphorus (ppm): 29
+Potassium (ppm): 91
+
+New Data Poll:
+Moisture (%): 23.5
+Temperature (C): 19.5
+Conductivity (uS/cm): 167
+pH Level: 0.0
+Nitrogen (ppm): 37
+Phosphorus (ppm): 29
+Potassium (ppm): 91
+
+New Data Poll:
+Moisture (%): 23.5
+Temperature (C): 19.4
+Conductivity (uS/cm): 167
+pH Level: 0.0
+Nitrogen (ppm): 37
+Phosphorus (ppm): 29
+Potassium (ppm): 91
+
+New Data Poll:
+Moisture (%): 0.0
+Temperature (C): 16.4
+Conductivity (uS/cm): 0
+pH Level: 0.0
+Nitrogen (ppm): 0
+Phosphorus (ppm): 0
+Potassium (ppm): 0
+
+New Data Poll:
+Moisture (%): 38.1
+Temperature (C): 18.5
+Conductivity (uS/cm): 161
+pH Level: 0.0
+Nitrogen (ppm): 34
+Phosphorus (ppm): 26
+Potassium (ppm): 88
+
+New Data Poll:
+Moisture (%): 37.4
+
+New Data Poll:
+
+New Data Poll:
+
+New Data Poll:
+
+Sensor 1 Data:
+
+Sensor 2 Data:
+
+New Data Poll:
+
+Sensor 1 Data:
+
+Sensor 2 Data:
+
+New Data Poll:
+
+Sensor 1 Data:
+
+Sensor 2 Data:
+
+New Data Poll:
+
+Sensor 1 Data:
+
+Sensor 2 Data:

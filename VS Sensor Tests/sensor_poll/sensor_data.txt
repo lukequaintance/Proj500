@@ -1,0 +1,36 @@
+
+New Data Poll:
+Moisture: 0 %
+Temperature: 24.3 C
+Conductivity: 0 uS/cm
+pH: 0 level
+Nitrogen: 0 ppm
+Phosphorus: 0 ppm
+Potassium: 0 ppm
+
+New Data Poll:
+Moisture: 0 %
+Temperature: 24.3 C
+Conductivity: 0 uS/cm
+pH: 0 level
+Nitrogen: 0 ppm
+Phosphorus: 0 ppm
+Potassium: 0 ppm
+
+New Data Poll:
+Moisture: 68 %
+Temperature: 25.2 C
+Conductivity: 0 uS/cm
+pH: 0 level
+Nitrogen: 0 ppm
+Phosphorus: 0 ppm
+Potassium: 0 ppm
+
+New Data Poll:
+Moisture: 67.4 %
+Temperature: 28.5 C
+Conductivity: 0 uS/cm
+pH: 0 level
+Nitrogen: 0 ppm
+Phosphorus: 0 ppm
+Potassium: 0 ppm
