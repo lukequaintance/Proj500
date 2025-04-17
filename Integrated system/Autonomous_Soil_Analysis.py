@@ -26,7 +26,7 @@ SENSOR_1_ID = 0x01
 SENSOR_2_ID = 0x02
 
 # Rolling average setup for current sampling
-dec_window_size     = 20
+WINDOW_SIZE     = 20
 
 
 # Thread control flags
@@ -35,7 +35,7 @@ stop_event          = threading.Event()
 print_lock          = threading.Lock()
 
 # --- Current sampling thread ---
-def sample_current(rolling_current: deque):
+def sample_current_for_rock(rolling_current: deque):                                                         #NEED TO CHANGE THIS
     from motorDriver import ina
     rolling_current.clear()
     while global_running:
@@ -49,43 +49,54 @@ def sample_current(rolling_current: deque):
             break
         time.sleep(1.0)
 
-# --- Actuator + Sensor Thread ---
+# --- Actuator + Sensor Thread ---                                                                  #WE NEED THIS TO BE MORE SIMPLE
 class ActuatorSensorThread(threading.Thread):
     def __init__(self, ser: serial.Serial):
         super().__init__()
         self._stop = threading.Event()
         self.ser  = ser
-        self.current_window = deque(maxlen=dec_window_size)
+        self.curr_window = deque(maxlen=WINDOW_SIZE)
 
     def run(self):
         global global_running
         while not self._stop.is_set():
-            # 1: Rock probe
-            print("[Actuator] Rock probe")
-            RockProbe("forward"); time.sleep(1); RockProbe("stop")
-
-            # 2: Sensor actuator + current monitor
-            print(f"[Actuator] Sensor probe up to {PROBE_TIME_SEC}s")
+            # 1. Rock probe with current monitor
+            print("[Actuator] Starting rock probe...")
             stop_event.clear()
-            curr_thread = threading.Thread(target=sample_current, args=(self.current_window,))
-            curr_thread.start()
+            self.curr_window.clear()
+            rock_thread = threading.Thread(target=sample_current_for_rock,
+                                           args=(self.curr_window,))
+            rock_thread.start()
+            RockProbe("forward")
+            # Wait until stop_event: either full stroke or rock hit
+            while not stop_event.is_set():
+                time.sleep(0.01)
+            RockProbe("stop")
+            rock_thread.join()
 
+            # Decide based on current
+            if any(val > 0.35 for val in self.curr_window):
+                print("[Actuator] Rock detected, skipping this point.")
+                driveForward(STEP_DISTANCE_METERS)
+                continue
+            else:
+                print("[Actuator] No rock, proceeding to sensor probe.")
+
+            # 2. Sensor actuator probe (no current monitoring)
+            print(f"[Actuator] Probing sensors for {PROBE_TIME_SEC}s...")
             SensorProbe("forward")
-            start = time.time()
-            while time.time() - start < PROBE_TIME_SEC and not stop_event.is_set():
-                time.sleep(0.1)
+            time.sleep(PROBE_TIME_SEC)
             SensorProbe("stop")
-            curr_thread.join()
 
-            # 3: Read soil sensors
+            # 3. Poll soil sensors
             print("[Sensors] Polling soil sensors...")
             s1 = poll_all_sensors(self.ser, SENSOR_1_ID)
             s2 = poll_all_sensors(self.ser, SENSOR_2_ID)
             append_results_to_json(s1, s2)
             print("[Sensors] Data saved to JSON.")
 
-            # 4: Advance robot
-            print(f"[Actuator] Move {STEP_DISTANCE_METERS}m forward")
+            # 4. Advance to next location
+            print(f"[Actuator] Moving forward {STEP_DISTANCE_METERS}m...")
             driveForward(STEP_DISTANCE_METERS)
 
     def stop(self):
