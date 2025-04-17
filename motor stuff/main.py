@@ -18,7 +18,7 @@ rolling_current = deque(maxlen=ROLLING_WINDOW_SIZE)
 
 
 #vars for soil tseting and rock detection
-current_when_rock = 300
+current_when_rock = 400
 current_when_full_stroke = 40
 sensorTestTime = 60
 
@@ -84,7 +84,7 @@ while True:
                 if avg_current > current_when_rock:
                     motorDriver.testMove("backward")
                     print("moving backwards and waiting")
-                    time.sleep(15) # wait for 40 second in case the it was at full stroke 
+                    time.sleep(40) # wait for 40 second in case the it was at full stroke 
                     #move buggy to new location 
                     motorDriver.testMove("forward")
                     print("moving forwards")    
