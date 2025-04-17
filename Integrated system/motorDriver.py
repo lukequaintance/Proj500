@@ -50,7 +50,7 @@ def setUpMotor():
     lgpio.gpio_write(h, probeLEN, 1)
 
     
-def probeMove(direction):
+def RockProbe(direction):
     if direction == "forward":
         # print("Probe actuator moving forward")
         lgpio.tx_pwm(h, probeRPWM, 1000, 100.0)  # Full power
@@ -68,7 +68,7 @@ def probeMove(direction):
         lgpio.tx_pwm(h, probeRPWM, 1000, 0.0)
         lgpio.tx_pwm(h, probeLPWM, 1000, 0.0)
 
-def testMove(direction):
+def SensorProbe(direction):
     if direction == "forward":
         #print("Test actuator moving forward")
         lgpio.tx_pwm(h, testRPWM, 1000, 100.0)  # Full power

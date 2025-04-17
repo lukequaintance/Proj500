@@ -1,6 +1,7 @@
 import cv2
 import time
 import os
+import threading
 
 
 def init_camera(camera_index: int = 0) -> cv2.VideoCapture:
@@ -44,6 +45,39 @@ def release_camera(cap: cv2.VideoCapture) -> None:
     """
     cap.release()
     cv2.destroyAllWindows()
+
+class CameraThread(threading.Thread):
+    """
+    Thread that continuously captures images at a set interval.
+    """
+    def __init__(self, camera_index: int, save_dir: str, interval: float = 60.0):
+        super().__init__()
+        self.cap = init_camera(camera_index)
+        ensure_save_dir(save_dir)
+        self.save_dir = save_dir
+        self.interval = interval
+        self._stop_event = threading.Event()
+
+    def run(self):
+        while not self._stop_event.is_set():
+            try:
+                path = capture_and_save(self.cap, self.save_dir)
+                print(f"[CameraThread] Saved image to {path}")
+            except Exception as e:
+                print(f"[CameraThread] Error capturing image: {e}")
+            # Wait for the interval or until stop is called
+            if self._stop_event.wait(self.interval):
+                break
+
+    def stop(self):
+        """
+        Signal the thread to stop and release camera resources.
+        """
+        self._stop_event.set()
+        self.release()
+
+    def release(self):
+        release_camera(self.cap)
 
 #Initialise Save File
 SAVE_DIR = '/media/lukeq/Seagate Portable Drive/Images'
