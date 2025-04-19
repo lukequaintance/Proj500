@@ -62,13 +62,13 @@ def compute_center(coords):
 
 # Define acceptable thresholds for each soil parameter (adjust as needed)
 thresholds = {
-    "Moisture (%)": (40, 90),          # Adjusted range
-    "Temperature (C)": (10, 40),       # Adjusted range
-    "Conductivity (uS/cm)": (3000, 8000), # Adjusted range
-    "pH Level": (40, 100),             # Adjusted range
-    "Nitrogen (ppm)": (1000, 3000),    # Adjusted range
-    "Phosphorus (ppm)": (1000, 3000),   # Adjusted range
-    "Potassium (ppm)": (1000, 4000)     # Adjusted range
+    "Moisture (%)": (80, 90),          # Adjusted range
+    "Temperature (C)": (24, 28),       # Adjusted range
+    "Conductivity (uS/cm)": (15000, 6000), # Adjusted range
+    "pH Level": (95, 110),             # Adjusted range
+    "Nitrogen (ppm)": (1000, 2000),    # Adjusted range
+    "Phosphorus (ppm)": (1000, 2000),   # Adjusted range
+    "Potassium (ppm)": (2500, 3500)     # Adjusted range
 }
 
 # Define a common gradient (kept here in case it is needed elsewhere)
@@ -175,7 +175,7 @@ if uploaded_file_plant is not None:
         # Center plant map over provided plant data
         plant_bounds = compute_bounds(global_coords)
         plant_map.fit_bounds(plant_bounds)
-        st_folium(plant_map, width=1000, height=750, key="plant_map")
+        st_folium(plant_map, use_container_width=True, height=500, key="plant_map")
 
         # Display info for plants missing GPS
         if harmful_missing_gps:
@@ -282,7 +282,7 @@ if uploaded_file_soil is not None:
                                              key="soil_parameter_select")
         if selected_parameters:
             num_params = len(selected_parameters)
-            num_cols = 2
+            num_cols = 3
             rows = (num_params + num_cols - 1) // num_cols  # Calculate number of rows
             columns = st.columns(num_cols)  # Create two columns for each row
             
@@ -291,9 +291,32 @@ if uploaded_file_soil is not None:
                 with col:
                     col.markdown(f"#### {param}")
                     
-                    # Create colormap for this parameter
-                    t_min, t_max = thresholds[param]
-                    param_colormap = cm.LinearColormap(colors=['blue', 'red'], vmin=t_min, vmax=t_max)
+                    # Extract actual min/max values from sensor data for this parameter
+                    all_values = []
+                    for result in soil_results:
+                        for sensor in ["sensor_1", "sensor_2"]:
+                            val = result.get(sensor, {}).get(param)
+                            if val is not None:
+                                try:
+                                    all_values.append(float(val))
+                                except ValueError:
+                                    continue
+
+                    if all_values:
+                        data_min = min(all_values)
+                        data_max = max(all_values)
+                    else:
+                        # Fall back to thresholds if no values found
+                        data_min, data_max = thresholds[param]
+
+                    # Create a more vibrant color scale (with more color stops)
+                    param_colormap = cm.LinearColormap(
+                        colors=['blue', 'cyan', 'lime', 'yellow', 'orange', 'red'],
+                        vmin=data_min, vmax=data_max
+                    )
+
+    
+
 
                     # Create a folium map
                     param_map = folium.Map(location=overall_soil_center, zoom_start=13)
@@ -346,7 +369,8 @@ if uploaded_file_soil is not None:
                             ).add_to(param_map)
 
                     # Display map in the current column
-                    st_folium(param_map, width=500, height=500, key=f"{param}_map")
+                    st_folium(param_map, use_container_width=True, height=500, key=f"{param}_map")
+
 
                 # Reset columns every two maps to start a new row
                 if (i + 1) % num_cols == 0 and i + 1 < num_params:
