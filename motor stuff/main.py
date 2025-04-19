@@ -16,6 +16,12 @@ motorDriver.setUpMotor()
 ROLLING_WINDOW_SIZE = 20
 rolling_current = deque(maxlen=ROLLING_WINDOW_SIZE)
 
+
+#vars for soil tseting and rock detection
+current_when_rock = 400
+current_when_full_stroke = 40
+sensorTestTime = 60
+
 # Shared variable to safely stop the thread
 running = True
 
@@ -24,6 +30,8 @@ print_lock = threading.Lock()
 
 # create a stop thread even 
 stop_event = threading.Event()
+
+
 
 def get_key():
     """Reads a single key press from the user without needing Enter."""
@@ -36,35 +44,15 @@ def get_key():
         termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
     return ch
 
-def sample_current():
-    """Background thread to sample current and print rolling average every 1 sec."""
-    while running:
-        current = motorDriver.ina.current  # Current in mA
-        rolling_current.append(current)
-        avg_current = sum(rolling_current) / len(rolling_current)
+def sample_current()-> float:
+    
+    current = motorDriver.ina.current  # Current in mA
+    rolling_current.append(current)
+    avg_current = sum(rolling_current) / len(rolling_current)
 
-        load_output = motorDriver.loadOnMotor(avg_current)
-        currentMass = load_output * 0.1019716213
-
-        with print_lock:
-            print("\033[2K\r", end="")  # Clear current line
-            print(f"\n[500ms Sample]")
-            print(f"Current:      {current:.2f} mA")
-            print(f"Rolling Avg:  {avg_current:.2f} mA")
-            print(f"Load:         {load_output:.2f}")
-            print(f"Mass:         {currentMass:.2f} kg\n")
-
-            if avg_current < 0.15:  # the current when the actuator has reached full stroke
-                stop_event.set() 
-            
-            elif avg_current > 0.35:    #if there is a rock the device has to move
-                print("there is a rock, retracting and moving") 
-
-            else: # carry on getting the current till an even happens 
-                time.sleep(1.0)
+    return avg_current
 
 
-# Start the current sampling thread
 
 
 print("Use 'w' to move forward, 's' to move backward, and 'q' to quit.")
@@ -75,23 +63,59 @@ while True:
     
     with print_lock:
         if key == 'w':
-            motorDriver.probeMove("forward")
             motorDriver.testMove("forward")
-            print("Moving forward...")
-            time.sleep(2) # this will sleep the timer so the current can stabalise
-            thread = threading.Thread(target=sample_current, daemon=True)
-            thread.start() # this starts the thread to samples the current 
+            
+            start_time = time.perf_counter() #start a timer for the stroke length
+            last_action_time = start_time # sample the timer 
+            current_time = time.perf_counter()
+            elapsed = current_time - start_time 
+            
+            print("testing for rocks")
+            time.sleep(2) # wait for the current to stabalise            
+
+            while elapsed < 35:
+                avg_current = sample_current()
+                last_action_time = start_time # sample the timer 
+                current_time = time.perf_counter()
+                elapsed = current_time - start_time 
+                print(avg_current)
+                print(elapsed)
+
+                if avg_current > current_when_rock:
+                    motorDriver.testMove("backward")
+                    print("moving backwards and waiting")
+                    time.sleep(40) # wait for 40 second in case the it was at full stroke 
+                    #move buggy to new location 
+                    motorDriver.testMove("forward")
+                    print("moving forwards")    
+                    time.sleep(1)
+                    #reset the timer back to 0
+                    start_time = time.perf_counter()
+                    last_action_time = start_time
+                    elapsed = 0.0
+                    rolling_current.clear() # clear the average so the spike does not interrupt the reading
+            
+            print("this ground is soft enough, moving soil sensor for testing")
+            motorDriver.testMove("backward")
+            # move RTU
+            motorDriver.probeMove("forwards")
+            time.sleep(30)
+            time.sleep(sensorTestTime)
+            #read sensor 
+            motorDriver.probeMove("backward")
+            # continue with the code
+
+            
+
+
 
         elif key == 's':
             motorDriver.probeMove("backward")
             motorDriver.testMove("backward")
             print("Moving backward...")
-            time.sleep(2) # this will sleep the timer so the current can stabalise
-            thread = threading.Thread(target=sample_current, daemon=True)
-            thread.start()
+
 
         elif key == 'q':
             print("Exiting...")
             running = False
-            thread.join()
             break
