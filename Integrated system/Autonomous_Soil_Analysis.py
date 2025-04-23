@@ -9,6 +9,7 @@ from Image_Capture import CameraThread
 from sensor_module import poll_all_sensors, append_results_to_json  # rename your sensor file accordingly
 from motorDriver import RockProbe, SensorProbe
 from RTU_Code import driveForward
+import motorDriver
 
 # --- Configuration ---
 SAVE_DIR = '/media/lukeq/Seagate Portable Drive/Images'
@@ -28,26 +29,33 @@ SENSOR_2_ID = 0x02
 # Rolling average setup for current sampling
 WINDOW_SIZE     = 20
 
+# Initialize the motor
+motorDriver.setUpMotor()
 
 # Thread control flags
 global_running      = True
 stop_event          = threading.Event()
 print_lock          = threading.Lock()
 
-# --- Current sampling thread ---
-def sample_current_for_rock(rolling_current: deque):                                                         #NEED TO CHANGE THIS
-    from motorDriver import ina
-    rolling_current.clear()
-    while global_running:
-        current = ina.current
-        rolling_current.append(current)
-        avg_current = sum(rolling_current) / len(rolling_current)
-        with print_lock:
-            print(f"[Current] {current:.2f} mA | Avg {avg_current:.2f} mA")
-        if avg_current < 0.15 or avg_current > 0.35:
-            stop_event.set()
-            break
-        time.sleep(1.0)
+
+# Rolling average setup
+ROLLING_WINDOW_SIZE = 20
+rolling_current = deque(maxlen=ROLLING_WINDOW_SIZE)
+
+#vars for soil tseting and rock detection
+current_when_rock = 400
+current_when_full_stroke = 40
+sensorTestTime = 60
+
+def sample_current()-> float:
+    
+    current = motorDriver.ina.current  # Current in mA
+    rolling_current.append(current)
+    avg_current = sum(rolling_current) / len(rolling_current)
+
+    return avg_current
+
+
 
 # --- Actuator + Sensor Thread ---                                                                  #WE NEED THIS TO BE MORE SIMPLE
 class ActuatorSensorThread(threading.Thread):
@@ -58,46 +66,52 @@ class ActuatorSensorThread(threading.Thread):
         self.curr_window = deque(maxlen=WINDOW_SIZE)
 
     def run(self):
-        global global_running
-        while not self._stop.is_set():
-            # 1. Rock probe with current monitor
-            print("[Actuator] Starting rock probe...")
-            stop_event.clear()
-            self.curr_window.clear()
-            rock_thread = threading.Thread(target=sample_current_for_rock,
-                                           args=(self.curr_window,))
-            rock_thread.start()
-            RockProbe("forward")
-            # Wait until stop_event: either full stroke or rock hit
-            while not stop_event.is_set():
-                time.sleep(0.01)
-            RockProbe("stop")
-            rock_thread.join()
+            
+            motorDriver.testMove("forward")
+            
+            start_time = time.perf_counter() #start a timer for the stroke length
+            last_action_time = start_time # sample the timer 
+            current_time = time.perf_counter()
+            elapsed = current_time - start_time 
+            
+            print("testing for rocks")
+            time.sleep(2) # wait for the current to stabalise            
 
-            # Decide based on current
-            if any(val > 0.35 for val in self.curr_window):
-                print("[Actuator] Rock detected, skipping this point.")
-                driveForward(STEP_DISTANCE_METERS)
-                continue
-            else:
-                print("[Actuator] No rock, proceeding to sensor probe.")
+            while elapsed < 35:
+                avg_current = sample_current()
+                last_action_time = start_time # sample the timer 
+                current_time = time.perf_counter()
+                elapsed = current_time - start_time 
+                print(avg_current)
+                print(elapsed)
 
-            # 2. Sensor actuator probe (no current monitoring)
-            print(f"[Actuator] Probing sensors for {PROBE_TIME_SEC}s...")
-            SensorProbe("forward")
-            time.sleep(PROBE_TIME_SEC)
-            SensorProbe("stop")
-
-            # 3. Poll soil sensors
-            print("[Sensors] Polling soil sensors...")
-            s1 = poll_all_sensors(self.ser, SENSOR_1_ID)
-            s2 = poll_all_sensors(self.ser, SENSOR_2_ID)
-            append_results_to_json(s1, s2)
-            print("[Sensors] Data saved to JSON.")
-
-            # 4. Advance to next location
-            print(f"[Actuator] Moving forward {STEP_DISTANCE_METERS}m...")
-            driveForward(STEP_DISTANCE_METERS)
+                if avg_current > current_when_rock:
+                    motorDriver.testMove("backward")
+                    print("thre is a rock. moving and trying again")
+                    time.sleep(40) # wait for 40 second in case the it was at full stroke 
+                    # move buggy to new location 
+                    motorDriver.testMove("forward")
+                    print("moving forwards")    
+                    time.sleep(1)
+                    #reset the timer back to 0
+                    start_time = time.perf_counter()
+                    last_action_time = start_time
+                    elapsed = 0.0
+                    rolling_current.clear() # clear the average so the spike does not interrupt the reading
+            
+            print("this ground is soft enough, moving soil sensor for testing")
+            motorDriver.testMove("backward")
+            time.sleep(20)
+            # move RTU
+            print("probing senesor")
+            motorDriver.probeMove("forward")
+            time.sleep(30)
+            time.sleep(sensorTestTime)
+            #read sensor 
+            print("moving sensor probe backwards")
+            motorDriver.probeMove("backward")
+            time.sleep(30)
+            # continue with the code
 
     def stop(self):
         self._stop.set()
