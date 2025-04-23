@@ -1,51 +1,48 @@
-import os
-import time
-import threading
-import serial
 import lgpio
-import cv2
-from collections import deque
-from Image_Capture import CameraThread
-from sensor_module import poll_all_sensors, append_results_to_json  # rename your sensor file accordingly
-from motorDriver import RockProbe, SensorProbe
-from RTU_Code import driveForward
+import time
+import board
+import busio
 import motorDriver
-
-# --- Configuration ---
-SAVE_DIR = '/media/lukeq/Seagate Portable Drive/Images'
-CAM_INDEX = 0
-IMAGE_INTERVAL_SEC = 10.0
-
-PROBE_TIME_SEC = 60.0
-STEP_DISTANCE_METERS = 5.0
-DIST_BETWEEN_PROBES = 0
-
-# Serial port for soil sensors
-COM_PORT = "/dev/ttyUSB1"
-BAUD_RATE = 4800
-SENSOR_1_ID = 0x01
-SENSOR_2_ID = 0x02
-
-# Rolling average setup for current sampling
-WINDOW_SIZE     = 20
+import sys
+import termios
+import tty
+from collections import deque
+import threading
 
 # Initialize the motor
 motorDriver.setUpMotor()
-
-# Thread control flags
-global_running      = True
-stop_event          = threading.Event()
-print_lock          = threading.Lock()
-
 
 # Rolling average setup
 ROLLING_WINDOW_SIZE = 20
 rolling_current = deque(maxlen=ROLLING_WINDOW_SIZE)
 
+
 #vars for soil tseting and rock detection
 current_when_rock = 400
 current_when_full_stroke = 40
 sensorTestTime = 60
+
+# Shared variable to safely stop the thread
+running = True
+
+# Lock for clean print statements
+print_lock = threading.Lock()
+
+# create a stop thread even 
+stop_event = threading.Event()
+
+
+
+def get_key():
+    """Reads a single key press from the user without needing Enter."""
+    fd = sys.stdin.fileno()
+    old_settings = termios.tcgetattr(fd)
+    try:
+        tty.setraw(fd)
+        ch = sys.stdin.read(1)
+    finally:
+        termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+    return ch
 
 def sample_current()-> float:
     
@@ -57,16 +54,15 @@ def sample_current()-> float:
 
 
 
-# --- Actuator + Sensor Thread ---                                                                  #WE NEED THIS TO BE MORE SIMPLE
-class ActuatorSensorThread(threading.Thread):
-    def __init__(self, ser: serial.Serial):
-        super().__init__()
-        self._stop = threading.Event()
-        self.ser  = ser
-        self.curr_window = deque(maxlen=WINDOW_SIZE)
 
-    def run(self):
-            
+print("Use 'w' to move forward, 's' to move backward, and 'q' to quit.")
+
+# Main loop
+while True:
+    key = get_key()
+    
+    with print_lock:
+        if key == 'w':
             motorDriver.testMove("forward")
             
             start_time = time.perf_counter() #start a timer for the stroke length
@@ -113,32 +109,17 @@ class ActuatorSensorThread(threading.Thread):
             time.sleep(30)
             # continue with the code
 
-    def stop(self):
-        self._stop.set()
+            
 
-# --- Main Execution ---
-if __name__ == "__main__":
-    # Open serial port
-    ser = serial.Serial(COM_PORT, BAUD_RATE, timeout=1)
-    print(f"Serial {COM_PORT} @ {BAUD_RATE}")
 
-    # Start camera capture
-    cam_thread = CameraThread(CAM_INDEX, SAVE_DIR, IMAGE_INTERVAL_SEC)
-    cam_thread.start()
 
-    # Start actuation + sensor thread
-    act_thread = ActuatorSensorThread(ser)
-    act_thread.start()
+        elif key == 's':
+            motorDriver.probeMove("backward")
+            motorDriver.testMove("backward")
+            print("Moving backward...")
+    
 
-    try:
-        while True:
-            time.sleep(1)
-    except KeyboardInterrupt:
-        print("[Main] Shutting down...")
-        global_running = False
-        stop_event.set()
-        cam_thread.stop(); cam_thread.join()
-        act_thread.stop(); act_thread.join()
-        ser.close()
-        lgpio.close()
-        print("[Main] Shutdown complete.")
+        elif key == 'q':
+            print("Exiting...")
+            running = False
+            break
