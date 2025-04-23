@@ -83,9 +83,9 @@ while True:
 
                 if avg_current > current_when_rock:
                     motorDriver.testMove("backward")
-                    print("moving backwards and waiting")
+                    print("thre is a rock. moving and trying again")
                     time.sleep(40) # wait for 40 second in case the it was at full stroke 
-                    #move buggy to new location 
+                    # move buggy to new location 
                     motorDriver.testMove("forward")
                     print("moving forwards")    
                     time.sleep(1)
@@ -97,12 +97,16 @@ while True:
             
             print("this ground is soft enough, moving soil sensor for testing")
             motorDriver.testMove("backward")
+            time.sleep(20)
             # move RTU
-            motorDriver.probeMove("forwards")
+            print("probing senesor")
+            motorDriver.probeMove("forward")
             time.sleep(30)
             time.sleep(sensorTestTime)
             #read sensor 
+            print("moving sensor probe backwards")
             motorDriver.probeMove("backward")
+            time.sleep(30)
             # continue with the code
 
             
@@ -113,7 +117,7 @@ while True:
             motorDriver.probeMove("backward")
             motorDriver.testMove("backward")
             print("Moving backward...")
-
+    
 
         elif key == 'q':
             print("Exiting...")
