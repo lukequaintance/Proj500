@@ -14,7 +14,7 @@ import json
 from sensor_module import calculate_crc, parse_response, poll_all_sensors, append_results_to_json
 
 # COM Port Configuration
-COM_PORT = "/dev/ttyUSB1"
+COM_PORT = "/dev/ttyUSB0"
 BAUD_RATE = 4800
 
 # Sensor Device Addresses
@@ -36,6 +36,7 @@ DATA_CODES = [MOIST, TEMP, COND, PH, N, P, K]
 motorDriver.setUpMotor()
 motorDriver.testMove("backward")
 motorDriver.probeMove("backward")
+time.sleep(30)
 
 
 # Rolling average setup
