@@ -11,6 +11,26 @@ import threading
 import serial
 import time
 import json
+from sensor_module import calculate_crc, parse_response, poll_all_sensors, append_results_to_json
+
+# COM Port Configuration
+COM_PORT = "/dev/ttyUSB1"
+BAUD_RATE = 4800
+
+# Sensor Device Addresses
+SENSOR_1_ID = 0x01  # First sensor address
+SENSOR_2_ID = 0x02  # Second sensor address
+
+# Sensor Data Addresses
+MOIST = 0x00
+TEMP = 0x01
+COND = 0x02
+PH = 0x03
+N = 0x04
+P = 0x05
+K = 0x06
+
+DATA_CODES = [MOIST, TEMP, COND, PH, N, P, K]
 
 # Initialize the motor
 motorDriver.setUpMotor()
@@ -65,52 +85,84 @@ def sample_current()-> float:
 
 # Main loop
 while True:
-    motorDriver.testMove("forward")
-            
-    start_time = time.perf_counter() #start a timer for the stroke length
-    last_action_time = start_time # sample the timer 
-    current_time = time.perf_counter()
-    elapsed = current_time - start_time 
-            
-    print("testing for rocks")
-    time.sleep(2) # wait for the current to stabalise            
-
-    while elapsed < 35:
-        avg_current = sample_current()
+    try:
+        ser = serial.Serial(COM_PORT, BAUD_RATE, timeout=1)
+        print(f"Connected to {COM_PORT} at {BAUD_RATE} baud.")
+        motorDriver.testMove("forward")
+                
+        start_time = time.perf_counter() #start a timer for the stroke length
         last_action_time = start_time # sample the timer 
         current_time = time.perf_counter()
         elapsed = current_time - start_time 
-        print(avg_current)
-        print(elapsed)
+                
+        print("testing for rocks")
+        time.sleep(2) # wait for the current to stabalise            
 
-        if avg_current > current_when_rock:
-            motorDriver.testMove("backward")
-            print("there is a rock. moving and trying again")
-            time.sleep(40) # wait for 40 second in case the it was at full stroke 
-            # move buggy to new location 
-            motorDriver.testMove("forward")
-            print("moving forwards")    
-            time.sleep(1)
-            #reset the timer back to 0
-            start_time = time.perf_counter()
-            last_action_time = start_time
-            elapsed = 0.0
-            rolling_current.clear() # clear the average so the spike does not interrupt the reading
-            
-    print("this ground is soft enough, moving soil sensor for testing")
-    motorDriver.testMove("backward")
-    time.sleep(20)
-    # move RTU
-    print("probing senesor")
-    motorDriver.probeMove("forward")
-    time.sleep(30)
-    time.sleep(sensorTestTime)
-    #read sensor 
-    print("moving sensor probe backwards")
-    motorDriver.probeMove("backward")
-    motorDriver.testMove("backward")
-    time.sleep(30)
-    # continue with the code
+        while elapsed < 35:
+            avg_current = sample_current()
+            last_action_time = start_time # sample the timer 
+            current_time = time.perf_counter()
+            elapsed = current_time - start_time 
+            print(avg_current)
+            print(elapsed)
+
+            if avg_current > current_when_rock:
+                motorDriver.testMove("backward")
+                print("there is a rock. moving and trying again")
+                time.sleep(40) # wait for 40 second in case the it was at full stroke 
+                # move buggy to new location 
+                motorDriver.testMove("forward")
+                print("moving forwards")    
+                time.sleep(1)
+                #reset the timer back to 0
+                start_time = time.perf_counter()
+                last_action_time = start_time
+                elapsed = 0.0
+                rolling_current.clear() # clear the average so the spike does not interrupt the reading
+                
+        print("this ground is soft enough, moving soil sensor for testing")
+        motorDriver.testMove("backward")
+        time.sleep(20)
+        # move RTU
+        print("probing sensor")
+        motorDriver.probeMove("forward")
+        time.sleep(30)
+        time.sleep(sensorTestTime)
+        
+        #read sensor
+        print("\nReading sensor data...")
+
+        # Poll Sensor 1
+        print("\nSensor 1 Data:")
+        sensor1_data = poll_all_sensors(ser, SENSOR_1_ID)
+        for label, value in sensor1_data.items():
+            print(f"{label}: {value}")
+
+        # Poll Sensor 2
+        print("\nSensor 2 Data:")
+        sensor2_data = poll_all_sensors(ser, SENSOR_2_ID)
+        for label, value in sensor2_data.items():
+            print(f"{label}: {value}")
+
+        # Append results to JSON file
+        append_results_to_json(sensor1_data, sensor2_data)
+        print("\nData appended to soil_data.json\n")
+
+        print("moving sensor probe backwards")
+        motorDriver.probeMove("backward")
+        motorDriver.testMove("backward")
+        time.sleep(30)
+        # continue with the code
+
+
+    except serial.SerialException as e:
+        print(f"Serial port error: {e}")
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+    finally:
+        if ser:
+            ser.close()
+            print("Serial port closed.")
 
             
 
