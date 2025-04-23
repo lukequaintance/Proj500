@@ -11,8 +11,8 @@ import threading
 import serial
 import time
 import json
-from sensor_module import calculate_crc, parse_response, poll_all_sensors, append_results_to_json
-
+from sensor_module import poll_all_sensors, append_results_to_json
+from Image_Capture import init_camera, ensure_save_dir, capture_and_save, release_camera
 # COM Port Configuration
 COM_PORT = "/dev/ttyUSB0"
 BAUD_RATE = 4800
@@ -79,6 +79,13 @@ def sample_current()-> float:
 
     return avg_current
 
+#Initialise Save File
+SAVE_DIR = '/media/soil/Seagate Portable Drive/Images'
+ensure_save_dir(SAVE_DIR)
+
+#Initialise Camera
+cap = init_camera()
+
 
 
 
@@ -87,6 +94,9 @@ def sample_current()-> float:
 # Main loop
 while True:
     try:
+        path = capture_and_save(cap, SAVE_DIR)
+        print(f"Saved image to {path}")
+        time.sleep(2)
         ser = serial.Serial(COM_PORT, BAUD_RATE, timeout=1)
         print(f"Connected to {COM_PORT} at {BAUD_RATE} baud.")
         motorDriver.testMove("forward")
@@ -164,6 +174,7 @@ while True:
         if ser:
             ser.close()
             print("Serial port closed.")
+            release_camera(cap)
 
             
 
