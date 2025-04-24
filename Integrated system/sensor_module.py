@@ -1,5 +1,6 @@
 import serial
 import time
+import os
 import json
 
 # COM Port Configuration
@@ -82,24 +83,30 @@ def poll_all_sensors(ser, sensor_id):
             print(f"Error reading {sensor} from Sensor {sensor_id}")
     return sensor_data
 
-def append_results_to_json(sensor1_data, sensor2_data):
-    """Append new soil sensor data to a JSON file"""
+def append_results_to_json(sensor1_data, sensor2_data, save_dir):
+    """Append new soil sensor data to a JSON file in the same directory as the images"""
     try:
-        with open("soil_data.json", "r") as json_file:
+        json_file_path = os.path.join(save_dir, "soil_data.json")
+        
+        # Attempt to read the existing JSON file
+        with open(json_file_path, "r") as json_file:
             data = json.load(json_file)
     except (FileNotFoundError, json.JSONDecodeError):
-        data = {"soil_results": []}  # Create new structure if file doesn't exist or is corrupted
+        # If the file doesn't exist or is corrupted, create a new structure
+        data = {"soil_results": []}
 
-    # Append new data entry with timestamp
-    new_entry = {
-        "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
-        "sensor_1": sensor1_data,
-        "sensor_2": sensor2_data
+    # Append the new sensor data to the soil_results list
+    sensor_data = {
+        "sensor1_data": sensor1_data,
+        "sensor2_data": sensor2_data
     }
-    data["soil_results"].append(new_entry)
-
-    with open("soil_data.json", "w") as json_file:
+    data["soil_results"].append(sensor_data)
+    
+    # Save the updated data back to the JSON file
+    with open(json_file_path, "w") as json_file:
         json.dump(data, json_file, indent=4)
+
+    print(f"[INFO] Sensor data saved to {json_file_path}")
 
 def main():
     try:
