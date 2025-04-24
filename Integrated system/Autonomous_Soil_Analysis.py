@@ -11,7 +11,9 @@ import serial
 import json
 import atexit
 from sensor_module import poll_all_sensors, append_results_to_json
-from Image_Capture import CameraThread
+import cv2
+import os
+#from Image_Capture import CameraThread
 # COM Port Configuration
 COM_PORT = "/dev/ttyUSB0"
 BAUD_RATE = 4800
@@ -66,6 +68,43 @@ running = True
 #    finally:
 #        termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
 #    return ch
+class CameraCaptureThread(threading.Thread):
+    def __init__(self, camera_index=0, save_dir="/media/soil/Seagate Portable Drive/Images", interval=10):
+        super().__init__()
+        self.camera_index = camera_index
+        self.save_dir = save_dir
+        self.interval = interval
+        self._stop_event = threading.Event()
+
+        os.makedirs(self.save_dir, exist_ok=True)
+        self.cap = cv2.VideoCapture(self.camera_index)
+        if not self.cap.isOpened():
+            raise RuntimeError(f"Unable to open camera at index {self.camera_index}")
+
+    def run(self):
+        print("[CameraThread] Started camera capture thread.")
+        while not self._stop_event.is_set():
+            ret, frame = self.cap.read()
+            if ret:
+                timestamp = time.strftime("%Y%m%d-%H%M%S")
+                filename = f"capture_{timestamp}.jpg"
+                filepath = os.path.join(self.save_dir, filename)
+                cv2.imwrite(filepath, frame)
+                print(f"[CameraThread] Saved image: {filepath}")
+            else:
+                print("[CameraThread] Failed to read from camera.")
+
+            if self._stop_event.wait(self.interval):
+                break
+
+    def stop(self):
+        self._stop_event.set()
+
+    def release(self):
+        if self.cap.isOpened():
+            self.cap.release()
+        cv2.destroyAllWindows()
+        print("[CameraThread] Released camera resources.")
 
 def sample_current()-> float:
     
@@ -78,6 +117,8 @@ def sample_current()-> float:
 def camera_shutdown():
     print("[CLEANUP] Stopping camera thread...")
     camera_thread.stop()
+    camera_thread.join()
+    camera_thread.release()
     print("[CLEANUP] Camera thread stopped.")
 
 atexit.register(camera_shutdown)
@@ -85,7 +126,8 @@ atexit.register(camera_shutdown)
 print("Here 1")
 #Initialise Save File
 SAVE_DIR = '/media/soil/Seagate Portable Drive/Images'
-camera_thread = CameraThread(camera_index = 0, save_dir = SAVE_DIR, interval = 6.0)
+camera_thread = CameraCaptureThread(camera_index=0, save_dir=SAVE_DIR, interval=10)  # capture every 10 seconds
+camera_thread.start()
 
 print("Here 2")
 
