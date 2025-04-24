@@ -8,11 +8,10 @@ import tty
 from collections import deque
 import threading
 import serial
-import time
 import json
 import atexit
 from sensor_module import poll_all_sensors, append_results_to_json
-from Image_Capture import init_camera, ensure_save_dir, capture_and_save, release_camera, CameraThread
+from Image_Capture import CameraThread
 # COM Port Configuration
 COM_PORT = "/dev/ttyUSB0"
 BAUD_RATE = 4800
@@ -187,6 +186,7 @@ finally:
         ser.close()
         print("[CLEANUP] Serial port closed.")
     
+    camera_shutdown()
     print("[CLEANUP] Camera released.")
 
             
