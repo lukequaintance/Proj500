@@ -80,7 +80,7 @@ class CameraThread(threading.Thread):
         release_camera(self.cap)
 
 #Initialise Save File
-SAVE_DIR = '/media/lukeq/Seagate Portable Drive/Images'
+SAVE_DIR = '/media/soil/Seagate Portable Drive/Images'
 ensure_save_dir(SAVE_DIR)
 
 #Initialise Camera

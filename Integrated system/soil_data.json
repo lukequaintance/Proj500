@@ -1,0 +1,193 @@
+{
+    "soil_results": [
+        {
+            "timestamp": "2025-04-23 15:36:17",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": null,
+                    "longitude": null
+                },
+                "Moisture (%)": 54.2,
+                "Temperature (C)": 18.6,
+                "Conductivity (uS/cm)": 1010,
+                "pH Level": 5.3,
+                "Nitrogen (ppm)": 172,
+                "Phosphorus (ppm)": 443,
+                "Potassium (ppm)": 438
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": null,
+                    "longitude": null
+                },
+                "Moisture (%)": 44.6,
+                "Temperature (C)": 18.7,
+                "Conductivity (uS/cm)": 573,
+                "pH Level": 6.7,
+                "Nitrogen (ppm)": 81,
+                "Phosphorus (ppm)": 232,
+                "Potassium (ppm)": 226
+            }
+        },
+        {
+            "timestamp": "2025-04-23 16:00:08",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": null,
+                    "longitude": null
+                },
+                "Moisture (%)": 54.2,
+                "Temperature (C)": 18.4,
+                "Conductivity (uS/cm)": 909,
+                "pH Level": 5.0,
+                "Nitrogen (ppm)": 151,
+                "Phosphorus (ppm)": 394,
+                "Potassium (ppm)": 389
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": null,
+                    "longitude": null
+                },
+                "Moisture (%)": 40.2,
+                "Temperature (C)": 18.5,
+                "Conductivity (uS/cm)": 472,
+                "pH Level": 5.9,
+                "Nitrogen (ppm)": 60,
+                "Phosphorus (ppm)": 185,
+                "Potassium (ppm)": 178
+            }
+        },
+        {
+            "timestamp": "2025-04-23 16:03:10",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": null,
+                    "longitude": null
+                },
+                "Moisture (%)": 53.0,
+                "Temperature (C)": 18.4,
+                "Conductivity (uS/cm)": 926,
+                "pH Level": 5.2,
+                "Nitrogen (ppm)": 155,
+                "Phosphorus (ppm)": 404,
+                "Potassium (ppm)": 399
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": null,
+                    "longitude": null
+                },
+                "Moisture (%)": 40.9,
+                "Temperature (C)": 18.5,
+                "Conductivity (uS/cm)": 467,
+                "pH Level": 5.6,
+                "Nitrogen (ppm)": 59,
+                "Phosphorus (ppm)": 182,
+                "Potassium (ppm)": 176
+            }
+        },
+        {
+            "timestamp": "2025-04-23 16:06:26",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": null,
+                    "longitude": null
+                }
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": null,
+                    "longitude": null
+                }
+            }
+        },
+        {
+            "timestamp": "2025-04-23 16:09:28",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": null,
+                    "longitude": null
+                },
+                "Moisture (%)": 52.5,
+                "Temperature (C)": 18.4,
+                "Conductivity (uS/cm)": 868,
+                "pH Level": 5.0,
+                "Nitrogen (ppm)": 142,
+                "Phosphorus (ppm)": 376,
+                "Potassium (ppm)": 371
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": null,
+                    "longitude": null
+                },
+                "Moisture (%)": 40.4,
+                "Temperature (C)": 18.4,
+                "Conductivity (uS/cm)": 458,
+                "pH Level": 5.7,
+                "Nitrogen (ppm)": 57,
+                "Phosphorus (ppm)": 178,
+                "Potassium (ppm)": 171
+            }
+        },
+        {
+            "timestamp": "2025-04-23 16:13:13",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": null,
+                    "longitude": null
+                },
+                "Moisture (%)": 54.2,
+                "Temperature (C)": 18.3,
+                "Conductivity (uS/cm)": 927,
+                "pH Level": 5.1,
+                "Nitrogen (ppm)": 154,
+                "Phosphorus (ppm)": 403,
+                "Potassium (ppm)": 398
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": null,
+                    "longitude": null
+                },
+                "Moisture (%)": 41.6,
+                "Temperature (C)": 18.4,
+                "Conductivity (uS/cm)": 465,
+                "pH Level": 5.7,
+                "Nitrogen (ppm)": 58,
+                "Phosphorus (ppm)": 181,
+                "Potassium (ppm)": 174
+            }
+        },
+        {
+            "timestamp": "2025-04-23 16:16:15",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": null,
+                    "longitude": null
+                },
+                "Moisture (%)": 53.4,
+                "Temperature (C)": 18.3,
+                "Conductivity (uS/cm)": 841,
+                "pH Level": 5.1,
+                "Nitrogen (ppm)": 136,
+                "Phosphorus (ppm)": 362,
+                "Potassium (ppm)": 357
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": null,
+                    "longitude": null
+                },
+                "Moisture (%)": 41.5,
+                "Temperature (C)": 18.4,
+                "Conductivity (uS/cm)": 465,
+                "pH Level": 5.6,
+                "Nitrogen (ppm)": 58,
+                "Phosphorus (ppm)": 181,
+                "Potassium (ppm)": 174
+            }
+        }
+    ]
+}

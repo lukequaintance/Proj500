@@ -1,130 +1,183 @@
-import os
+import lgpio
 import time
+import board
+import busio
+import motorDriver
+import sys
+import termios
+import tty
+from collections import deque
 import threading
 import serial
-import lgpio
-import cv2
-from collections import deque
-from Image_Capture import CameraThread
-from sensor_module import poll_all_sensors, append_results_to_json  # rename your sensor file accordingly
-from motorDriver import RockProbe, SensorProbe
-from RTU_Code import driveForward
-
-# --- Configuration ---
-SAVE_DIR = '/media/lukeq/Seagate Portable Drive/Images'
-CAM_INDEX = 0
-IMAGE_INTERVAL_SEC = 10.0
-
-PROBE_TIME_SEC = 60.0
-STEP_DISTANCE_METERS = 5.0
-DIST_BETWEEN_PROBES = 0
-
-# Serial port for soil sensors
-COM_PORT = "/dev/ttyUSB1"
+import time
+import json
+from sensor_module import poll_all_sensors, append_results_to_json
+from Image_Capture import init_camera, ensure_save_dir, capture_and_save, release_camera
+# COM Port Configuration
+COM_PORT = "/dev/ttyUSB0"
 BAUD_RATE = 4800
-SENSOR_1_ID = 0x01
-SENSOR_2_ID = 0x02
 
-# Rolling average setup for current sampling
-WINDOW_SIZE     = 20
+# Sensor Device Addresses
+SENSOR_1_ID = 0x01  # First sensor address
+SENSOR_2_ID = 0x02  # Second sensor address
+
+# Sensor Data Addresses
+MOIST = 0x00
+TEMP = 0x01
+COND = 0x02
+PH = 0x03
+N = 0x04
+P = 0x05
+K = 0x06
+
+DATA_CODES = [MOIST, TEMP, COND, PH, N, P, K]
+
+# Initialize the motor
+motorDriver.setUpMotor()
+motorDriver.testMove("backward")
+motorDriver.probeMove("backward")
+time.sleep(30)
 
 
-# Thread control flags
-global_running      = True
-stop_event          = threading.Event()
-print_lock          = threading.Lock()
+# Rolling average setup
+ROLLING_WINDOW_SIZE = 20
+rolling_current = deque(maxlen=ROLLING_WINDOW_SIZE)
 
-# --- Current sampling thread ---
-def sample_current_for_rock(rolling_current: deque):                                                         #NEED TO CHANGE THIS
-    from motorDriver import ina
-    rolling_current.clear()
-    while global_running:
-        current = ina.current
-        rolling_current.append(current)
-        avg_current = sum(rolling_current) / len(rolling_current)
-        with print_lock:
-            print(f"[Current] {current:.2f} mA | Avg {avg_current:.2f} mA")
-        if avg_current < 0.15 or avg_current > 0.35:
-            stop_event.set()
-            break
-        time.sleep(1.0)
 
-# --- Actuator + Sensor Thread ---                                                                  #WE NEED THIS TO BE MORE SIMPLE
-class ActuatorSensorThread(threading.Thread):
-    def __init__(self, ser: serial.Serial):
-        super().__init__()
-        self._stop = threading.Event()
-        self.ser  = ser
-        self.curr_window = deque(maxlen=WINDOW_SIZE)
+#vars for soil tseting and rock detection
+current_when_rock = 400
+current_when_full_stroke = 40
+sensorTestTime = 60
 
-    def run(self):
-        global global_running
-        while not self._stop.is_set():
-            # 1. Rock probe with current monitor
-            print("[Actuator] Starting rock probe...")
-            stop_event.clear()
-            self.curr_window.clear()
-            rock_thread = threading.Thread(target=sample_current_for_rock,
-                                           args=(self.curr_window,))
-            rock_thread.start()
-            RockProbe("forward")
-            # Wait until stop_event: either full stroke or rock hit
-            while not stop_event.is_set():
-                time.sleep(0.01)
-            RockProbe("stop")
-            rock_thread.join()
+# Shared variable to safely stop the thread
+running = True
 
-            # Decide based on current
-            if any(val > 0.35 for val in self.curr_window):
-                print("[Actuator] Rock detected, skipping this point.")
-                driveForward(STEP_DISTANCE_METERS)
-                continue
-            else:
-                print("[Actuator] No rock, proceeding to sensor probe.")
+# Lock for clean print statements
+print_lock = threading.Lock()
 
-            # 2. Sensor actuator probe (no current monitoring)
-            print(f"[Actuator] Probing sensors for {PROBE_TIME_SEC}s...")
-            SensorProbe("forward")
-            time.sleep(PROBE_TIME_SEC)
-            SensorProbe("stop")
+# create a stop thread even 
+stop_event = threading.Event()
 
-            # 3. Poll soil sensors
-            print("[Sensors] Polling soil sensors...")
-            s1 = poll_all_sensors(self.ser, SENSOR_1_ID)
-            s2 = poll_all_sensors(self.ser, SENSOR_2_ID)
-            append_results_to_json(s1, s2)
-            print("[Sensors] Data saved to JSON.")
 
-            # 4. Advance to next location
-            print(f"[Actuator] Moving forward {STEP_DISTANCE_METERS}m...")
-            driveForward(STEP_DISTANCE_METERS)
+#DEBUGGING
+#def get_key():
+#    """Reads a single key press from the user without needing Enter."""
+#    fd = sys.stdin.fileno()
+#    old_settings = termios.tcgetattr(fd)
+#    try:
+#        tty.setraw(fd)
+#        ch = sys.stdin.read(1)
+#    finally:
+#        termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+#    return ch
 
-    def stop(self):
-        self._stop.set()
+def sample_current()-> float:
+    
+    current = motorDriver.ina.current  # Current in mA
+    rolling_current.append(current)
+    avg_current = sum(rolling_current) / len(rolling_current)
 
-# --- Main Execution ---
-if __name__ == "__main__":
-    # Open serial port
-    ser = serial.Serial(COM_PORT, BAUD_RATE, timeout=1)
-    print(f"Serial {COM_PORT} @ {BAUD_RATE}")
+    return avg_current
 
-    # Start camera capture
-    cam_thread = CameraThread(CAM_INDEX, SAVE_DIR, IMAGE_INTERVAL_SEC)
-    cam_thread.start()
+#Initialise Save File
+SAVE_DIR = '/media/soil/Seagate Portable Drive/Images'
+ensure_save_dir(SAVE_DIR)
 
-    # Start actuation + sensor thread
-    act_thread = ActuatorSensorThread(ser)
-    act_thread.start()
+#Initialise Camera
+cap = init_camera()
 
+
+
+
+#print("Use 'w' to move forward, 's' to move backward, and 'q' to quit.")
+
+# Main loop
+while True:
     try:
-        while True:
-            time.sleep(1)
-    except KeyboardInterrupt:
-        print("[Main] Shutting down...")
-        global_running = False
-        stop_event.set()
-        cam_thread.stop(); cam_thread.join()
-        act_thread.stop(); act_thread.join()
-        ser.close()
-        lgpio.close()
-        print("[Main] Shutdown complete.")
+        path = capture_and_save(cap, SAVE_DIR)
+        print(f"Saved image to {path}")
+        time.sleep(2)
+        ser = serial.Serial(COM_PORT, BAUD_RATE, timeout=1)
+        print(f"Connected to {COM_PORT} at {BAUD_RATE} baud.")
+        motorDriver.testMove("forward")
+                
+        start_time = time.perf_counter() #start a timer for the stroke length
+        last_action_time = start_time # sample the timer 
+        current_time = time.perf_counter()
+        elapsed = current_time - start_time 
+                
+        print("testing for rocks")
+        time.sleep(2) # wait for the current to stabalise            
+
+        while elapsed < 35:
+            avg_current = sample_current()
+            last_action_time = start_time # sample the timer 
+            current_time = time.perf_counter()
+            elapsed = current_time - start_time 
+            print(avg_current)
+            print(elapsed)
+
+            if avg_current > current_when_rock:
+                motorDriver.testMove("backward")
+                print("there is a rock. moving and trying again")
+                time.sleep(40) # wait for 40 second in case the it was at full stroke 
+                # move buggy to new location 
+                motorDriver.testMove("forward")
+                print("moving forwards")    
+                time.sleep(1)
+                #reset the timer back to 0
+                start_time = time.perf_counter()
+                last_action_time = start_time
+                elapsed = 0.0
+                rolling_current.clear() # clear the average so the spike does not interrupt the reading
+                
+        print("this ground is soft enough, moving soil sensor for testing")
+        motorDriver.testMove("backward")
+        time.sleep(20)
+        # move RTU
+        print("probing sensor")
+        motorDriver.probeMove("forward")
+        time.sleep(30)
+        time.sleep(sensorTestTime)
+        
+        #read sensor
+        print("\nReading sensor data...")
+
+        # Poll Sensor 1
+        print("\nSensor 1 Data:")
+        sensor1_data = poll_all_sensors(ser, SENSOR_1_ID)
+        for label, value in sensor1_data.items():
+            print(f"{label}: {value}")
+
+        # Poll Sensor 2
+        print("\nSensor 2 Data:")
+        sensor2_data = poll_all_sensors(ser, SENSOR_2_ID)
+        for label, value in sensor2_data.items():
+            print(f"{label}: {value}")
+
+        # Append results to JSON file
+        append_results_to_json(sensor1_data, sensor2_data)
+        print("\nData appended to soil_data.json\n")
+
+        print("moving sensor probe backwards")
+        motorDriver.probeMove("backward")
+        motorDriver.testMove("backward")
+        time.sleep(30)
+        # continue with the code
+
+
+    except serial.SerialException as e:
+        print(f"Serial port error: {e}")
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+    finally:
+        if ser:
+            ser.close()
+            print("Serial port closed.")
+            release_camera(cap)
+
+            
+
+
+
+      
