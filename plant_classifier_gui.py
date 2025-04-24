@@ -52,24 +52,26 @@ preprocess_val = None
 tokenizer = None
 
 # Classifier parameters.
-CONFIDENCE_THRESHOLD = 0.1  
-HIGH_CONFIDENCE_THRESHOLD = 0.8  # For high-confidence detections.
+# Only show custom labels with confidence >= 5% (0.05).
+CONFIDENCE_THRESHOLD = 0.5
+# Default species threshold (set as decimal, e.g., 0.2 for 20%)
+species_CONFIDENCE_THRESHOLD = 0.1  
+# For determining harmful vs non-harmful plants
+HIGH_CONFIDENCE_THRESHOLD_species = 0.1  # For high-confidence detections.
+HIGH_CONFIDENCE_THRESHOLD_CUSTOM = 0.8  # For custom classifier.
+HIGH_CONFIDENCE_THRESHOLD = 0.5
 
 # ---------------------
 # Utility Functions
 # ---------------------
 
 def launch_visualization_app():
-
     # Launch the visualization application (app.py) using the same Python interpreter.
-
     subprocess.Popen([sys.executable, "Data_Visulisation_App.py"])
 
 
 def convert_to_degrees(value):
-
     # Convert EXIF GPS coordinates into decimal degrees.
-    
     d = value[0][0] / value[0][1]
     m = value[1][0] / value[1][1]
     s = value[2][0] / value[2][1]
@@ -77,9 +79,7 @@ def convert_to_degrees(value):
 
 
 def get_geolocation(image_path):
-
-   # Extract GPS latitude and longitude from an image's EXIF data.
-    
+    # Extract GPS latitude and longitude from an image's EXIF data.
     try:
         exif_dict = piexif.load(image_path)
         gps_ifd = exif_dict.get("GPS", {})
@@ -118,6 +118,70 @@ def get_geolocation(image_path):
 def process_image(image_path):
     """
     Process an individual image: run classifiers, extract geolocation,
+    and return a dictionary with all results above configured thresholds.
+    """
+    try:
+        global custom_classifier, species_classifier
+
+        # Run the custom classifier.
+        custom_predictions = custom_classifier.predict(image_path)
+        # Filter predictions based on the custom threshold.
+        valid_custom = [p for p in custom_predictions if p["score"] is not None and p["score"] >= CONFIDENCE_THRESHOLD]
+        # If none pass the threshold, add a default uncertain prediction.
+        if not valid_custom:
+            valid_custom = [{"classification": "Uncertain", "score": None}]
+        for pred in valid_custom:
+            pred["plant_status"] = (
+                "harmful" if pred.get("score", 0) >= HIGH_CONFIDENCE_THRESHOLD
+                else "non-harmful"
+            )
+
+        # Run the species classifier.
+        species_predictions = species_classifier.predict(image_path, Rank.SPECIES)
+        # Filter species predictions based on configurable threshold.
+        valid_species = [p for p in species_predictions if p.get("score", 0) >= species_CONFIDENCE_THRESHOLD]
+        # If none meet the threshold, fall back to the best species prediction.
+        if not valid_species:
+            best_species = max(species_predictions, key=lambda p: p.get("score", 0), default={"species": "Unknown", "score": None})
+            valid_species = [best_species]
+
+        # Get geolocation.
+        latitude, longitude = get_geolocation(image_path)
+        lat_val = round(latitude, 6) if latitude is not None else None
+        lon_val = round(longitude, 6) if longitude is not None else None
+
+        # Prepare and return the result.
+        result = {
+            "filename": os.path.basename(image_path),
+            "image_path": image_path,
+            "latitude": lat_val,
+            "longitude": lon_val,
+            "custom_predictions": [
+                {
+                    "classification": p["classification"],
+                    "confidence": round(p.get("score", 0), 2) if p.get("score") is not None else None,
+                    "plant_status": p["plant_status"]
+                } for p in valid_custom
+            ],
+            "species_predictions": [
+                {
+                    "species": sp["species"],
+                    "confidence": round(sp.get("score", 0), 2) if sp.get("score") is not None else None
+                } for sp in valid_species
+            ]
+        }
+        return result
+    except Exception as e:
+        logging.error(f"Error processing image {image_path}: {e}")
+        logging.debug(traceback.format_exc())
+        return None
+
+# ---------------------
+# Image Processing Functions
+# ---------------------
+def process_image(image_path):
+    """
+    Process an individual image: run classifiers, extract geolocation,
     and return a dictionary with all high-confidence results.
     
     """
@@ -134,14 +198,14 @@ def process_image(image_path):
         # Determine plant status for each prediction.
         for pred in valid_custom:
             pred["plant_status"] = (
-                "harmful" if pred["score"] is not None and pred["score"] >= HIGH_CONFIDENCE_THRESHOLD
+                "harmful" if pred["score"] is not None and pred["score"] >= HIGH_CONFIDENCE_THRESHOLD_CUSTOM
                 else "non-harmful"
             )
 
         # Run the species classifier.
         species_predictions = species_classifier.predict(image_path, Rank.SPECIES)
         # Filter species predictions for high-confidence results.
-        valid_species = [p for p in species_predictions if p["score"] >= HIGH_CONFIDENCE_THRESHOLD]
+        valid_species = [p for p in species_predictions if p["score"] >= HIGH_CONFIDENCE_THRESHOLD_species]
         # If no species meet the high threshold, fall back to the best species prediction.
         if not valid_species:
             best_species = max(species_predictions, key=lambda p: p["score"], default={"species": "Unknown", "score": None})

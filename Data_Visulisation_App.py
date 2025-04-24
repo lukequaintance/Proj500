@@ -282,7 +282,7 @@ if uploaded_file_soil is not None:
                                              key="soil_parameter_select")
         if selected_parameters:
             num_params = len(selected_parameters)
-            num_cols = 3
+            num_cols = 2
             rows = (num_params + num_cols - 1) // num_cols  # Calculate number of rows
             columns = st.columns(num_cols)  # Create two columns for each row
             
