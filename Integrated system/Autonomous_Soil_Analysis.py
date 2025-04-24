@@ -38,6 +38,7 @@ motorDriver.probeMove("backward")
 time.sleep(30)
 
 
+
 # Rolling average setup
 ROLLING_WINDOW_SIZE = 20
 rolling_current = deque(maxlen=ROLLING_WINDOW_SIZE)
@@ -45,17 +46,13 @@ rolling_current = deque(maxlen=ROLLING_WINDOW_SIZE)
 
 #vars for soil tseting and rock detection
 current_when_rock = 400
-current_when_full_stroke = 40
 sensorTestTime = 60
 
 # Shared variable to safely stop the thread
 running = True
 
-# Lock for clean print statements
-print_lock = threading.Lock()
 
-# create a stop thread even 
-stop_event = threading.Event()
+
 
 
 #DEBUGGING
@@ -88,7 +85,7 @@ atexit.register(camera_shutdown)
 print("Here 1")
 #Initialise Save File
 SAVE_DIR = '/media/soil/Seagate Portable Drive/Images'
-camera_thread = CameraThread(camera_index = 0, save_dir = SAVE_DIR, interval = 6000.0)
+camera_thread = CameraThread(camera_index = 0, save_dir = SAVE_DIR, interval = 6.0)
 
 print("Here 2")
 
