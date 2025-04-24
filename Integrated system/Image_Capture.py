@@ -50,7 +50,7 @@ class CameraThread(threading.Thread):
     """
     Thread that continuously captures images at a set interval.
     """
-    def __init__(self, camera_index: int, save_dir: str, interval: float = 60.0):
+    def __init__(self, camera_index: int, save_dir: str, interval: float):
         super().__init__()
         self.cap = init_camera(camera_index)
         ensure_save_dir(save_dir)
@@ -63,11 +63,13 @@ class CameraThread(threading.Thread):
             try:
                 path = capture_and_save(self.cap, self.save_dir)
                 print(f"[CameraThread] Saved image to {path}")
+                time.sleep(self.interval)
             except Exception as e:
                 print(f"[CameraThread] Error capturing image: {e}")
             # Wait for the interval or until stop is called
-            if self._stop_event.wait(self.interval):
-                break
+            
+            time.sleep(self.interval)
+                
 
     def stop(self):
         """

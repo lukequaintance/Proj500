@@ -85,17 +85,20 @@ def camera_shutdown():
 
 atexit.register(camera_shutdown)
 
+print("Here 1")
 #Initialise Save File
 SAVE_DIR = '/media/soil/Seagate Portable Drive/Images'
-camera_thread = CameraThread(camera_index = 0, save_dir = SAVE_DIR, interval = 2.0)
+camera_thread = CameraThread(camera_index = 0, save_dir = SAVE_DIR, interval = 6000.0)
+
+print("Here 2")
 
 #Initialise Camera
 print("[INIT] Starting camera thread")
 camera_thread.start()
-
+print("Here 3")
 #Initialise Serial Port
 ser = None
-
+print("Here 4")
 
 #print("Use 'w' to move forward, 's' to move backward, and 'q' to quit.")
 
