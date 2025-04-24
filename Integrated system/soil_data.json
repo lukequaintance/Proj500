@@ -188,6 +188,64 @@
                 "Phosphorus (ppm)": 181,
                 "Potassium (ppm)": 174
             }
+        },
+        {
+            "timestamp": "2025-04-24 14:45:57",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": null,
+                    "longitude": null
+                },
+                "Moisture (%)": 42.9,
+                "Temperature (C)": 19.3,
+                "Conductivity (uS/cm)": 763,
+                "pH Level": 5.3,
+                "Nitrogen (ppm)": 120,
+                "Phosphorus (ppm)": 325,
+                "Potassium (ppm)": 321
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": null,
+                    "longitude": null
+                },
+                "Moisture (%)": 37.9,
+                "Temperature (C)": 19.5,
+                "Conductivity (uS/cm)": 443,
+                "pH Level": 5.4,
+                "Nitrogen (ppm)": 53,
+                "Phosphorus (ppm)": 170,
+                "Potassium (ppm)": 163
+            }
+        },
+        {
+            "timestamp": "2025-04-24 14:48:59",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": null,
+                    "longitude": null
+                },
+                "Moisture (%)": 43.6,
+                "Temperature (C)": 19.3,
+                "Conductivity (uS/cm)": 779,
+                "pH Level": 5.3,
+                "Nitrogen (ppm)": 124,
+                "Phosphorus (ppm)": 333,
+                "Potassium (ppm)": 327
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": null,
+                    "longitude": null
+                },
+                "Moisture (%)": 38.8,
+                "Temperature (C)": 19.4,
+                "Conductivity (uS/cm)": 465,
+                "pH Level": 5.2,
+                "Nitrogen (ppm)": 58,
+                "Phosphorus (ppm)": 181,
+                "Potassium (ppm)": 175
+            }
         }
     ]
 }

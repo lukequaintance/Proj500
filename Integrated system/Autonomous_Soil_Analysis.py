@@ -133,11 +133,10 @@ print("Here 2")
 
 #Initialise Camera
 print("[INIT] Starting camera thread")
-camera_thread.start()
 print("Here 3")
 #Initialise Serial Port
 ser = None
-print("Here 4")
+print("Serial init")
 
 #print("Use 'w' to move forward, 's' to move backward, and 'q' to quit.")
 
