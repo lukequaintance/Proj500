@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """
-Plant Image Classifier Application (Refactored with Label Customization in GUI)
+Plant Image Classifier Application
 """
-import os
 import json
 import logging
 import traceback
@@ -16,7 +15,6 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import piexif
 from tkinter import Tk, Toplevel, Button, Label, Listbox, Entry, END, messagebox, Scrollbar, filedialog
 from tkinter.ttk import Progressbar, Style
-from PIL import Image
 
 import open_clip
 from bioclip import CustomLabelsClassifier, TreeOfLifeClassifier, Rank
@@ -33,6 +31,7 @@ class Config:
 
 cfg = Config()
 
+# Default plant labels
 DEFAULT_LABELS = [
     "Annual meadow-grass", "Awned canary-grass", "Barley", "Barren brome", "Black bent",
     "Black-bindweed", "Black-grass", "Black mustard", "Black nightshade", "Broad-leaved dock",
@@ -57,15 +56,18 @@ DEFAULT_LABELS = [
 # Utility Functions
 # ---------------------
 
+# Launch a visualization app
 def launch_visualization_app():
     subprocess.Popen([sys.executable, "Data_Visulisation_App.py"])
 
+# Convert GPS coordinates to degrees
 def convert_to_degrees(value):
     d = value[0][0] / value[0][1]
     m = value[1][0] / value[1][1]
     s = value[2][0] / value[2][1]
     return d + (m / 60.0) + (s / 3600.0)
 
+# Extract geolocation from image metadata
 def get_geolocation(image_path):
     try:
         exif = piexif.load(image_path)
@@ -100,16 +102,12 @@ class ClassifierManager:
         self.species = None
         self.labels = labels
 
+    # Load classifiers
     def load(self):
-        # Always load CLIP model/tokenizer
         open_clip.create_model_and_transforms('hf-hub:imageomics/bioclip')
         open_clip.get_tokenizer('hf-hub:imageomics/bioclip')
-        # Only instantiate custom classifier if labels list not empty
         if self.labels:
             self.custom = CustomLabelsClassifier(self.labels)
-        else:
-            self.custom = None
-        # Always instantiate species classifier
         self.species = TreeOfLifeClassifier()
 
 # ---------------------
@@ -125,7 +123,7 @@ def process_image(image_path, manager: ClassifierManager, cfg: Config) -> dict:
             "custom_predictions": [],
             "species_predictions": []
         }
-        # Custom predictions if classifier present
+        # Custom predictions
         if manager.custom:
             cpreds = manager.custom.predict(image_path)
             valid_c = [p for p in cpreds if p.get("score", 0) >= cfg.CONF_THRESHOLD_CUSTOM]
@@ -144,7 +142,7 @@ def process_image(image_path, manager: ClassifierManager, cfg: Config) -> dict:
         spreds = manager.species.predict(image_path, Rank.SPECIES)
         valid_s = [p for p in spreds if p.get("score", 0) >= cfg.HIGH_CONF_SPECIES]
         if not valid_s:
-            valid_s = [max(spreds, key=lambda x: x.get("score", 0), default={"species":"Unknown","score":None})]
+            valid_s = [max(spreds, key=lambda x: x.get("score", 0), default={"species": "Unknown", "score": None})]
         result["species_predictions"] = [
             {"species": p["species"],
              "confidence": round(p.get("score", 0), 2) if p.get("score") is not None else None}
@@ -179,7 +177,7 @@ def process_folder(folder_path, manager, cfg, progress_callback=None):
                 progress_callback(idx, total)
     return results
 
-
+# Save results to JSON
 def write_json(results):
     output_file = filedialog.asksaveasfilename(
         defaultextension=".json",
@@ -235,6 +233,7 @@ class ImageClassifierApp:
         self.process_btn.pack(pady=10)
         Button(master, text="Launch Visualization App", command=launch_visualization_app).pack(pady=5)
 
+    # Open label editor
     def open_label_editor(self):
         editor = Toplevel(self.master)
         editor.title("Edit Weed Labels")
@@ -248,29 +247,36 @@ class ImageClassifierApp:
 
         entry = Entry(editor)
         entry.pack(pady=5)
+
         def add_label():
             val = entry.get().strip()
             if val:
                 self.labels.append(val)
                 lb.insert(END, val)
                 entry.delete(0, END)
+
         def remove_label():
             sel = lb.curselection()
             if sel:
                 idx = sel[0]
                 self.labels.pop(idx)
                 lb.delete(idx)
+
         def remove_all():
             self.labels.clear()
             lb.delete(0, END)
+
         Button(editor, text="Add", command=add_label).pack(pady=2)
         Button(editor, text="Remove Selected", command=remove_label).pack(pady=2)
         Button(editor, text="Remove All", command=remove_all).pack(pady=2)
+
         def done():
             editor.destroy()
             self.load_btn.config(state="normal")
+
         Button(editor, text="Done", command=done).pack(pady=10)
 
+    # Load classifier
     def load_classifier(self):
         self.manager = ClassifierManager(cfg, self.labels)
         threading.Thread(target=self._load_thread, daemon=True).start()
@@ -289,6 +295,7 @@ class ImageClassifierApp:
         self.status_label.config(text="Model loaded.")
         self.select_btn.config(state="normal")
 
+    # Select folder
     def select_folder(self):
         folder = filedialog.askdirectory(title="Select Folder with Images")
         if folder:
@@ -296,11 +303,13 @@ class ImageClassifierApp:
             self.progress_label.config(text=f"Folder: {folder}")
             self.process_btn.config(state="normal")
 
+    # Update progress bar
     def update_progress(self, cur, tot):
         pct = int(cur / tot * 100)
         self.progress['value'] = pct
         self.progress_label.config(text=f"Progress: {pct}% ({cur}/{tot})")
 
+    # Start processing images
     def start_processing(self):
         if not self.folder_path:
             messagebox.showerror("Error", "Please select a folder first.")
