@@ -1,0 +1,134 @@
+{
+    "plant_data": [
+        {
+            "filename": "20250420_095004910_iOS.jpg",
+            "image_path": "C:/GitHub/Proj500/Proj500/Test data/Rhodedron\\20250420_095004910_iOS.jpg",
+            "latitude": 50.787364,
+            "longitude": -3.216528,
+            "custom_predictions": [
+                {
+                    "classification": "Hawthorn",
+                    "confidence": 1.0,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Rhododendron maximum",
+                    "confidence": 0.51
+                },
+                {
+                    "species": "Rhododendron haematodes",
+                    "confidence": 0.14
+                }
+            ]
+        },
+        {
+            "filename": "20250420_095006175_iOS.jpg",
+            "image_path": "C:/GitHub/Proj500/Proj500/Test data/Rhodedron\\20250420_095006175_iOS.jpg",
+            "latitude": 50.787364,
+            "longitude": -3.216547,
+            "custom_predictions": [
+                {
+                    "classification": "Hawthorn",
+                    "confidence": 1.0,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Rhododendron cuneatum",
+                    "confidence": 0.48
+                }
+            ]
+        },
+        {
+            "filename": "20250420_095007519_iOS.jpg",
+            "image_path": "C:/GitHub/Proj500/Proj500/Test data/Rhodedron\\20250420_095007519_iOS.jpg",
+            "latitude": 50.787372,
+            "longitude": -3.216553,
+            "custom_predictions": [
+                {
+                    "classification": "Hawthorn",
+                    "confidence": 1.0,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Rhododendron cuneatum",
+                    "confidence": 0.22
+                }
+            ]
+        },
+        {
+            "filename": "20250420_095008806_iOS.jpg",
+            "image_path": "C:/GitHub/Proj500/Proj500/Test data/Rhodedron\\20250420_095008806_iOS.jpg",
+            "latitude": 50.787372,
+            "longitude": -3.216553,
+            "custom_predictions": [
+                {
+                    "classification": "Hawthorn",
+                    "confidence": 1.0,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Rhododendron cuneatum",
+                    "confidence": 0.31
+                },
+                {
+                    "species": "Rhododendron sect. tsutsusi",
+                    "confidence": 0.11
+                }
+            ]
+        },
+        {
+            "filename": "20250420_095010122_iOS.jpg",
+            "image_path": "C:/GitHub/Proj500/Proj500/Test data/Rhodedron\\20250420_095010122_iOS.jpg",
+            "latitude": 50.787358,
+            "longitude": -3.21655,
+            "custom_predictions": [
+                {
+                    "classification": "Hawthorn",
+                    "confidence": 1.0,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Rhododendron cuneatum",
+                    "confidence": 0.79
+                }
+            ]
+        },
+        {
+            "filename": "20250420_095011318_iOS.jpg",
+            "image_path": "C:/GitHub/Proj500/Proj500/Test data/Rhodedron\\20250420_095011318_iOS.jpg",
+            "latitude": 50.787358,
+            "longitude": -3.216547,
+            "custom_predictions": [
+                {
+                    "classification": "Hawthorn",
+                    "confidence": 1.0,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Kalmia latifolia",
+                    "confidence": 0.2
+                },
+                {
+                    "species": "Rhododendron cuneatum",
+                    "confidence": 0.16
+                },
+                {
+                    "species": "Augusta longifolia",
+                    "confidence": 0.1
+                }
+            ]
+        }
+    ]
+}

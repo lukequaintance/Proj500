@@ -98,10 +98,13 @@ if uploaded_file_plant is not None:
             except (TypeError, ValueError):
                 lat = lon = None
 
+            # Check if any custom prediction marks it harmful AND meets confidence threshold
             harmful = any(
-                pred.get("plant_status", "").lower() == "harmful" 
+                (pred.get("plant_status", "").lower() == "harmful") and 
+                (pred.get("confidence", 0) >= confidence_threshold)
                 for pred in plant.get("custom_predictions", [])
             )
+
             if harmful:
                 if lat is not None and lon is not None:
                     harmful_valid.append(plant)
@@ -225,6 +228,19 @@ if uploaded_file_soil is not None:
             "Moisture (%)", "Temperature (C)", "Conductivity (uS/cm)",
             "pH Level", "Nitrogen (ppm)", "Phosphorus (ppm)", "Potassium (ppm)"
         ]
+
+                # Sidebar: Confidence threshold for displaying species
+        st.sidebar.subheader("Species Confidence Threshold")
+        confidence_threshold = st.sidebar.slider(
+            "Minimum species confidence (%) to display",
+            min_value=0,
+            max_value=100,
+            value=50,
+            step=1,
+            key="confidence_threshold"
+        )
+        confidence_threshold /= 100  # Convert to 0-1 scale for comparison
+
 
         st.sidebar.subheader("Sensor Discrepancy Thresholds")
 
