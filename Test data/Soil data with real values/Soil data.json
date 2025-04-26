@@ -1,0 +1,758 @@
+{
+    "soil_results": [
+        {
+            "timestamp": "2025-04-23 15:36:17",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": 50.37421700238516,
+                    "longitude": -4.088503277014746
+                },
+                "Moisture (%)": 54.2,
+                "Temperature (C)": 18.6,
+                "Conductivity (uS/cm)": 1010,
+                "pH Level": 5.3,
+                "Nitrogen (ppm)": 172,
+                "Phosphorus (ppm)": 443,
+                "Potassium (ppm)": 438
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": 50.37421710238516,
+                    "longitude": -4.088503377014746
+                },
+                "Moisture (%)": 44.6,
+                "Temperature (C)": 18.7,
+                "Conductivity (uS/cm)": 573,
+                "pH Level": 6.7,
+                "Nitrogen (ppm)": 81,
+                "Phosphorus (ppm)": 232,
+                "Potassium (ppm)": 226
+            }
+        },
+        {
+            "timestamp": "2025-04-23 16:00:08",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": 50.37431700238516,
+                    "longitude": -4.088603277014746
+                },
+                "Moisture (%)": 54.2,
+                "Temperature (C)": 18.4,
+                "Conductivity (uS/cm)": 909,
+                "pH Level": 5.0,
+                "Nitrogen (ppm)": 151,
+                "Phosphorus (ppm)": 394,
+                "Potassium (ppm)": 389
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": 50.37431710238516,
+                    "longitude": -4.088603377014746
+                },
+                "Moisture (%)": 40.2,
+                "Temperature (C)": 18.5,
+                "Conductivity (uS/cm)": 472,
+                "pH Level": 5.9,
+                "Nitrogen (ppm)": 60,
+                "Phosphorus (ppm)": 185,
+                "Potassium (ppm)": 178
+            }
+        },
+        {
+            "timestamp": "2025-04-23 16:03:10",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": 50.37441700238516,
+                    "longitude": -4.088703277014746
+                },
+                "Moisture (%)": 53.0,
+                "Temperature (C)": 18.4,
+                "Conductivity (uS/cm)": 926,
+                "pH Level": 5.2,
+                "Nitrogen (ppm)": 155,
+                "Phosphorus (ppm)": 404,
+                "Potassium (ppm)": 399
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": 50.37441710238516,
+                    "longitude": -4.088703377014746
+                },
+                "Moisture (%)": 40.9,
+                "Temperature (C)": 18.5,
+                "Conductivity (uS/cm)": 467,
+                "pH Level": 5.6,
+                "Nitrogen (ppm)": 59,
+                "Phosphorus (ppm)": 182,
+                "Potassium (ppm)": 176
+            }
+        },
+        {
+            "timestamp": "2025-04-23 16:09:28",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": 50.3741492642266,
+                    "longitude": -4.088986201508496
+                },
+                "Moisture (%)": 52.5,
+                "Temperature (C)": 18.4,
+                "Conductivity (uS/cm)": 868,
+                "pH Level": 5.0,
+                "Nitrogen (ppm)": 142,
+                "Phosphorus (ppm)": 376,
+                "Potassium (ppm)": 371
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": 50.3741492642266,
+                    "longitude": -4.088986201508496
+                },
+                "Moisture (%)": 40.4,
+                "Temperature (C)": 18.4,
+                "Conductivity (uS/cm)": 458,
+                "pH Level": 5.7,
+                "Nitrogen (ppm)": 57,
+                "Phosphorus (ppm)": 178,
+                "Potassium (ppm)": 171
+            }
+        },
+        {
+            "timestamp": "2025-04-23 16:13:13",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": 50.37421700238516,
+                    "longitude": -4.088503277014746
+                },
+                "Moisture (%)": 54.2,
+                "Temperature (C)": 18.3,
+                "Conductivity (uS/cm)": 927,
+                "pH Level": 5.1,
+                "Nitrogen (ppm)": 154,
+                "Phosphorus (ppm)": 403,
+                "Potassium (ppm)": 398
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": 50.37421700238516,
+                    "longitude": -4.088503277014746
+                },
+                "Moisture (%)": 41.6,
+                "Temperature (C)": 18.4,
+                "Conductivity (uS/cm)": 465,
+                "pH Level": 5.7,
+                "Nitrogen (ppm)": 58,
+                "Phosphorus (ppm)": 181,
+                "Potassium (ppm)": 174
+            }
+        },
+        {
+            "timestamp": "2025-04-23 16:16:15",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": 50.376760683589715,
+                    "longitude": -4.091619895850703
+                },
+                "Moisture (%)": 53.4,
+                "Temperature (C)": 18.3,
+                "Conductivity (uS/cm)": 841,
+                "pH Level": 5.1,
+                "Nitrogen (ppm)": 136,
+                "Phosphorus (ppm)": 362,
+                "Potassium (ppm)": 357
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": 50.376760683589715,
+                    "longitude": -4.091619895850703
+                },
+                "Moisture (%)": 41.5,
+                "Temperature (C)": 18.4,
+                "Conductivity (uS/cm)": 465,
+                "pH Level": 5.6,
+                "Nitrogen (ppm)": 58,
+                "Phosphorus (ppm)": 181,
+                "Potassium (ppm)": 174
+            }
+        },
+        {
+            "timestamp": "2025-04-24 14:45:57",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": 50.37501514010808,
+                    "longitude": -4.089924283688112
+                },
+                "Moisture (%)": 42.9,
+                "Temperature (C)": 19.3,
+                "Conductivity (uS/cm)": 763,
+                "pH Level": 5.3,
+                "Nitrogen (ppm)": 120,
+                "Phosphorus (ppm)": 325,
+                "Potassium (ppm)": 321
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": 50.37501514010808,
+                    "longitude": -4.089924283688112
+                },
+                "Moisture (%)": 37.9,
+                "Temperature (C)": 19.5,
+                "Conductivity (uS/cm)": 443,
+                "pH Level": 5.4,
+                "Nitrogen (ppm)": 53,
+                "Phosphorus (ppm)": 170,
+                "Potassium (ppm)": 163
+            }
+        },
+        {
+            "timestamp": "2025-04-24 14:48:59",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": 50.376582060050765,
+                    "longitude": -4.091317203330269
+                },
+                "Moisture (%)": 43.6,
+                "Temperature (C)": 19.3,
+                "Conductivity (uS/cm)": 779,
+                "pH Level": 5.3,
+                "Nitrogen (ppm)": 124,
+                "Phosphorus (ppm)": 333,
+                "Potassium (ppm)": 327
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": 50.376582060050765,
+                    "longitude": -4.091317203330269
+                },
+                "Moisture (%)": 38.8,
+                "Temperature (C)": 19.4,
+                "Conductivity (uS/cm)": 465,
+                "pH Level": 5.2,
+                "Nitrogen (ppm)": 58,
+                "Phosphorus (ppm)": 181,
+                "Potassium (ppm)": 175
+            }
+        },
+        {
+            "timestamp": "2025-04-24 14:52:01",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": 50.37426381560897,
+                    "longitude": -4.089935020218284
+                },
+                "Moisture (%)": 43.6,
+                "Temperature (C)": 19.2,
+                "Conductivity (uS/cm)": 824,
+                "pH Level": 5.2,
+                "Nitrogen (ppm)": 133,
+                "Phosphorus (ppm)": 355,
+                "Potassium (ppm)": 349
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": 50.37426381560897,
+                    "longitude": -4.089935020218284
+                },
+                "Moisture (%)": 38.6,
+                "Temperature (C)": 19.3,
+                "Conductivity (uS/cm)": 435,
+                "pH Level": 5.7,
+                "Nitrogen (ppm)": 52,
+                "Phosphorus (ppm)": 167,
+                "Potassium (ppm)": 160
+            }
+        },
+        {
+            "timestamp": "2025-04-24 14:55:03",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": 50.37467035614706,
+                    "longitude": -4.094157547752558
+                },
+                "Moisture (%)": 43.9,
+                "Temperature (C)": 19.2,
+                "Conductivity (uS/cm)": 780,
+                "pH Level": 5.2,
+                "Nitrogen (ppm)": 124,
+                "Phosphorus (ppm)": 334,
+                "Potassium (ppm)": 328
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": 50.37467035614706,
+                    "longitude": -4.094157547752558
+                },
+                "Moisture (%)": 39.0,
+                "Temperature (C)": 19.3,
+                "Conductivity (uS/cm)": 462,
+                "pH Level": 5.4,
+                "Nitrogen (ppm)": 57,
+                "Phosphorus (ppm)": 180,
+                "Potassium (ppm)": 173
+            }
+        },
+        {
+            "timestamp": "2025-04-24 14:58:05",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": 50.373005445875116,
+                    "longitude": -4.091363386255555
+                },
+                "Moisture (%)": 44.5,
+                "Temperature (C)": 19.2,
+                "Conductivity (uS/cm)": 818,
+                "pH Level": 5.2,
+                "Nitrogen (ppm)": 132,
+                "Phosphorus (ppm)": 350,
+                "Potassium (ppm)": 345
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": 50.373005445875116,
+                    "longitude": -4.091363386255555
+                },
+                "Moisture (%)": 38.7,
+                "Temperature (C)": 19.3,
+                "Conductivity (uS/cm)": 432,
+                "pH Level": 5.7,
+                "Nitrogen (ppm)": 51,
+                "Phosphorus (ppm)": 165,
+                "Potassium (ppm)": 158
+            }
+        },
+        {
+            "timestamp": "2025-04-24 15:01:07",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": 50.373061865253014,
+                    "longitude": -4.09064193082892
+                },
+                "Moisture (%)": 44.2,
+                "Temperature (C)": 19.2,
+                "Conductivity (uS/cm)": 769,
+                "pH Level": 5.4,
+                "Nitrogen (ppm)": 122,
+                "Phosphorus (ppm)": 328,
+                "Potassium (ppm)": 322
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": 50.373061865253014,
+                    "longitude": -4.09064193082892
+                },
+                "Moisture (%)": 38.6,
+                "Temperature (C)": 19.3,
+                "Conductivity (uS/cm)": 422,
+                "pH Level": 5.6,
+                "Nitrogen (ppm)": 49,
+                "Phosphorus (ppm)": 160,
+                "Potassium (ppm)": 153
+            }
+        },
+        {
+            "timestamp": "2025-04-24 15:04:09",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": 50.37437035614706,
+                    "longitude": -4.094457547752558
+                },
+                "Moisture (%)": 44.9,
+                "Temperature (C)": 19.2,
+                "Conductivity (uS/cm)": 839,
+                "pH Level": 5.3,
+                "Nitrogen (ppm)": 136,
+                "Phosphorus (ppm)": 361,
+                "Potassium (ppm)": 356
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": 50.37437035614706,
+                    "longitude": -4.094457547752558
+                },
+                "Moisture (%)": 38.1,
+                "Temperature (C)": 19.3,
+                "Conductivity (uS/cm)": 415,
+                "pH Level": 5.5,
+                "Nitrogen (ppm)": 48,
+                "Phosphorus (ppm)": 157,
+                "Potassium (ppm)": 150
+            }
+        },
+        {
+            "timestamp": "2025-04-24 15:07:11",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": 50.37376266379711,
+                    "longitude": -4.091720404386543
+                },
+                "Moisture (%)": 45.0,
+                "Temperature (C)": 19.1,
+                "Conductivity (uS/cm)": 777,
+                "pH Level": 5.3,
+                "Nitrogen (ppm)": 123,
+                "Phosphorus (ppm)": 331,
+                "Potassium (ppm)": 326
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": 50.37376266379711,
+                    "longitude": -4.091720404386543
+                },
+                "Moisture (%)": 37.9,
+                "Temperature (C)": 19.3,
+                "Conductivity (uS/cm)": 417,
+                "pH Level": 5.6,
+                "Nitrogen (ppm)": 48,
+                "Phosphorus (ppm)": 158,
+                "Potassium (ppm)": 151
+            }
+        },
+        {
+            "timestamp": "2025-04-24 15:10:13",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": 50.37427284875537,
+                    "longitude": -4.092218275375324
+                },
+                "Moisture (%)": 45.0,
+                "Temperature (C)": 19.2,
+                "Conductivity (uS/cm)": 810,
+                "pH Level": 5.4,
+                "Nitrogen (ppm)": 130,
+                "Phosphorus (ppm)": 347,
+                "Potassium (ppm)": 342
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": 50.37427284875537,
+                    "longitude": -4.092218275375324
+                },
+                "Moisture (%)": 37.0,
+                "Temperature (C)": 19.3,
+                "Conductivity (uS/cm)": 404,
+                "pH Level": 5.5,
+                "Nitrogen (ppm)": 45,
+                "Phosphorus (ppm)": 152,
+                "Potassium (ppm)": 145
+            }
+        },
+        {
+            "timestamp": "2025-04-24 15:13:15",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": 50.37437035614706,
+                    "longitude": -4.094157547752558
+                },
+                "Moisture (%)": 45.5,
+                "Temperature (C)": 19.2,
+                "Conductivity (uS/cm)": 758,
+                "pH Level": 5.4,
+                "Nitrogen (ppm)": 119,
+                "Phosphorus (ppm)": 322,
+                "Potassium (ppm)": 316
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": 50.37437035614706,
+                    "longitude": -4.094157547752558
+                },
+                "Moisture (%)": 37.3,
+                "Temperature (C)": 19.2,
+                "Conductivity (uS/cm)": 404,
+                "pH Level": 5.6,
+                "Nitrogen (ppm)": 45,
+                "Phosphorus (ppm)": 152,
+                "Potassium (ppm)": 145
+            }
+        },
+        {
+            "timestamp": "2025-04-24 15:16:17",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": 50.37490016879694,
+                    "longitude": -4.090596354573844
+                },
+                "Moisture (%)": 45.1,
+                "Temperature (C)": 19.2,
+                "Conductivity (uS/cm)": 813,
+                "pH Level": 5.3,
+                "Nitrogen (ppm)": 130,
+                "Phosphorus (ppm)": 348,
+                "Potassium (ppm)": 344
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": 50.37490016879694,
+                    "longitude": -4.090596354573844
+                },
+                "Moisture (%)": 36.3,
+                "Temperature (C)": 19.3,
+                "Conductivity (uS/cm)": 407,
+                "pH Level": 5.6,
+                "Nitrogen (ppm)": 46,
+                "Phosphorus (ppm)": 153,
+                "Potassium (ppm)": 146
+            }
+        },
+        {
+            "timestamp": "2025-04-24 15:19:19",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": 50.377037542936705,
+                    "longitude": -4.089621384779576
+                },
+                "Moisture (%)": 45.1,
+                "Temperature (C)": 19.2,
+                "Conductivity (uS/cm)": 750,
+                "pH Level": 5.3,
+                "Nitrogen (ppm)": 118,
+                "Phosphorus (ppm)": 319,
+                "Potassium (ppm)": 314
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": 50.377037542936705,
+                    "longitude": -4.089621384779576
+                },
+                "Moisture (%)": 36.9,
+                "Temperature (C)": 19.2,
+                "Conductivity (uS/cm)": 404,
+                "pH Level": 5.6,
+                "Nitrogen (ppm)": 45,
+                "Phosphorus (ppm)": 152,
+                "Potassium (ppm)": 145
+            }
+        },
+        {
+            "timestamp": "2025-04-24 15:22:21",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": 50.375303117896564,
+                    "longitude": -4.09078566014728
+                },
+                "Moisture (%)": 45.0,
+                "Temperature (C)": 19.1,
+                "Conductivity (uS/cm)": 759,
+                "pH Level": 5.3,
+                "Nitrogen (ppm)": 121,
+                "Phosphorus (ppm)": 327,
+                "Potassium (ppm)": 321
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": 50.375303117896564,
+                    "longitude": -4.09078566014728
+                },
+                "Moisture (%)": 35.7,
+                "Temperature (C)": 19.3,
+                "Conductivity (uS/cm)": 890,
+                "pH Level": 5.6,
+                "Nitrogen (ppm)": 50,
+                "Phosphorus (ppm)": 163,
+                "Potassium (ppm)": 159
+            }
+        },
+        {
+            "timestamp": "2025-04-24 15:25:23",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": 50.37437035614706,
+                    "longitude": -4.094957547752558
+                },
+                "Moisture (%)": 45.8,
+                "Temperature (C)": 19.1,
+                "Conductivity (uS/cm)": 763,
+                "pH Level": 5.3,
+                "Nitrogen (ppm)": 121,
+                "Phosphorus (ppm)": 326,
+                "Potassium (ppm)": 320
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": 50.37437035614706,
+                    "longitude": -4.094957547752558
+                },
+                "Moisture (%)": 36.5,
+                "Temperature (C)": 19.2,
+                "Conductivity (uS/cm)": 413,
+                "pH Level": 5.7,
+                "Nitrogen (ppm)": 47,
+                "Phosphorus (ppm)": 156,
+                "Potassium (ppm)": 149
+            }
+        },
+        {
+            "timestamp": "2025-04-24 15:28:25",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": 50.373199484391864,
+                    "longitude": -4.092576975894928
+                },
+                "Moisture (%)": 45.6,
+                "Temperature (C)": 19.1,
+                "Conductivity (uS/cm)": 749,
+                "pH Level": 5.3,
+                "Nitrogen (ppm)": 117,
+                "Phosphorus (ppm)": 318,
+                "Potassium (ppm)": 312
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": 50.373199484391864,
+                    "longitude": -4.092576975894928
+                },
+                "Moisture (%)": 36.3,
+                "Temperature (C)": 19.3,
+                "Conductivity (uS/cm)": 438,
+                "pH Level": 5.5,
+                "Nitrogen (ppm)": 52,
+                "Phosphorus (ppm)": 168,
+                "Potassium (ppm)": 161
+            }
+        },
+        {
+            "timestamp": "2025-04-24 15:31:27",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": 50.375011220400154,
+                    "longitude": -4.093863060272547
+                },
+                "Moisture (%)": 45.8,
+                "Temperature (C)": 19.1,
+                "Conductivity (uS/cm)": 748,
+                "pH Level": 5.3,
+                "Nitrogen (ppm)": 117,
+                "Phosphorus (ppm)": 317,
+                "Potassium (ppm)": 311
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": 50.375011220400154,
+                    "longitude": -4.093863060272547
+                },
+                "Moisture (%)": 37.4,
+                "Temperature (C)": 19.2,
+                "Conductivity (uS/cm)": 409,
+                "pH Level": 5.6,
+                "Nitrogen (ppm)": 46,
+                "Phosphorus (ppm)": 154,
+                "Potassium (ppm)": 147
+            }
+        },
+        {
+            "timestamp": "2025-04-24 15:35:15",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": 50.374978602283605,
+                    "longitude": -4.092756525247797
+                },
+                "Moisture (%)": 45.8,
+                "Temperature (C)": 19.1,
+                "Conductivity (uS/cm)": 737,
+                "pH Level": 5.4,
+                "Nitrogen (ppm)": 114,
+                "Phosphorus (ppm)": 311,
+                "Potassium (ppm)": 307
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": 50.374978602283605,
+                    "longitude": -4.092756525247797
+                },
+                "Moisture (%)": 36.9,
+                "Temperature (C)": 19.3,
+                "Conductivity (uS/cm)": 411,
+                "pH Level": 5.5,
+                "Nitrogen (ppm)": 47,
+                "Phosphorus (ppm)": 155,
+                "Potassium (ppm)": 148
+            }
+        },
+        {
+            "timestamp": "2025-04-24 15:38:17",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": 50.37357493574989,
+                    "longitude": -4.092756525247797
+                },
+                "Moisture (%)": 46.3,
+                "Temperature (C)": 19.1,
+                "Conductivity (uS/cm)": 777,
+                "pH Level": 5.4,
+                "Nitrogen (ppm)": 123,
+                "Phosphorus (ppm)": 332,
+                "Potassium (ppm)": 327
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": 50.37357493574989,
+                    "longitude": -4.088635276442496
+                },
+                "Moisture (%)": 37.3,
+                "Temperature (C)": 19.2,
+                "Conductivity (uS/cm)": 404,
+                "pH Level": 5.7,
+                "Nitrogen (ppm)": 45,
+                "Phosphorus (ppm)": 152,
+                "Potassium (ppm)": 145
+            }
+        },
+        {
+            "timestamp": "2025-04-24 15:41:19",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": 50.37767158752189,
+                    "longitude": -4.089611763044199
+                },
+                "Moisture (%)": 45.9,
+                "Temperature (C)": 19.1,
+                "Conductivity (uS/cm)": 735,
+                "pH Level": 5.3,
+                "Nitrogen (ppm)": 114,
+                "Phosphorus (ppm)": 311,
+                "Potassium (ppm)": 305
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": 50.37767158752189,
+                    "longitude": -4.089611763044199
+                },
+                "Moisture (%)": 37.4,
+                "Temperature (C)": 19.2,
+                "Conductivity (uS/cm)": 412,
+                "pH Level": 5.6,
+                "Nitrogen (ppm)": 47,
+                "Phosphorus (ppm)": 156,
+                "Potassium (ppm)": 149
+            }
+        },
+        {
+            "timestamp": "2025-04-24 15:44:21",
+            "sensor_1": {
+                "GPS": {
+                    "latitude": 50.37551804222563,
+                    "longitude": -4.0932216398297205
+                },
+                "Moisture (%)": 45.9,
+                "Temperature (C)": 19.1,
+                "Conductivity (uS/cm)": 729,
+                "pH Level": 5.3,
+                "Nitrogen (ppm)": 113,
+                "Phosphorus (ppm)": 308,
+                "Potassium (ppm)": 303
+            },
+            "sensor_2": {
+                "GPS": {
+                    "latitude": 50.37551804222563,
+                    "longitude": -4.0932216398297205
+                },
+                "Moisture (%)": 36.3,
+                "Temperature (C)": 19.2,
+                "Conductivity (uS/cm)": 421,
+                "pH Level": 5.5,
+                "Nitrogen (ppm)": 49,
+                "Phosphorus (ppm)": 160,
+                "Potassium (ppm)": 153
+            }
+        }
+    ]
+}

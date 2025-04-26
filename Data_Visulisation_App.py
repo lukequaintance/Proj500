@@ -26,13 +26,14 @@ st.title("Field Data Visualization Application")
 # -----------------------------------------------------------
 st.sidebar.header("Data Upload & Filters")
 uploaded_file_plant = st.sidebar.file_uploader("Upload Plant Data JSON", type=["json"], key="plant_file")
-uploaded_file_soil = st.sidebar.file_uploader("Upload Soil Data JSON", type=["json"], key="soil_file")
-
 # Slider for minimum species confidence filter
 min_confidence_percentage = st.sidebar.slider(
     "Minimum species confidence to display (%)", 0, 100, 0, step=1, key="min_confidence_percentage"
 )
 min_confidence = min_confidence_percentage / 100  # Convert percentage to decimal
+uploaded_file_soil = st.sidebar.file_uploader("Upload Soil Data JSON", type=["json"], key="soil_file")
+
+
 
 # -----------------------------------------------------------
 # Helper Functions
@@ -182,12 +183,29 @@ if uploaded_file_soil is not None:
             "pH Level", "Nitrogen (ppm)", "Phosphorus (ppm)", "Potassium (ppm)"
         ]
         st.sidebar.subheader("Sensor Discrepancy Thresholds")
+        default_thresholds = {
+            "Moisture (%)": 10.0,
+            "Temperature (C)": 2.0,
+            "Conductivity (uS/cm)": 410.0,
+            "pH Level": 0.5,
+            "Nitrogen (ppm)": 85.0,
+            "Phosphorus (ppm)": 200.0,
+            "Potassium (ppm)": 200.0
+        }
         hazard_thresholds = {
             param: st.sidebar.number_input(
-                f"Set hazard threshold for {param} difference",
-                value=50.0 if param != "Temperature (C)" else 3.0,
-                step=10.0 if param != "Temperature (C)" else 1.0,
-                min_value=0.0, key=f"hazard_{param.replace(' ', '_')}"
+            f"Set hazard threshold for {param} difference",
+            value=default_thresholds.get(param, 50.0),
+            step={
+                "Moisture (%)": 1.0,
+                "Temperature (C)": 0.1,
+                "Conductivity (uS/cm)": 10.0,
+                "pH Level": 0.1,
+                "Nitrogen (ppm)": 5.0,
+                "Phosphorus (ppm)": 10.0,
+                "Potassium (ppm)": 10.0
+            }.get(param, 1.0),
+            min_value=0.0, key=f"hazard_{param.replace(' ', '_')}"
             )
             for param in parameters
         }
@@ -245,6 +263,8 @@ if uploaded_file_soil is not None:
                             popup_text += f"Sensor 1: {val1}<br>"
                         if val2:
                             popup_text += f"Sensor 2: {val2}<br>"
+                        if val1 and val2:
+                            popup_text += f"<span style='color:red;'><b>Difference: {diff:.2f}</b></span><br>"
 
                         if val1 and val2 and diff > hazard_thresholds[param]:
                             folium.Marker(
