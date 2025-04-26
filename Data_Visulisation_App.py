@@ -98,7 +98,7 @@ if uploaded_file_plant is not None:
                 missing_list.append(plant)
 
         # Plot plants on the map
-        st.subheader("Map: Harmful Plants")
+        st.subheader("Map: Plant life")
         plant_map = folium.Map()
 
         def plot_plants(plants, color, icon, status_label):
@@ -119,13 +119,14 @@ if uploaded_file_plant is not None:
                     f"{sp['species']} ({sp['confidence']:.2f})" for sp in preds
                 )
                 custom_list = ", ".join(
-                    pred.get("classification", "Unknown") for pred in plant.get("custom_predictions", [])
+                    f"{pred.get('classification', 'Unknown')} ({pred.get('confidence', 0):.2f})"
+                    for pred in plant.get("custom_predictions", [])
                 )
                 popup_html = (
                     f"{img_html}"
                     f"<b>Species:</b> {species_list}<br>"
                     f"<b>Classifications:</b> {custom_list}<br>"
-                    f"({status_label})"
+                    f"{'Identified in custom labels and is likely harmful' if status_label == 'Harmful' else 'Not identified in custom labels and is likely not harmful'}"
                 )
                 popup = folium.Popup(popup_html, max_width=400)
                 folium.Marker(

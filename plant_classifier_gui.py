@@ -24,7 +24,7 @@ from bioclip import CustomLabelsClassifier, TreeOfLifeClassifier, Rank
 # ---------------------
 @dataclass(frozen=True)
 class Config:
-    CONF_THRESHOLD_CUSTOM: float = 0.05
+    CONF_THRESHOLD_CUSTOM: float = 0.50
     CONF_THRESHOLD_SPECIES: float = 0.10
     HIGH_CONF_CUSTOM: float = 0.80
     HIGH_CONF_SPECIES: float = 0.10
