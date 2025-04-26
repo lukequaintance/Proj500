@@ -1,0 +1,123 @@
+{
+    "plant_data": [
+        {
+            "filename": "20250420_095007519_iOS.JPG",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Rhodedron\\Cropped\\20250420_095007519_iOS.JPG",
+            "latitude": null,
+            "longitude": null,
+            "custom_predictions": [],
+            "species_predictions": [
+                {
+                    "species": "Rhododendron cuneatum",
+                    "confidence": 0.37
+                },
+                {
+                    "species": "Rhododendron pulchrum",
+                    "confidence": 0.15
+                }
+            ]
+        },
+        {
+            "filename": "20250420_095008806_iOS.JPG",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Rhodedron\\Cropped\\20250420_095008806_iOS.JPG",
+            "latitude": null,
+            "longitude": null,
+            "custom_predictions": [],
+            "species_predictions": [
+                {
+                    "species": "Rhododendron pulchrum",
+                    "confidence": 0.63
+                },
+                {
+                    "species": "Rhododendron simsii",
+                    "confidence": 0.13
+                }
+            ]
+        },
+        {
+            "filename": "20250420_095003632_iOS.jpg",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Rhodedron\\Cropped\\20250420_095003632_iOS.jpg",
+            "latitude": 50.787361,
+            "longitude": -3.216525,
+            "custom_predictions": [],
+            "species_predictions": [
+                {
+                    "species": "Rhododendron \u00d7hybridum ker gawl.",
+                    "confidence": 0.17
+                }
+            ]
+        },
+        {
+            "filename": "20250420_095006175_iOS.jpg",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Rhodedron\\Cropped\\20250420_095006175_iOS.jpg",
+            "latitude": 50.787364,
+            "longitude": -3.216547,
+            "custom_predictions": [],
+            "species_predictions": [
+                {
+                    "species": "Camellia azalea",
+                    "confidence": 0.49
+                },
+                {
+                    "species": "Rhododendron cuneatum",
+                    "confidence": 0.29
+                }
+            ]
+        },
+        {
+            "filename": "20250420_095011318_iOS.JPG",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Rhodedron\\Cropped\\20250420_095011318_iOS.JPG",
+            "latitude": null,
+            "longitude": null,
+            "custom_predictions": [],
+            "species_predictions": [
+                {
+                    "species": "Rhododendron pulchrum",
+                    "confidence": 0.67
+                },
+                {
+                    "species": "Rhododendron viscosum",
+                    "confidence": 0.11
+                }
+            ]
+        },
+        {
+            "filename": "20250420_095010122_iOS.JPG",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Rhodedron\\Cropped\\20250420_095010122_iOS.JPG",
+            "latitude": null,
+            "longitude": null,
+            "custom_predictions": [],
+            "species_predictions": [
+                {
+                    "species": "Rhododendron pulchrum",
+                    "confidence": 0.67
+                }
+            ]
+        },
+        {
+            "filename": "20250420_095004910_iOS.jpg",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Rhodedron\\Cropped\\20250420_095004910_iOS.jpg",
+            "latitude": 50.787364,
+            "longitude": -3.216528,
+            "custom_predictions": [],
+            "species_predictions": [
+                {
+                    "species": "Camellia japonica",
+                    "confidence": 0.25
+                },
+                {
+                    "species": "Camellia azalea",
+                    "confidence": 0.17
+                },
+                {
+                    "species": "Impatiens hawkeri",
+                    "confidence": 0.15
+                },
+                {
+                    "species": "Rhododendron cuneatum",
+                    "confidence": 0.12
+                }
+            ]
+        }
+    ]
+}
