@@ -115,13 +115,24 @@ if uploaded_file_plant is not None:
                 img64 = get_encoded_image(img_path)
                 if img64:
                     img_html = f'<img src="data:image/png;base64,{img64}" width="150" height="150"><br>'
-                species_list = ", ".join(
+                    custom_preds = plant.get("custom_predictions", [])
+
+                    species_list = ", ".join(
                     f"{sp['species']} ({sp['confidence']:.2f})" for sp in preds
-                )
-                custom_list = ", ".join(
-                    f"{pred.get('classification', 'Unknown')} ({pred.get('confidence', 0):.2f})"
-                    for pred in plant.get("custom_predictions", [])
-                )
+                    )
+                    
+                    custom_preds = plant.get("custom_predictions", [])
+                    if not isinstance(custom_preds, list):
+                        custom_preds = []
+
+                    custom_list = ", ".join(
+                        f"{(pred.get('classification') or 'Unknown')} ({float(pred.get('confidence') or 0):.2f})"
+                        for pred in custom_preds
+                        if pred.get('classification') is not None
+                    )
+
+
+
                 popup_html = (
                     f"{img_html}"
                     f"<b>Species:</b> {species_list}<br>"
