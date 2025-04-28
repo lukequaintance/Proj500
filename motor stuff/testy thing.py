@@ -1,42 +1,59 @@
 import RPi.GPIO as GPIO
 import time
 
-# Define pins
-RPWM = 18  # GPIO18 (Pin 12)
-LPWM = 13  # GPIO13 (Pin 33)
-REN = 23   # GPIO23 (Pin 16)
-LEN = 24   # GPIO24 (Pin 18)
+# GPIO Pin Definitions
+RPWM = 18  # Right PWM input (GPIO18 - Pin 12)
+LPWM = 13  # Left PWM input (GPIO13 - Pin 33)
+REN = 23   # Right Enable (GPIO23 - Pin 16)
+LEN = 24   # Left Enable (GPIO24 - Pin 18)
 
-GPIO.setmode(GPIO.BCM)
+# Setup
+GPIO.setmode(GPIO.BCM)      # Use BCM GPIO numbering
+GPIO.setwarnings(False)     # Disable warnings
+
+# Set all control pins as output
 GPIO.setup(RPWM, GPIO.OUT)
 GPIO.setup(LPWM, GPIO.OUT)
 GPIO.setup(REN, GPIO.OUT)
 GPIO.setup(LEN, GPIO.OUT)
 
-# Create PWM objects
-pwm_r = GPIO.PWM(RPWM, 1000)  # 1kHz frequency
-pwm_l = GPIO.PWM(LPWM, 1000)
+# Safe startup: Set PWM pins LOW first
+GPIO.output(RPWM, GPIO.LOW)
+GPIO.output(LPWM, GPIO.LOW)
 
-# Enable the driver
+# Enable the BTS7960 outputs
 GPIO.output(REN, GPIO.HIGH)
 GPIO.output(LEN, GPIO.HIGH)
 
-# Test: Motor Forward
-pwm_l.start(0)   # LPWM 0%
-pwm_r.start(50)  # RPWM 50%
+print("Starting motor test sequence...")
 
+# === Motor Forward Test ===
+print("Motor Forward")
+GPIO.output(RPWM, GPIO.HIGH)
+GPIO.output(LPWM, GPIO.LOW)
+time.sleep(3)  # Run motor forward for 3 seconds
+
+# === Motor Stop ===
+print("Motor Stop")
+GPIO.output(RPWM, GPIO.LOW)
+GPIO.output(LPWM, GPIO.LOW)
+time.sleep(2)  # Pause for 2 seconds
+
+# === Motor Reverse Test ===
+print("Motor Reverse")
+GPIO.output(RPWM, GPIO.LOW)
+GPIO.output(LPWM, GPIO.HIGH)
+time.sleep(3)  # Run motor reverse for 3 seconds
+
+# === Motor Stop ===
+print("Motor Stop")
+GPIO.output(RPWM, GPIO.LOW)
+GPIO.output(LPWM, GPIO.LOW)
 time.sleep(2)
 
-# Test: Motor Reverse
-pwm_r.ChangeDutyCycle(0)
-pwm_l.ChangeDutyCycle(50)
-
-time.sleep(2)
-
-# Stop motor
-pwm_r.ChangeDutyCycle(0)
-pwm_l.ChangeDutyCycle(0)
-
-pwm_r.stop()
-pwm_l.stop()
+# Cleanup
+GPIO.output(REN, GPIO.LOW)
+GPIO.output(LEN, GPIO.LOW)
 GPIO.cleanup()
+
+print("Test sequence complete. All pins cleaned up.")
