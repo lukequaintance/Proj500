@@ -1,59 +1,58 @@
-import RPi.GPIO as GPIO
+import lgpio
 import time
 
-# GPIO Pin Definitions
-RPWM = 18  # Right PWM input (GPIO18 - Pin 12)
-LPWM = 13  # Left PWM input (GPIO13 - Pin 33)
-REN = 23   # Right Enable (GPIO23 - Pin 16)
-LEN = 24   # Left Enable (GPIO24 - Pin 18)
+# Open GPIO chip
+h = lgpio.gpiochip_open(0)
 
-# Setup
-GPIO.setmode(GPIO.BCM)      # Use BCM GPIO numbering
-GPIO.setwarnings(False)     # Disable warnings
+# Pin Definitions (BCM numbering)
+RPWM = 18  # Right PWM input
+LPWM = 13  # Left PWM input
+REN = 23   # Right Enable
+LEN = 24   # Left Enable
 
-# Set all control pins as output
-GPIO.setup(RPWM, GPIO.OUT)
-GPIO.setup(LPWM, GPIO.OUT)
-GPIO.setup(REN, GPIO.OUT)
-GPIO.setup(LEN, GPIO.OUT)
+# Setup all pins as OUTPUT, initial LOW
+for pin in (RPWM, LPWM, REN, LEN):
+    lgpio.gpio_claim_output(h, pin, 0)
 
-# Safe startup: Set PWM pins LOW first
-GPIO.output(RPWM, GPIO.LOW)
-GPIO.output(LPWM, GPIO.LOW)
+# Safe startup
+lgpio.gpio_write(h, RPWM, 0)
+lgpio.gpio_write(h, LPWM, 0)
 
-# Enable the BTS7960 outputs
-GPIO.output(REN, GPIO.HIGH)
-GPIO.output(LEN, GPIO.HIGH)
+# Enable H-bridge outputs
+lgpio.gpio_write(h, REN, 1)
+lgpio.gpio_write(h, LEN, 1)
 
 print("Starting motor test sequence...")
 
 # === Motor Forward Test ===
 print("Motor Forward")
-GPIO.output(RPWM, GPIO.HIGH)
-GPIO.output(LPWM, GPIO.LOW)
-time.sleep(3)  # Run motor forward for 3 seconds
+lgpio.gpio_write(h, RPWM, 1)
+lgpio.gpio_write(h, LPWM, 0)
+time.sleep(3)
 
 # === Motor Stop ===
 print("Motor Stop")
-GPIO.output(RPWM, GPIO.LOW)
-GPIO.output(LPWM, GPIO.LOW)
-time.sleep(2)  # Pause for 2 seconds
+lgpio.gpio_write(h, RPWM, 0)
+lgpio.gpio_write(h, LPWM, 0)
+time.sleep(2)
 
 # === Motor Reverse Test ===
 print("Motor Reverse")
-GPIO.output(RPWM, GPIO.LOW)
-GPIO.output(LPWM, GPIO.HIGH)
-time.sleep(3)  # Run motor reverse for 3 seconds
+lgpio.gpio_write(h, RPWM, 0)
+lgpio.gpio_write(h, LPWM, 1)
+time.sleep(3)
 
 # === Motor Stop ===
 print("Motor Stop")
-GPIO.output(RPWM, GPIO.LOW)
-GPIO.output(LPWM, GPIO.LOW)
+lgpio.gpio_write(h, RPWM, 0)
+lgpio.gpio_write(h, LPWM, 0)
 time.sleep(2)
 
+# Disable H-bridge
+lgpio.gpio_write(h, REN, 0)
+lgpio.gpio_write(h, LEN, 0)
+
 # Cleanup
-GPIO.output(REN, GPIO.LOW)
-GPIO.output(LEN, GPIO.LOW)
-GPIO.cleanup()
+lgpio.gpiochip_close(h)
 
 print("Test sequence complete. All pins cleaned up.")
