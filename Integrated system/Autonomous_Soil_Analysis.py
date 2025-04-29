@@ -126,8 +126,8 @@ def camera_shutdown():
 print("Here 1")
 #Initialise Save File
 SAVE_DIR = '/media/soil/Seagate Portable Drive/Images'
-#camera_thread = CameraCaptureThread(camera_index=0, save_dir=SAVE_DIR, interval=10)  # capture every 10 seconds
-#camera_thread.start()
+camera_thread = CameraCaptureThread(camera_index=0, save_dir=SAVE_DIR, interval=10)  # capture every 10 seconds
+camera_thread.start()
 
 print("Here 2")
 
