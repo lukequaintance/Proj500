@@ -37,7 +37,7 @@ DATA_CODES = [MOIST, TEMP, COND, PH, N, P, K]
 motorDriver.setUpMotor()
 motorDriver.testMove("backward")
 motorDriver.probeMove("backward")
-time.sleep(30)
+time.sleep(10)
 
 
 
@@ -121,13 +121,13 @@ def camera_shutdown():
     camera_thread.release()
     print("[CLEANUP] Camera thread stopped.")
 
-atexit.register(camera_shutdown)
+####atexit.register(camera_shutdown)
 
 print("Here 1")
 #Initialise Save File
 SAVE_DIR = '/media/soil/Seagate Portable Drive/Images'
-camera_thread = CameraCaptureThread(camera_index=0, save_dir=SAVE_DIR, interval=10)  # capture every 10 seconds
-camera_thread.start()
+#camera_thread = CameraCaptureThread(camera_index=0, save_dir=SAVE_DIR, interval=10)  # capture every 10 seconds
+#camera_thread.start()
 
 print("Here 2")
 

@@ -18,7 +18,7 @@ rolling_current = deque(maxlen=ROLLING_WINDOW_SIZE)
 
 
 #vars for soil tseting and rock detection
-current_when_rock = 400
+current_when_rock = 300
 current_when_full_stroke = 40
 sensorTestTime = 60
 
@@ -64,6 +64,7 @@ while True:
     with print_lock:
         if key == 'w':
             motorDriver.testMove("forward")
+            motorDriver.probeMove("forward")
             
             start_time = time.perf_counter() #start a timer for the stroke length
             last_action_time = start_time # sample the timer 
@@ -82,11 +83,11 @@ while True:
                 print(elapsed)
 
                 if avg_current > current_when_rock:
-                    motorDriver.testMove("backward")
+                    motorDriver.probeMove("backward")
                     print("thre is a rock. moving and trying again")
                     time.sleep(40) # wait for 40 second in case the it was at full stroke 
                     # move buggy to new location 
-                    motorDriver.testMove("forward")
+                    motorDriver.probeMove("forward")
                     print("moving forwards")    
                     time.sleep(1)
                     #reset the timer back to 0
@@ -96,7 +97,7 @@ while True:
                     rolling_current.clear() # clear the average so the spike does not interrupt the reading
             
             print("this ground is soft enough, moving soil sensor for testing")
-            motorDriver.testMove("backward")
+            motorDriver.probeMove("backward")
             time.sleep(20)
             # move RTU
             print("probing senesor")

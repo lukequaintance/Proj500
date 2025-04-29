@@ -6,7 +6,7 @@ h = lgpio.gpiochip_open(0)
 
 # Pin Definitions (BCM numbering)
 RPWM = 18  # Right PWM input
-LPWM = 13  # Left PWM input
+LPWM = 19  # Left PWM input
 REN = 23   # Right Enable
 LEN = 24   # Left Enable
 
