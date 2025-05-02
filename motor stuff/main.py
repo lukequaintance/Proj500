@@ -8,6 +8,9 @@ import termios
 import tty
 from collections import deque
 import threading
+import csv
+import matplotlib.pyplot as plt
+import pandas as pd
 
 # Initialize the motor
 motorDriver.setUpMotor()
@@ -21,6 +24,11 @@ rolling_current = deque(maxlen=ROLLING_WINDOW_SIZE)
 current_when_rock = 300
 current_when_full_stroke = 40
 sensorTestTime = 60
+
+def log_current_to_file(elapsed_time, raw_current, current_value, filename="current_log.csv"):
+    with open(filename, mode='a', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([elapsed_time, raw_current, current_value])
 
 # Shared variable to safely stop the thread
 running = True
@@ -64,50 +72,51 @@ while True:
     with print_lock:
         if key == 'w':
             motorDriver.testMove("forward")
-            motorDriver.probeMove("forward")
             
             start_time = time.perf_counter() #start a timer for the stroke length
             last_action_time = start_time # sample the timer 
             current_time = time.perf_counter()
             elapsed = current_time - start_time 
             
-            print("testing for rocks")
             time.sleep(2) # wait for the current to stabalise            
 
-            while elapsed < 35:
+            while elapsed < 75:
                 avg_current = sample_current()
                 last_action_time = start_time # sample the timer 
                 current_time = time.perf_counter()
                 elapsed = current_time - start_time 
+                log_current_to_file(elapsed, motorDriver.ina.current, avg_current)
                 print(avg_current)
                 print(elapsed)
 
-                if avg_current > current_when_rock:
-                    motorDriver.probeMove("backward")
-                    print("thre is a rock. moving and trying again")
-                    time.sleep(40) # wait for 40 second in case the it was at full stroke 
-                    # move buggy to new location 
-                    motorDriver.probeMove("forward")
-                    print("moving forwards")    
-                    time.sleep(1)
-                    #reset the timer back to 0
-                    start_time = time.perf_counter()
-                    last_action_time = start_time
-                    elapsed = 0.0
-                    rolling_current.clear() # clear the average so the spike does not interrupt the reading
+
+            # Load data
+            df = pd.read_csv("current_log.csv")
+
+            # Plot average current
+            plt.figure()
+            plt.plot(df["Elapsed Time (s)"], df["Processed Current (A)"], label="Avg Current", linewidth=2)
+
+            # Optionally plot raw current
+            if "Raw Current Value" in df.columns:
+                plt.plot(df["Elapsed Time (s)"], df["Raw Current Value"], label="Raw Current", linestyle='--')
+
+                plt.xlabel("Elapsed Time (s)")
+                plt.ylabel("Current")
+                plt.title("Current vs Time")
+                plt.legend()
+                plt.grid(True)
+                plt.tight_layout()
+                plt.savefig("current_plot.png")  # Save to file
+                plt.show()  # Show the plot if GUI is available
+
+
+                
             
-            print("this ground is soft enough, moving soil sensor for testing")
             motorDriver.probeMove("backward")
-            time.sleep(20)
+            #stime.sleep(30)
             # move RTU
-            print("probing senesor")
-            motorDriver.probeMove("forward")
-            time.sleep(30)
-            time.sleep(sensorTestTime)
-            #read sensor 
-            print("moving sensor probe backwards")
-            motorDriver.probeMove("backward")
-            time.sleep(30)
+            
             # continue with the code
 
             

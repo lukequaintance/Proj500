@@ -13,6 +13,9 @@ import atexit
 from sensor_module import poll_all_sensors, append_results_to_json
 import cv2
 import os
+import csv
+
+
 #from Image_Capture import CameraThread
 # COM Port Configuration
 COM_PORT = "/dev/ttyUSB0"
@@ -47,12 +50,18 @@ rolling_current = deque(maxlen=ROLLING_WINDOW_SIZE)
 
 
 #vars for soil tseting and rock detection
-current_when_rock = 400
+current_when_rock = 350
 sensorTestTime = 60
 
 # Shared variable to safely stop the thread
 running = True
 
+
+#used for testing
+def log_current_to_file(elapsed_time, raw_current, current_value, filename="current_log.csv"):
+    with open(filename, mode='a', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([elapsed_time, raw_current, current_value])
 
 
 
@@ -68,6 +77,7 @@ running = True
 #    finally:
 #        termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
 #    return ch
+
 class CameraCaptureThread(threading.Thread):
     def __init__(self, camera_index=0, save_dir="/media/soil/Seagate Portable Drive/Images", interval=10):
         super().__init__()
@@ -121,7 +131,7 @@ def camera_shutdown():
     camera_thread.release()
     print("[CLEANUP] Camera thread stopped.")
 
-####atexit.register(camera_shutdown)
+atexit.register(camera_shutdown)
 
 print("Here 1")
 #Initialise Save File
@@ -165,6 +175,8 @@ try:
                 elapsed = current_time - start_time
 
                 print(f"[INFO] Avg current: {avg_current:.2f} mA | Time elapsed: {elapsed:.1f}s")
+                
+                log_current_to_file(elapsed, motorDriver.ina.current, avg_current)
 
                 if avg_current > current_when_rock:
                     print("[ALERT] Rock detected! Moving backward and retrying...")
