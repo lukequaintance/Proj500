@@ -1,0 +1,601 @@
+{
+    "plant_data": [
+        {
+            "filename": "Image 2 Rododendron.jpg",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Website Testing\\Image 2 Rododendron.jpg",
+            "latitude": 50.37499141,
+            "longitude": -4.09397418,
+            "custom_predictions": [
+                {
+                    "classification": "Hawthorn",
+                    "confidence": 0.53,
+                    "plant_status": "non-harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Rhododendron maximum",
+                    "confidence": 0.51
+                },
+                {
+                    "species": "Rhododendron haematodes",
+                    "confidence": 0.14
+                }
+            ]
+        },
+        {
+            "filename": "Image 12 Oil Seed Rape.jpg",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Website Testing\\Image 12 Oil Seed Rape.jpg",
+            "latitude": 50.37557565,
+            "longitude": -4.09337457,
+            "custom_predictions": [
+                {
+                    "classification": "Uncertain",
+                    "confidence": null,
+                    "plant_status": "non-harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Brassica napus",
+                    "confidence": 0.96
+                }
+            ]
+        },
+        {
+            "filename": "Image 1 English Ivy.jpg",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Website Testing\\Image 1 English Ivy.jpg",
+            "latitude": 50.375961,
+            "longitude": -4.093139,
+            "custom_predictions": [
+                {
+                    "classification": "Uncertain",
+                    "confidence": null,
+                    "plant_status": "non-harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Euonymus fortunei",
+                    "confidence": 0.36
+                },
+                {
+                    "species": "Hedera iberica",
+                    "confidence": 0.26
+                },
+                {
+                    "species": "Hedera helix",
+                    "confidence": 0.21
+                }
+            ]
+        },
+        {
+            "filename": "Image 15 Field Sow Thistle.jpg",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Website Testing\\Image 15 Field Sow Thistle.jpg",
+            "latitude": 50.37416277,
+            "longitude": -4.09206286,
+            "custom_predictions": [
+                {
+                    "classification": "Uncertain",
+                    "confidence": null,
+                    "plant_status": "non-harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Sonchus arvensis",
+                    "confidence": 0.54
+                }
+            ]
+        },
+        {
+            "filename": "Image 11 Hedge Mustard.jpg",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Website Testing\\Image 11 Hedge Mustard.jpg",
+            "latitude": 50.37512405,
+            "longitude": -4.09063768,
+            "custom_predictions": [
+                {
+                    "classification": "Hedge mustard",
+                    "confidence": 0.82,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Sisymbrium officinale",
+                    "confidence": 0.55
+                },
+                {
+                    "species": "Erucastrum austroafricanum",
+                    "confidence": 0.16
+                }
+            ]
+        },
+        {
+            "filename": "Image 20 European Yellow Lupin.jpg",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Website Testing\\Image 20 European Yellow Lupin.jpg",
+            "latitude": 50.3776585,
+            "longitude": -4.0894424,
+            "custom_predictions": [
+                {
+                    "classification": "Gorse",
+                    "confidence": 1.0,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Thermopsis chinensis",
+                    "confidence": 0.27
+                },
+                {
+                    "species": "Lupinus luteus",
+                    "confidence": 0.15
+                },
+                {
+                    "species": "Thermopsis mollis",
+                    "confidence": 0.11
+                }
+            ]
+        },
+        {
+            "filename": "Image 17 Meadow Brome.jpg",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Website Testing\\Image 17 Meadow Brome.jpg",
+            "latitude": 50.37370968,
+            "longitude": -4.08854377,
+            "custom_predictions": [
+                {
+                    "classification": "Uncertain",
+                    "confidence": null,
+                    "plant_status": "non-harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Allium flavum",
+                    "confidence": 0.07
+                }
+            ]
+        },
+        {
+            "filename": "Image 10 Ragwort.jpg",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Website Testing\\Image 10 Ragwort.jpg",
+            "latitude": 50.37685597,
+            "longitude": -4.08972928,
+            "custom_predictions": [
+                {
+                    "classification": "Uncertain",
+                    "confidence": null,
+                    "plant_status": "non-harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Jacobaea vulgaris",
+                    "confidence": 0.54
+                },
+                {
+                    "species": "Senecio jacobaea",
+                    "confidence": 0.17
+                }
+            ]
+        },
+        {
+            "filename": "Image 13 Charlock.jpg",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Website Testing\\Image 13 Charlock.jpg",
+            "latitude": 50.37638317,
+            "longitude": -4.09129608,
+            "custom_predictions": [
+                {
+                    "classification": "Charlock",
+                    "confidence": 0.66,
+                    "plant_status": "non-harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Sinapis arvensis",
+                    "confidence": 0.52
+                },
+                {
+                    "species": "Rapistrum rugosum",
+                    "confidence": 0.4
+                }
+            ]
+        },
+        {
+            "filename": "Image 18 Heather.jpg",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Website Testing\\Image 18 Heather.jpg",
+            "latitude": 50.37447758,
+            "longitude": -4.09423056,
+            "custom_predictions": [
+                {
+                    "classification": "Gorse",
+                    "confidence": 0.61,
+                    "plant_status": "non-harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Calluna vulgaris",
+                    "confidence": 0.99
+                }
+            ]
+        },
+        {
+            "filename": "Image 14 Bur Chervil.jpg",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Website Testing\\Image 14 Bur Chervil.jpg",
+            "latitude": 50.37494391,
+            "longitude": -4.09372693,
+            "custom_predictions": [
+                {
+                    "classification": "Uncertain",
+                    "confidence": null,
+                    "plant_status": "non-harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Anthriscus sylvestris",
+                    "confidence": 0.82
+                },
+                {
+                    "species": "Anthriscus caucalis",
+                    "confidence": 0.13
+                }
+            ]
+        },
+        {
+            "filename": "Image 19 Meadow Bistort.jpg",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Website Testing\\Image 19 Meadow Bistort.jpg",
+            "latitude": 50.37484068,
+            "longitude": -4.09073291,
+            "custom_predictions": [
+                {
+                    "classification": "Timothy",
+                    "confidence": 0.99,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Bistorta officinalis",
+                    "confidence": 0.95
+                }
+            ]
+        },
+        {
+            "filename": "Image 9 Garlic Mustard.jpg",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Website Testing\\Image 9 Garlic Mustard.jpg",
+            "latitude": 50.37426709,
+            "longitude": -4.08996011,
+            "custom_predictions": [
+                {
+                    "classification": "Garlic mustard",
+                    "confidence": 1.0,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Alliaria petiolata",
+                    "confidence": 0.77
+                },
+                {
+                    "species": "Alliaria perfoliata",
+                    "confidence": 0.2
+                }
+            ]
+        },
+        {
+            "filename": "Image 3 Gorse.jpg",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Website Testing\\Image 3 Gorse.jpg",
+            "latitude": 50.3768292,
+            "longitude": -4.09169932,
+            "custom_predictions": [
+                {
+                    "classification": "Gorse",
+                    "confidence": 1.0,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Ulex europaeus",
+                    "confidence": 0.38
+                },
+                {
+                    "species": "Hormiscium ericae",
+                    "confidence": 0.37
+                },
+                {
+                    "species": "Myoporum insulare",
+                    "confidence": 0.14
+                }
+            ]
+        },
+        {
+            "filename": "Image 8 Hawthorn.jpg",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Website Testing\\Image 8 Hawthorn.jpg",
+            "latitude": 50.37338225,
+            "longitude": -4.09258236,
+            "custom_predictions": [
+                {
+                    "classification": "Hawthorn",
+                    "confidence": 0.72,
+                    "plant_status": "non-harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Crataegus monogyna",
+                    "confidence": 0.7
+                }
+            ]
+        },
+        {
+            "filename": "WIN_20250407_17_37_16_Pro.jpg",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Website Testing\\WIN_20250407_17_37_16_Pro.jpg",
+            "latitude": 50.37434489,
+            "longitude": -4.0891634,
+            "custom_predictions": [
+                {
+                    "classification": "Dandelion",
+                    "confidence": 0.55,
+                    "plant_status": "non-harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Geopora sumneriana",
+                    "confidence": 0.11
+                }
+            ]
+        },
+        {
+            "filename": "WIN_20250407_17_31_21_Pro.jpg",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Website Testing\\WIN_20250407_17_31_21_Pro.jpg",
+            "latitude": 50.37429287,
+            "longitude": -4.09479884,
+            "custom_predictions": [
+                {
+                    "classification": "Dandelion",
+                    "confidence": 0.99,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Gagea lutea",
+                    "confidence": 0.18
+                },
+                {
+                    "species": "Muscari sp.",
+                    "confidence": 0.18
+                },
+                {
+                    "species": "Ficaria verna",
+                    "confidence": 0.17
+                }
+            ]
+        },
+        {
+            "filename": "WIN_20250407_17_48_08_Pro.jpg",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Website Testing\\WIN_20250407_17_48_08_Pro.jpg",
+            "latitude": 50.374138,
+            "longitude": -4.08858814,
+            "custom_predictions": [
+                {
+                    "classification": "Hawthorn",
+                    "confidence": 0.89,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Crataegus monogyna",
+                    "confidence": 0.99
+                }
+            ]
+        },
+        {
+            "filename": "WIN_20250407_17_38_22_Pro.jpg",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Website Testing\\WIN_20250407_17_38_22_Pro.jpg",
+            "latitude": 50.37425627,
+            "longitude": -4.08833892,
+            "custom_predictions": [
+                {
+                    "classification": "Uncertain",
+                    "confidence": null,
+                    "plant_status": "non-harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Cardamine pratensis",
+                    "confidence": 0.04
+                }
+            ]
+        },
+        {
+            "filename": "WIN_20250407_17_36_07_Pro.jpg",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Website Testing\\WIN_20250407_17_36_07_Pro.jpg",
+            "latitude": 50.37423636,
+            "longitude": -4.08895231,
+            "custom_predictions": [
+                {
+                    "classification": "Garlic mustard",
+                    "confidence": 0.81,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Prunus spinosa",
+                    "confidence": 0.71
+                }
+            ]
+        },
+        {
+            "filename": "Image 4 Beales Barberry.jpg",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Website Testing\\Image 4 Beales Barberry.jpg",
+            "latitude": 50.373604,
+            "longitude": -4.092847,
+            "custom_predictions": [
+                {
+                    "classification": "Hemlock",
+                    "confidence": 0.58,
+                    "plant_status": "non-harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Berberis bealei",
+                    "confidence": 0.74
+                }
+            ]
+        },
+        {
+            "filename": "Image 5 Hedge Parsley.jpg",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Website Testing\\Image 5 Hedge Parsley.jpg",
+            "latitude": 50.374561,
+            "longitude": -4.0929,
+            "custom_predictions": [
+                {
+                    "classification": "Cow parsley",
+                    "confidence": 0.89,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Torilis japonica",
+                    "confidence": 0.28
+                },
+                {
+                    "species": "Conium maculatum",
+                    "confidence": 0.16
+                },
+                {
+                    "species": "Anthriscus sylvestris",
+                    "confidence": 0.13
+                }
+            ]
+        },
+        {
+            "filename": "Image 6 English Holly.jpg",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Website Testing\\Image 6 English Holly.jpg",
+            "latitude": 50.376392,
+            "longitude": -4.095004,
+            "custom_predictions": [
+                {
+                    "classification": "Hawthorn",
+                    "confidence": 0.69,
+                    "plant_status": "non-harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Ilex colchica",
+                    "confidence": 0.44
+                },
+                {
+                    "species": "Ilex aquifolium",
+                    "confidence": 0.43
+                }
+            ]
+        },
+        {
+            "filename": "Image 7 English Yew.jpg",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Website Testing\\Image 7 English Yew.jpg",
+            "latitude": 50.376312,
+            "longitude": -4.095407,
+            "custom_predictions": [
+                {
+                    "classification": "Hemlock",
+                    "confidence": 1.0,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Taxus contorta",
+                    "confidence": 0.3
+                },
+                {
+                    "species": "Tsuga chinensis",
+                    "confidence": 0.26
+                },
+                {
+                    "species": "Taxus baccata",
+                    "confidence": 0.14
+                }
+            ]
+        },
+        {
+            "filename": "Image 16 Ragwort.jpeg",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Website Testing\\Image 16 Ragwort.jpeg",
+            "latitude": 50.37470962,
+            "longitude": -4.09066476,
+            "custom_predictions": [
+                {
+                    "classification": "Uncertain",
+                    "confidence": null,
+                    "plant_status": "non-harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Jacobaea vulgaris",
+                    "confidence": 0.25
+                },
+                {
+                    "species": "Hypericum maculatum",
+                    "confidence": 0.1
+                }
+            ]
+        },
+        {
+            "filename": "WIN_20250410_17_42_11_Pro.jpg",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Website Testing\\WIN_20250410_17_42_11_Pro.jpg",
+            "latitude": 50.37639876,
+            "longitude": -4.09123524,
+            "custom_predictions": [
+                {
+                    "classification": "Gorse",
+                    "confidence": 1.0,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Cytisus scoparius",
+                    "confidence": 0.35
+                },
+                {
+                    "species": "Ulex europaeus",
+                    "confidence": 0.34
+                }
+            ]
+        },
+        {
+            "filename": "WIN_20250410_17_43_32_Pro.jpg",
+            "image_path": "C:\\GitHub\\Proj500\\Proj500\\Test data\\Website Testing\\WIN_20250410_17_43_32_Pro.jpg",
+            "latitude": 50.37447397,
+            "longitude": -4.08863512,
+            "custom_predictions": [
+                {
+                    "classification": "Gorse",
+                    "confidence": 1.0,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Ulex europaeus",
+                    "confidence": 0.99
+                }
+            ]
+        }
+    ]
+}

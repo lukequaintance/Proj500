@@ -1,0 +1,191 @@
+{
+    "plant_data": [
+        {
+            "filename": "WIN_20250407_17_47_56_Pro.jpg",
+            "image_path": "C:/GitHub/Proj500/Proj500/Test data/Hawthorn\\WIN_20250407_17_47_56_Pro.jpg",
+            "latitude": null,
+            "longitude": null,
+            "custom_predictions": [
+                {
+                    "classification": "Hawthorn",
+                    "confidence": 1.0,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Phaseolus vulgaris",
+                    "confidence": 0.13
+                },
+                {
+                    "species": "Monacha syriaca",
+                    "confidence": 0.12
+                }
+            ]
+        },
+        {
+            "filename": "WIN_20250407_17_47_58_Pro.jpg",
+            "image_path": "C:/GitHub/Proj500/Proj500/Test data/Hawthorn\\WIN_20250407_17_47_58_Pro.jpg",
+            "latitude": null,
+            "longitude": null,
+            "custom_predictions": [
+                {
+                    "classification": "Hawthorn",
+                    "confidence": 1.0,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Psilocybe cyanescens",
+                    "confidence": 0.28
+                }
+            ]
+        },
+        {
+            "filename": "WIN_20250407_17_48_00_Pro.jpg",
+            "image_path": "C:/GitHub/Proj500/Proj500/Test data/Hawthorn\\WIN_20250407_17_48_00_Pro.jpg",
+            "latitude": null,
+            "longitude": null,
+            "custom_predictions": [
+                {
+                    "classification": "Hawthorn",
+                    "confidence": 1.0,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Ribes uva-crispa",
+                    "confidence": 0.09
+                }
+            ]
+        },
+        {
+            "filename": "WIN_20250407_17_48_02_Pro.jpg",
+            "image_path": "C:/GitHub/Proj500/Proj500/Test data/Hawthorn\\WIN_20250407_17_48_02_Pro.jpg",
+            "latitude": null,
+            "longitude": null,
+            "custom_predictions": [
+                {
+                    "classification": "Hawthorn",
+                    "confidence": 1.0,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Acrocephalus scirpaceus",
+                    "confidence": 0.09
+                }
+            ]
+        },
+        {
+            "filename": "WIN_20250407_17_48_06_Pro.jpg",
+            "image_path": "C:/GitHub/Proj500/Proj500/Test data/Hawthorn\\WIN_20250407_17_48_06_Pro.jpg",
+            "latitude": null,
+            "longitude": null,
+            "custom_predictions": [
+                {
+                    "classification": "Hawthorn",
+                    "confidence": 1.0,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Crataegus monogyna",
+                    "confidence": 0.54
+                },
+                {
+                    "species": "Phaseolus coccineus",
+                    "confidence": 0.25
+                }
+            ]
+        },
+        {
+            "filename": "WIN_20250407_17_48_08_Pro.jpg",
+            "image_path": "C:/GitHub/Proj500/Proj500/Test data/Hawthorn\\WIN_20250407_17_48_08_Pro.jpg",
+            "latitude": null,
+            "longitude": null,
+            "custom_predictions": [
+                {
+                    "classification": "Hawthorn",
+                    "confidence": 1.0,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Crataegus monogyna",
+                    "confidence": 0.99
+                }
+            ]
+        },
+        {
+            "filename": "WIN_20250407_17_48_11_Pro.jpg",
+            "image_path": "C:/GitHub/Proj500/Proj500/Test data/Hawthorn\\WIN_20250407_17_48_11_Pro.jpg",
+            "latitude": null,
+            "longitude": null,
+            "custom_predictions": [
+                {
+                    "classification": "Hawthorn",
+                    "confidence": 1.0,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Crataegus monogyna",
+                    "confidence": 0.82
+                }
+            ]
+        },
+        {
+            "filename": "WIN_20250407_17_48_13_Pro.jpg",
+            "image_path": "C:/GitHub/Proj500/Proj500/Test data/Hawthorn\\WIN_20250407_17_48_13_Pro.jpg",
+            "latitude": null,
+            "longitude": null,
+            "custom_predictions": [
+                {
+                    "classification": "Hawthorn",
+                    "confidence": 1.0,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Crataegus monogyna",
+                    "confidence": 0.7
+                }
+            ]
+        },
+        {
+            "filename": "WIN_20250407_17_48_18_Pro.jpg",
+            "image_path": "C:/GitHub/Proj500/Proj500/Test data/Hawthorn\\WIN_20250407_17_48_18_Pro.jpg",
+            "latitude": null,
+            "longitude": null,
+            "custom_predictions": [
+                {
+                    "classification": "Hawthorn",
+                    "confidence": 1.0,
+                    "plant_status": "harmful"
+                }
+            ],
+            "species_predictions": [
+                {
+                    "species": "Alnus glutinosa",
+                    "confidence": 0.24
+                },
+                {
+                    "species": "Larix decidua",
+                    "confidence": 0.15
+                },
+                {
+                    "species": "Alnus incana",
+                    "confidence": 0.1
+                }
+            ]
+        }
+    ]
+}
